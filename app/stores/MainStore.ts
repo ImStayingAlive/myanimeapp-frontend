@@ -8,6 +8,9 @@ class MainStore {
         makeAutoObservable(this)
     }
 
+    setLoaded (status: boolean) {
+        this.loaded = status
+    }
 }
 
 const mainStore = new MainStore()

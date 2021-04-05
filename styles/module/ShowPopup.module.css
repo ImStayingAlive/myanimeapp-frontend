@@ -1,0 +1,115 @@
+.show-popup-background {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    max-height: 600px;
+    overflow: hidden;
+
+    background: -moz-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(55,65,81, 1) 100%);
+    background: -webkit-gradient(linear, left bottom, left bottom, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(55,65,81, 1) 100%);
+    background: -o-linear-gradient(bottom, rgba(0,0,0,0) 0%,rgba(55,65,81, 1) 100%);
+    background: -ms-linear-gradient(bottom, rgba(0,0,0,0) 0%,rgba(55,65,81, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(55,65,81, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+}
+
+.show-popup-background .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.show-popup-background .mute {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    color: lightgray;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.show-popup-background .show-info {
+    margin: 0;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .show-popup-background {
+        height: 325px;
+    }
+
+    .show-popup-background .show-info {
+        left: 4%;
+        bottom: 10%;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .show-popup-background{
+        height: 225px;
+    }
+
+    .show-popup-background .show-info {
+        left: 10%;
+        right: 6%;
+    }
+}
+
+.show-popup-background .backDrop {
+    position: relative;
+    z-index:-1;
+    min-height: 500px;
+    min-width: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid rgb(156, 163, 175);
+}
+
+.separator:not(:empty)::before {
+    margin-right: 2em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: 2em;
+}
+
+.episodeSelector {
+    transform: scale(1);
+    transition: all .2s ease-in-out;
+}
+
+.episodeSelector:hover .overlay {
+    opacity: 1;
+}
+
+.episodeSelector .overlay {
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.episodeSelector .overlay span {
+    height: 48px;
+    width: 48px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}

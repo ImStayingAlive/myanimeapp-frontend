@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import StartPageLoggedOut from "../app/views/startpage/StartPageLoggedOut";
 import Navbar from "../app/components/common/navbar/Navbar";
+import userStore from "../app/stores/UserStore";
+import StartPageLoggedIn from "../app/views/startpage/StartPageLoggedIn";
+import Footer from "../app/components/common/Footer";
 
 export default function Home() {
 
@@ -12,8 +15,13 @@ export default function Home() {
       </Head>
 
       <main>
-          <Navbar />s
-          <StartPageLoggedOut />
+          <Navbar />
+          {userStore.isLoggedIn ? (
+              <StartPageLoggedIn />
+          ): (
+              <StartPageLoggedOut />
+          )}
+          <Footer />
       </main>
     </div>
   )

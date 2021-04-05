@@ -4,22 +4,43 @@ import mainStore from "../app/stores/MainStore";
 import {observer} from "mobx-react-lite";
 import {AppProps} from "next/app";
 import {useEffect} from "react";
-import showState from "../app/stores/shows/ShowStore";
+import {showState} from "../app/stores/shows/ShowStore";
+import Toast from "../app/components/common/Toast";
+import loginService from "../app/service/LoginService";
+import userStore from "../app/stores/UserStore";
+import {Helmet} from "react-helmet";
+import ShowPopup from "../app/components/common/modals/ShowModule/ShowPopup";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
   useEffect(() => {
     showState.retrieveShows(() => {
-      mainStore.loaded = true
-      console.table(showState.shows)
+      loginService.update(() => {
+          if (userStore.isLoggedIn) {
+              userStore.getWatchLater(() => {
+                  mainStore.setLoaded(true)
+              })
+          } else {
+              mainStore.setLoaded(true)
+          }
+      })
     })
-  }, [])
+  }, [userStore.isLoggedIn])
 
   if(!mainStore.loaded) {
     return <Preloader />
   }
 
-  return <Component {...pageProps} />
+  return (
+      <div>
+        <Helmet>
+            <body className="antialiased font-sans bg-richBlack scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-600" />
+        </Helmet>
+        <Component {...pageProps} />
+        <Toast />
+        <ShowPopup />
+      </div>
+  )
 })
 
 export default App

@@ -1,9 +1,10 @@
 import {makeAutoObservable} from "mobx";
 import api from "../../provider/AxiosProvider";
+import Show from "../../classes/Show";
 
 class ShowStore {
 
-    shows: Array<object> = []
+    shows: Array<Show> = []
 
     constructor() {
         makeAutoObservable(this)
@@ -23,16 +24,21 @@ class ShowStore {
     }
 
     getShow(name) {
-        this.shows.forEach((value: object) => {
-            // @ts-ignore
-            if (name === value.name) {
-                return value
+        for (let i = 0; i < this.shows.length; i++) {
+            if (this.shows[i].name === name) {
+                return this.shows[i]
             }
-        });
-
-        return false
+        }
     }
 }
 
+function formatURL(showName) {
+    return showName.replace(/\s+/g, '-').toLowerCase()
+}
+
+function unFormatURL(showName) {
+    return showName.replace(/-/g, ' ').toLowerCase()
+}
+
 const showState = new ShowStore()
-export default showState
+export {showState, formatURL, unFormatURL}

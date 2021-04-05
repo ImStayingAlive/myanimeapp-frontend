@@ -7,6 +7,8 @@ import Link from "next/link"
 import UserDropdownNotLoggedIn from "./userdropdown/UserDropdownNotLoggedIn";
 import {Divide as Hamburger} from 'hamburger-react'
 import {observer} from "mobx-react-lite";
+import UserDropdownLoggedIn from "./userdropdown/UserDropdownLoggedIn";
+import MobileNavbar from "./mobilenav/MobileNavbar";
 
 const Navbar = observer(() => {
     return (
@@ -41,7 +43,7 @@ const Navbar = observer(() => {
                             </div>
 
                             {userStore.isLoggedIn ? (
-                                <div> </div>
+                                <UserDropdownLoggedIn />
                             ): (
                                 <UserDropdownNotLoggedIn />
                             )}
@@ -49,6 +51,9 @@ const Navbar = observer(() => {
                         </div>
                     </div>
                 </div>
+
+                <MobileNavbar />
+
             </div>
         </div>
     )

@@ -1,5 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import "module/Landingpage.module.css";
+@import "module/Toast.module.css";
+@import "module/ShowCard.module.css";
+@import "module/ShowPopup.module.css";
+@import "module/Tooltip.module.css";
+@import "module/Splider.module.css";
 
 @tailwind base;
 @tailwind components;

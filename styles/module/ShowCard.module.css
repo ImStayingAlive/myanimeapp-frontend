@@ -1,0 +1,59 @@
+.showCard {
+    height: 15em;
+    display: flex;
+    justify-content: center;
+    transform: scale(1);
+    transition: all .2s ease-in-out;
+}
+
+.showCard:hover {
+    transform: scale(1.08);
+    border: 2px solid white;
+}
+
+.showCard img {
+    width: 18rem;
+    margin: 0;
+    position: absolute;
+    left: auto;
+    right: auto;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    user-select: none;
+}
+
+.showCard:hover .overlay {
+    opacity: 1;
+}
+
+.showCard .overlay {
+    opacity: 0;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.2s;
+}
+
+.showCard .overlay .playDiv {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 1800px) {
+    .showCard img {
+        width: 13rem;
+    }
+}
+
+@media only screen and (max-width: 1800px) {
+    .showCard img {
+        width: 13rem;
+    }
+}
