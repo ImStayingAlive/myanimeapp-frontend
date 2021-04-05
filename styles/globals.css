@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import "module/Landingpage.module.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000814;
+}
+
+/* Add custom Fonts */
+@font-face {
+  font-family: "Avenir Heavy";
+  src: url('fonts/Avenir-Heavy/Avenir-Heavy.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url('fonts/Oswald/Oswald-Regular.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url('fonts/Oswald/Oswald-Bold.ttf') format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url('fonts/Oswald/Oswald-SemiBold.ttf') format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url('fonts/Oswald/Oswald-Light.ttf') format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url('fonts/Oswald/Oswald-ExtraLight.ttf') format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+.font-avenir {
+  font-family: 'Avenir Heavy', sans-serif;
+}
+
+.font-oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', cursive;
+}
+
