@@ -4,10 +4,10 @@ import {FaCheck, FaPlus, FaUsers} from "react-icons/fa";
 import {BiLoaderAlt} from "react-icons/bi";
 import showPopupStore from "../../../../../stores/shows/ShowPopupStore";
 import userStore from "../../../../../stores/UserStore";
+import playerStore from "../../../../../stores/player/PlayerStore";
 import Link from "next/link"
 
 const ActionBar = observer(() => {
-
     const [groupWatch, setGroupWatch] = useState("false")
 
     // Open a new watchRoom
@@ -20,6 +20,8 @@ const ActionBar = observer(() => {
 
     // Play the selected Episode
     const playEpisode = (seasonIndex: number, episodeIndex: number) => {
+        playerStore.setShow(showPopupStore.show)
+        playerStore.changeEpisode(seasonIndex, episodeIndex)
         showPopupStore.close()
     }
 
@@ -37,12 +39,10 @@ const ActionBar = observer(() => {
                 </div>
                 <div className="flex">
                     {showPopupStore.show.seasons.length > 0 ? (
-                        <Link href="/watch">
-                            <a onClick={() => playEpisode(0, 0)}
-                               className="bg-red-500 hover:bg-red-400 py-2 px-8 text-2xl rounded text-white font-oswald uppercase min-h select-none">
-                                Play
-                            </a>
-                        </Link>
+                        <a onClick={() => playEpisode(0, 0)}
+                           className="bg-red-500 hover:bg-red-400 py-2 px-8 text-2xl rounded text-white font-oswald uppercase min-h select-none">
+                            Play
+                        </a>
                     ) : (
                         <a className="bg-red-500 cursor-pointer hover:bg-red-400 py-2 px-8 text-2xl rounded text-white font-oswald uppercase min-h select-none">
                             Coming soon..

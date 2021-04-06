@@ -1,10 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import "module/Landingpage.module.css";
 @import "module/Toast.module.css";
 @import "module/ShowCard.module.css";
 @import "module/ShowPopup.module.css";
 @import "module/Tooltip.module.css";
+@import "~keen-slider/keen-slider.min.css";
+@import "~video.js/dist/video-js.css";
+@import "module/Player.module.css";
 @import "module/Splider.module.css";
+@import "module/VideoOverlay.module.css";
 
 @tailwind base;
 @tailwind components;
@@ -69,3 +74,6 @@ body {
   font-family: 'Bebas Neue', cursive;
 }
 
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}

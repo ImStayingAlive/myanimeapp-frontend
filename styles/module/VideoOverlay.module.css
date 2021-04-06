@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.video-js .vjs-overlay {
+    color: #fff;
+    position: absolute;
+    text-align: center
+}
+
+.video-js .vjs-overlay-no-background {
+    max-width: 33%
+}
+
+.video-js .vjs-overlay-background {
+    background-color: #646464;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    padding: 10px;
+    width: 33%
+}
+
+.video-js .vjs-overlay-top-left {
+    top: 5px;
+    left: 5px
+}
+
+.video-js .vjs-overlay-top {
+    left: 50%;
+    margin-left: -16.5%;
+    top: 5px
+}
+
+.video-js .vjs-overlay-top-right {
+    right: 5px;
+    top: 5px
+}
+
+.video-js .vjs-overlay-right {
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.video-js .vjs-overlay-bottom-right {
+    bottom: 3.5em;
+    right: 5px
+}
+
+.video-js .vjs-overlay-bottom {
+    bottom: 3.5em;
+    left: 50%;
+    margin-left: -16.5%
+}
+
+.video-js .vjs-overlay-bottom-left {
+    bottom: 3.5em;
+    left: 5px
+}
+
+.video-js .vjs-overlay-left {
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.video-js .vjs-overlay-center {
+    left: 50%;
+    margin-left: -16.5%;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.video-js .vjs-no-flex .vjs-overlay-left, .video-js .vjs-no-flex .vjs-overlay-center, .video-js .vjs-no-flex .vjs-overlay-right {
+    margin-top: -15px
+}
+
+.video-overlay {
+    padding: 2.5rem 4.5rem;
+}
+
+.showDiv {
+    opacity: 100;
+}
+
+.reaction-overlay div span {
+    font-size: 20px;
+    font-family: "Avenir Heavy", sans-serif;
+}
+
+.reaction-overlay div lottie-player{
+    width: 85px;
+    height: 85px;
+}
+
+.video-bg-overlay {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    display: flex !important;
+    opacity: 1;
+    transition: opacity 0.5s;
+    background: -moz-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.9) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.9)), color-stop(100%,rgba(0,0,0,0)));
+    background: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0%,rgba(0,0,0, 0.9) 100%);
+    background: -o-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.9) 100%);
+    background: -ms-linear-gradient(bottom, rgba(0,0,0,0) 0%,rgba(0,0,0, 0.9) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 85%, rgba(0,0,0, 0.9) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+}
+
+/* Next Episode */
+.nextEpisode {
+    margin: 4.5rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    z-index: 2;
+}
+
+.nextEpisode a {
+    background-color: #2F4F4F;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 20px;
+}
+
+.nextEpisode a:hover {
+    background-color: #457474;
+}
+
+.nextEpisode .nextBTN {
+    background: linear-gradient(to left, rgb(248, 113, 113) 50%, rgb(220, 38, 38) 50%) right;
+    background-size: 200%;
+    animation-name: nextEpisodeAnimation;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.nextEpisode .watchCredits {
+    background-position: left !important;
+}
+
+@keyframes nextEpisodeAnimation {
+    0%   {
+        background-position: right;
+    }
+    100% {
+        background-position: left;
+    }
+}
+
+/* Show Info */
+
+.showInfo {
+    position: absolute;
+    bottom: 4.5rem;
+    line-height: 3rem;
+    text-align: left;
+    left: 3.7rem;
+    vertical-align: text-bottom;
+}
+
+.showInfo h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: inline;
+}
+
+.showInfo h2 {
+    font-size: 1.875rem;
+    color: rgb(229, 231, 235);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Back to Home Button */
+.backButton {
+    position: relative;
+    pointer-events: all;
+    z-index: 10;
+}
+
+.backButton a {
+    z-index: 10;
+    position: absolute;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.backButton a:hover {
+    transform: scale(1.2);
+}
+
+.backButton a:hover span {
+    display: block;
+}
+
+.backButton span {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.7rem;
+    width: 200px;
+    position: absolute;
+    left: 3.8rem;
+    top: 1.12rem;
+    display: none;
+}
+
+/* Skip Intro Button */
+
+.skipIntro {
+    margin: 4.5rem 3rem;
+    z-index: 2;
+}
+
+.skipIntro a {
+    background-color: #2F4F4F	;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.skipIntro a:hover {
+    background-color: #457474;
+    transform: scale(1.2);
+}
+
+/* CSS RESETS */
+.video-js .vjs-overlay-no-background {
+    max-width: 100% !important;
+}
+
+.video-js .vjs-overlay-top-left {
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.vjs-hidden {
+    opacity: 0 !important;
+}
+
+.vjs-overlay-bottom-left {
+    bottom: 0 !important;
+    left: 0 !important;
+    margin-bottom: -1rem !important;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 900px) {
+    .video-overlay {
+        margin: 2.5rem 2rem;
+    }
+
+    .closeButton {
+        right: 2rem;
+    }
+
+    .showRating {
+        margin-left: 2.5rem;
+    }
+
+    .skipIntro a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .nextEpisode a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .video-overlay {
+        margin: auto;
+    }
+
+    .showInfo {
+        display: none;
+    }
+
+    .closeButton {
+        display: none;
+    }
+
+    .showInfo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .showRating {
+        visibility: hidden;
+    }
+}
+
+/* Emoji Bar */
+
+.reaction-toolbar {
+    font-size: 2.7rem !important;
+    width: 1em !important;
+    margin-top: -4px !important
+}
+
+.reaction-div {
+    display: flex;
+    opacity: 0;
+    width: 0;
+    border-radius: 15px;
+    margin-right: 15px;
+    pointer-events: none;
+    position: absolute;
+    top: -3.5rem;
+    left: -19.6rem;
+
+    transition: opacity 300ms ease-in-out;
+}
+
+.reaction-toolbar:hover .reaction-div {
+    opacity: 1;
+    width: auto;
+    pointer-events: all;
+}
+
+.reaction-div img {
+    height: 65px;
+    width: 65px;
+    margin-right: 10px;
+    transform: scale(1);
+    transition: ease-in-out 200ms;
+}
+
+.reaction-div img:hover {
+    transform: scale(1.2);
+}
+
+.animation-next-episode {
+    background: linear-gradient(to left, rgb(248, 113, 113) 50%, rgb(220, 38, 38) 50%) right;
+    background-size: 200%;
+    animation-name: nextEpisodeAnimation;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes nextEpisodeAnimation {
+    0%   {
+        background-position: right;
+    }
+    100% {
+        background-position: left;
+    }
+}

@@ -1,6 +1,5 @@
 import Show from "../../classes/Show";
 import {makeAutoObservable} from "mobx";
-import {formatURL} from "./ShowStore";
 
 class ShowPopupStore {
 
@@ -20,10 +19,8 @@ class ShowPopupStore {
         this.isLoaded = true
         this.show = (show == null || undefined) ? null : show;
 
-        document.title = 'Watch Now! ' + show.displayName
         if (!this.isOpen) {
             this.isOpen = true
-            window.history.replaceState(null, 'Watch Now! ' + show.displayName, "/show/" + formatURL(show.name))
             document.body.classList.remove('scrollbar-thin');
             document.body.classList.add('overflow-hidden');
         }
@@ -31,7 +28,6 @@ class ShowPopupStore {
 
     close() {
         this.isOpen = false
-        window.history.replaceState(null, '', "/")
         document.body.classList.add('scrollbar-thin');
         document.body.classList.remove('overflow-hidden');
         this.reset()

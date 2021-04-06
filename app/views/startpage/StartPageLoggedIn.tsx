@@ -6,9 +6,6 @@ import {observer} from "mobx-react-lite";
 
 const StartPageLoggedIn = observer(({}) => {
 
-    useEffect(() => {
-    }, [userStore.watchLater])
-
     return (
         <div>
             <div>
@@ -35,11 +32,7 @@ const StartPageLoggedIn = observer(({}) => {
                     </div>
                 </div>
 
-                {userStore.watchLater && userStore.watchLater.length > 0 && (
-                    <ShowRow title={userStore.user.name + "'s list"} dataSet={userStore.watchLater} loop={false}/>
-                )}
-
-                <ShowRow title="Recommended" dataSet={showState.shows} loop={true}/>
+                <ShowRow title="Recommended" dataSet={showState.shows}/>
 
             </div>
         </div>

@@ -3,6 +3,7 @@ import {useProgressiveImage} from "../../../hooks/useProgressiveImage";
 import {AiOutlinePlayCircle} from 'react-icons/ai'
 import userStore from "../../../stores/UserStore";
 import showPopupStore from "../../../stores/shows/ShowPopupStore";
+import React from "react";
 
 const ShowCard = (props) => {
 
@@ -23,8 +24,9 @@ const ShowCard = (props) => {
 
     if (!loadedLogo || !loadedBackground) {
         return (
-            <div className="mx-5 w-56 h-72 sm:w-96 sm:h-56 shadow bg-gray-800 rounded-md bg-cover bg-center relative shadow showCard">
-                <div className="h-full w-full bg-gray-900 animate-pulse rounded-md" />
+            <div
+                className="w-56 h-72 sm:w-96 sm:h-56 shadow bg-gray-800 rounded-md bg-cover bg-center relative shadow showCard">
+                <div className="h-full w-full bg-gray-900 animate-pulse rounded-md"/>
             </div>
         )
     }
@@ -49,8 +51,8 @@ const ShowCard = (props) => {
                             <h2 className="text-gray-200 text-sm font-avenir px-2 pb-2">
                                 S{watchedInfo.seasonIndex + 1}:E{watchedInfo.episodeIndex + 1}
                             </h2>
-                        ): (
-                            <div className="h-2" />
+                        ) : (
+                            <div className="h-2"/>
                         )}
                         <div style={{width: watchedProgress + "%"}}
                              className="bg-red-500 h-1 rounded-r relative -mt-1"/>
@@ -79,8 +81,8 @@ const ShowCard = (props) => {
                         <h2 className="text-gray-200 text-sm font-avenir px-2 pb-2">
                             S{watchedInfo.seasonIndex + 1}:E{watchedInfo.episodeIndex + 1}
                         </h2>
-                    ): (
-                        <div className="h-2" />
+                    ) : (
+                        <div className="h-2"/>
                     )}
                     <div style={{width: watchedProgress + "%"}}
                          className="bg-red-500 h-1 rounded-r relative -mt-1"/>

@@ -4,8 +4,9 @@ import Navbar from "../app/components/common/navbar/Navbar";
 import userStore from "../app/stores/UserStore";
 import StartPageLoggedIn from "../app/views/startpage/StartPageLoggedIn";
 import Footer from "../app/components/common/Footer";
+import {observer} from "mobx-react-lite";
 
-export default function Home() {
+const Home = observer(() => {
 
   return (
     <div className="min-h-screen w-full">
@@ -25,4 +26,6 @@ export default function Home() {
       </main>
     </div>
   )
-}
+})
+
+export default Home

@@ -14,6 +14,19 @@ module.exports = {
         richGray: '#191a1c',
         royalBlue: '#0d2f6d',
       },
+      keyframes: {
+        coverFade: {
+          '0%': {
+            backgroundPosition: 'right'
+          },
+          '100%': {
+            backgroundPosition: 'left'
+          },
+        }
+      },
+      animation: {
+        wiggle: 'coverFade 5s linear ',
+      },
     },
     screens: {
       'sm': '640px',
