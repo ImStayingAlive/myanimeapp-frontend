@@ -1,121 +1,70 @@
 import ShowCard from "../common/cards/ShowCard";
-import React from "react";
-import {useKeenSlider} from 'keen-slider/react'
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import {IoIosArrowForward} from "react-icons/io"
 
 const ShowRow = (props) => {
-    const [currentSlide, setCurrentSlide] = React.useState(0)
 
-    const [sliderRef, slider] = useKeenSlider({
-        slidesPerView: 1.35,
-        centered: false,
-        loop: false,
-        mode: "snap",
-        initial: 0,
-        slideChanged(s) {
-            setCurrentSlide(s.details().relativeSlide)
-        },
-        breakpoints: {
-            "(min-width: 415px)": {
-                slidesPerView: 1.5,
-            },
-            "(min-width: 500px)": {
-                slidesPerView: 1.8,
-            },
-            "(min-width: 615px)": {
-                slidesPerView: 2.2,
-            },
-            "(min-width: 640px)": {
-                slidesPerView: 1.4,
-            },
-            "(min-width: 828px)": {
-                slidesPerView: 1.8,
-            },
-            "(min-width: 921px)": {
-                slidesPerView: 2,
-            },
-            "(min-width: 1152px)": {
-                slidesPerView: 2.5,
-            },
-            "(min-width: 1389px)": {
-                slidesPerView: 3,
-            },
-            "(min-width: 1581px)": {
-                slidesPerView: 3.5,
-            },
-            "(min-width: 1920px)": {
-                slidesPerView: 4.2,
-            },
-            "(min-width: 2078px)": {
-                slidesPerView: 4.5,
-            },
-            "(min-width: 2289px)": {
-                slidesPerView: 5,
-            },
-            "(min-width: 2375px)": {
-                slidesPerView: 5.6,
-            },
-        },
-    })
+    const options = {
+        perMove: 1,
+        autoWidth: true,
+        arrows: true,
+        drag: true,
+        pagination: false,
+        cover: true,
+        lazyLoad: 'sequential',
+    }
 
     return (
-        <div className="w-11/12 mx-auto mt-10 relative">
-                <h1 className="text-gray-400 text-3xl font-avenir ml-6 group">
+        <div className="w-11/12 mx-auto relative mb-10 show-category">
+            <div className="flex items-center group w-auto">
+                <h1 className="text-gray-400 text-3xl pl-6 font-avenir group">
                     {props.title}
                 </h1>
-            <div className="navigation-wrapper">
-                {/* @ts-ignore */}
-                <div ref={sliderRef} className="keen-slider">
-                    {props.dataSet.map((show, index) =>
-                        <div key={index} className="keen-slider__slide py-4">
-                            <ShowCard show={show}/>
-                        </div>
-                    )}
-                </div>
-                {slider && (
-                    <>
-                        <ArrowLeft
-                            onClick={(e) => e.stopPropagation() || slider.prev()}
-                            disabled={currentSlide === 0}
-                        />
-                        <ArrowRight
-                            onClick={(e) => e.stopPropagation() || slider.next()}
-                            disabled={currentSlide === slider.details().size - 1}
-                        />
-                    </>
+                {props.link && (
+                    <h2 className="text-gray-400 cursor-pointer pl-4 font-avenir text-xl flex items-center opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-500">
+                        Explore All
+                        <span className="pl-1">
+                        <IoIosArrowForward />
+                    </span>
+                    </h2>
                 )}
             </div>
+
+            <Splide options={options}>
+                {props.dataSet.map((show, index) =>
+                    <SplideSlide key={show.displayName} className="my-3">
+                        <ShowCard key={index} show={show}/>
+                    </SplideSlide>
+                    )}
+            </Splide>
         </div>
     )
-}
 
-function ArrowLeft(props) {
-    const disabled = props.disabled ? " arrow--disabled" : ""
-
+    /*
     return (
-        <svg
-            onClick={props.onClick}
-            className={"arrow arrow--left" + disabled}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-        >
-            <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
-        </svg>
-    )
-}
+        <div className="w-11/12 mx-auto relative mb-10">
+                <h1 className="text-gray-400 text-3xl font-avenir group">
+                    {props.title}
+                </h1>
+                <div className="grid 4xl:grid-cols-5 3xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 gap-7 grid-cols-1">
+                    {props.dataSet.splice(0, 4).map((show, index) => <ShowCard key={index} show={show}/>)}
+                    <div className="mx-2 h-44 sm:w-96 sm:h-56 shadow bg-gray-800 rounded-md bg-cover bg-center relative shadow showCard">
+                        <div className="h-full w-full bg-gray-900 rounded-md relative">
+                            <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 text-center flex flex-col items-center">
 
-function ArrowRight(props) {
-    const disabled = props.disabled ? " arrow--disabled" : ""
+                                <MdAddCircleOutline color="white" size="3rem"/>
 
-    return (
-        <svg
-            onClick={props.onClick}
-            className={"arrow arrow--right" + disabled}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-        >
-            <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/>
-        </svg>
+                                <h1 className="text-white mt-2 text-2xl font-avenir">
+                                    View More..
+                                </h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
     )
+    */
 }
 
 

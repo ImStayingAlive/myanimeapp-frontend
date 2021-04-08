@@ -1,9 +1,10 @@
 import {makeAutoObservable} from "mobx";
 import api from "../provider/AxiosProvider";
-import User from "../classes/User";
+import User from "../interfaces/User";
 import loginService from "../service/LoginService";
 import { toast } from "react-toastify";
-import Show from "../classes/Show";
+import Show from "../interfaces/Show";
+import {showState} from "./shows/ShowStore";
 
 class UserStore {
 
@@ -38,6 +39,13 @@ class UserStore {
         let currentTime = 0;
         let percent = 0;
         if (all) {
+
+            let lastWatchedEpisode = this.getLastWatchedEpisode(show)
+            if (lastWatchedEpisode.seasonIndex != 0 || lastWatchedEpisode.episodeIndex != 0) {
+                percent = 5
+            }
+
+            /*
             for (let i = 0; i < show.seasons.length; i++) {
                 let season = show.seasons[i];
 
@@ -47,7 +55,7 @@ class UserStore {
                 }
             }
 
-            let watchedShow = this.user.watchedShows[show.displayName];
+            let watchedShow = this.user.watchedShows[show.name];
             if (watchedShow) {
                 let seasons = Object.keys(watchedShow.seasons);
 
@@ -63,9 +71,9 @@ class UserStore {
                         }
                     }
                 }
-            }
+            }*/
         } else {
-            let watchedShow = this.user.watchedShows[show.displayName];
+            let watchedShow = this.user.watchedShows[show.name];
             if (watchedShow) {
                 let currentEpisode = watchedShow.currentEpisode
                 if (currentEpisode) {
@@ -89,7 +97,7 @@ class UserStore {
             return info
         }
 
-        let watchedShow = this.user.watchedShows[show.displayName];
+        let watchedShow = this.user.watchedShows[show.name];
 
         if (watchedShow) {
             let currentEpisode = watchedShow.currentEpisode
@@ -114,7 +122,7 @@ class UserStore {
 
     // Check if the User has watched the Episode
     // Needs a showName, the Season Index and the Episode Index
-    hasWatchedEpisode(showName: string, seasonIndex: number, episodeIndex: number) {
+    getCurrentTimeInEpisode(showName: string, seasonIndex: number, episodeIndex: number) {
         if (!this.existsUser()) {
             return;
         }
@@ -147,7 +155,7 @@ class UserStore {
     // as well as the Timestamp and a callback
     setWatchedEpisode(showName: string, seasonIndex: number, episodeIndex: number, timestamp: number, callback: Function) {
         if (!this.existsUser()) {
-            return;
+            callback()
         }
 
         let data = {
@@ -243,6 +251,14 @@ class UserStore {
                 }
             }
         })
+    }
+
+    getWatchedShows() {
+        let tempShows = []
+        for (const [name] of Object.entries(this.user.watchedShows)) {
+            tempShows.push(showState.getShow(name.toLowerCase()))
+        }
+        return tempShows
     }
 }
 

@@ -5,8 +5,20 @@ import userStore from "../app/stores/UserStore";
 import StartPageLoggedIn from "../app/views/startpage/StartPageLoggedIn";
 import Footer from "../app/components/common/Footer";
 import {observer} from "mobx-react-lite";
+import {useEffect} from "react";
+import {showState, unFormatURL} from "../app/stores/shows/ShowStore";
+import showPopupStore from "../app/stores/shows/ShowPopupStore";
+import { useRouter } from 'next/router'
 
 const Home = observer(() => {
+    const router = useRouter()
+    const showName = router.query.show
+
+    useEffect(() => {
+        if (showName != undefined) {
+            showPopupStore.open(showState.getShow(unFormatURL(showName)))
+        }
+    }, [])
 
   return (
     <div className="min-h-screen w-full">

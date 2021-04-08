@@ -1,4 +1,4 @@
-class Group {
+interface Group {
     name: string
     defaultGroup: boolean
     permissions: Array<String>

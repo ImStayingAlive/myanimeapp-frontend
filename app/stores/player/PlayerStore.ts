@@ -1,13 +1,17 @@
 import {makeAutoObservable} from "mobx";
-import Show from "../../classes/Show";
+import Show from "../../interfaces/Show";
+import userStore from "../UserStore";
 
 class PlayerStore {
 
     loaded: boolean = false
+    hasShow: boolean = false
     show: Show
     currentSeasonIndex: number = 0
     currentEpisodeIndex: number = 0
     groupWatch: boolean = false
+    watchSession: number = 0
+    playingNextEpisode: boolean = false
 
     constructor() {
         makeAutoObservable(this)
@@ -15,6 +19,8 @@ class PlayerStore {
 
     setShow(show: Show) {
         this.show = show
+        this.watchSession = 0
+        this.hasShow = true
     }
 
     changeEpisode(seasonIndex: number, episodeIndex: number) {
@@ -32,13 +38,25 @@ class PlayerStore {
     }
 
     getNextEpisode() {
-        if (this.show.seasons[this.currentSeasonIndex].episodes[this.currentEpisodeIndex + 1] !== null) {
+        if (this.show.seasons[this.currentSeasonIndex].episodes[this.currentEpisodeIndex + 1] !== undefined) {
             return (this.show.seasons[this.currentSeasonIndex].episodes[this.currentEpisodeIndex + 1])
-        } else if (this.show.seasons[this.currentSeasonIndex + 1].episodes[0] !== null) {
+        } else if (this.show.seasons[this.currentSeasonIndex + 1].episodes[0] !== undefined) {
             return this.show.seasons[this.currentSeasonIndex + 1].episodes[0]
         } else {
             return false
         }
+    }
+
+    playNextEpisode() {
+        this.watchSession++
+        this.playingNextEpisode = true
+        userStore.setWatchedEpisode(this.show.name, this.currentSeasonIndex, this.currentEpisodeIndex, 0, () => {
+            if (this.show.seasons[this.currentSeasonIndex].episodes[this.currentEpisodeIndex + 1] !== undefined) {
+                this.changeEpisode(this.currentSeasonIndex, this.currentEpisodeIndex + 1)
+            } else if (this.show.seasons[this.currentSeasonIndex + 1].episodes[0] !== undefined) {
+                this.changeEpisode(this.currentSeasonIndex + 1, 0)
+            }
+        })
     }
 
     getCurrentSeason() {

@@ -1,8 +1,10 @@
-import Show from "../../classes/Show";
+import Show from "../../interfaces/Show";
 import {makeAutoObservable} from "mobx";
+import {formatURL} from "./ShowStore";
+import Router from 'next/router'
+
 
 class ShowPopupStore {
-
     isOpen: boolean = false
     isLoaded: boolean = false
     show: Show
@@ -20,17 +22,26 @@ class ShowPopupStore {
         this.show = (show == null || undefined) ? null : show;
 
         if (!this.isOpen) {
-            this.isOpen = true
-            document.body.classList.remove('scrollbar-thin');
-            document.body.classList.add('overflow-hidden');
+            Router.push({
+                pathname: '',
+                query: {show: formatURL(this.show.name)},
+            }, '', {shallow: true}).then(r => {
+                this.isOpen = true
+                document.body.classList.remove('scrollbar-thin');
+                document.body.classList.add('overflow-hidden');
+            })
         }
     }
 
     close() {
-        this.isOpen = false
-        document.body.classList.add('scrollbar-thin');
-        document.body.classList.remove('overflow-hidden');
-        this.reset()
+        if (this.isOpen) {
+            Router.push('/', '', {shallow: true}).then(r => {
+                this.isOpen = false
+                document.body.classList.add('scrollbar-thin');
+                document.body.classList.remove('overflow-hidden');
+                this.reset()
+            })
+        }
     }
 
     reset() {

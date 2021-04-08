@@ -2,74 +2,66 @@ import {observer} from "mobx-react-lite";
 import videojs from 'video.js'
 import playerStore from "../../stores/player/PlayerStore";
 import {useEffect} from "react";
-import {formatURL, showState} from "../../stores/shows/ShowStore";
+import {formatURL} from "../../stores/shows/ShowStore";
 import PlayerOverlay from "../../components/player/PlayerOverlay";
 import {useRouter} from "next/router";
-import OverlayButtons from "../../components/player/OverlayButtons";
+import PlayerEventHandler from "../../components/player/PlayerEventHandler";
 
 const Player = observer(() => {
     const router = useRouter()
     let player: any = null
 
     if (playerStore.show == null) {
-        // Display Last Show/Episode/Season the User Watched
-        playerStore.setShow(showState.getShow("attack on titan"));
+        router.push("/").then(r => {})
     }
 
-    /*
-    setTimeout(() => {
-        playerStore.changeEpisode(0, 1)
-    }, 2000)
-     */
-
     useEffect(() => {
-        // Video Options
-        let playerOptions = {
-            playsInline: 'auto',
-            controls: true,
-            poster: playerStore.getCurrentEpisode().thumbnail,
-            sources: [{
-                src: playerStore.getCurrentEpisode().videoSource,
-                type: playerStore.getVideoType()
-            }]
-        }
 
-        // Init Player
-        if (player === null) {
-            if (document.getElementById("player")) {
-                if (videojs.getAllPlayers().length == 0) {
-                    player = videojs('player', playerOptions)
-                } else {
-                    player = videojs.getPlayer('player')
+        if (playerStore.hasShow) {
+            // Video Options
+            let playerOptions = {
+                playsInline: 'auto',
+                controls: true,
+                poster: playerStore.getCurrentEpisode().thumbnail,
+                sources: [{
+                    src: playerStore.getCurrentEpisode().videoSource,
+                    type: playerStore.getVideoType()
+                }]
+            }
 
-                    player.poster(playerStore.getCurrentEpisode().thumbnail)
-                    player.src(playerStore.getCurrentEpisode().videoSource)
-                    player.currentType = playerStore.getVideoType()
+            // Init Player
+            if (player === null) {
+                if (document.getElementById("player")) {
+                    if (videojs.getAllPlayers().length == 0) {
+                        player = videojs('player', playerOptions)
+                    } else {
+                        player = videojs.getPlayer('player')
+
+                        player.poster(playerStore.getCurrentEpisode().thumbnail)
+                        player.src(playerStore.getCurrentEpisode().videoSource)
+                        player.currentType = playerStore.getVideoType()
+                    }
+
+                    PlayerOverlay(player)
+                    PlayerEventHandler(player)
                 }
             }
-        }
 
-        player.on("loadeddata", () => {
-            if (!playerStore.loaded) {
-                PlayerOverlay(player)
-                playerStore.setLoaded(true)
-
-                document.querySelectorAll('#closeButton').forEach(function (element) {
-                    element.addEventListener("click", () => closePlayer())
-                });
-                document.querySelectorAll('#skipIntro').forEach(function (element) {
-                    element.addEventListener("click", () => player.currentTime(playerStore.getCurrentEpisode().introStart + playerStore.getCurrentEpisode().introLength))
-                });
+            const closePlayer = () => {
+                router.push("/show/" + formatURL(playerStore.show.name)).then(r => {})
             }
-        })
 
-        const closePlayer = () => {
-            router.push("/show/" + formatURL(playerStore.show.name)).then(r => {})
-        }
+            /* Event Listeners */
+            document.querySelectorAll('#closeButton').forEach(function (element) {
+                element.addEventListener("click", () => closePlayer())
+            });
 
-        return function cleanup() {
-            console.log("Unmount")
-            player.dispose()
+            return function cleanup() {
+                if (!playerStore.playingNextEpisode) {
+                    playerStore.watchSession = 0
+                    player.dispose()
+                }
+            }
         }
     }, [playerStore.currentEpisodeIndex])
 
@@ -81,7 +73,6 @@ const Player = observer(() => {
                            className="video-player-theme video-js">
                         <source id="video-player-source"/>
                     </video>
-                    <OverlayButtons />
                 </div>
             </div>
             {!playerStore.loaded && (

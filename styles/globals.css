@@ -5,11 +5,10 @@
 @import "module/ShowCard.module.css";
 @import "module/ShowPopup.module.css";
 @import "module/Tooltip.module.css";
-@import "~keen-slider/keen-slider.min.css";
 @import "~video.js/dist/video-js.css";
 @import "module/Player.module.css";
-@import "module/Splider.module.css";
 @import "module/VideoOverlay.module.css";
+@import "module/Splider.module.css";
 
 @tailwind base;
 @tailwind components;

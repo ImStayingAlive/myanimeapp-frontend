@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
 import api from "../../provider/AxiosProvider";
-import Show from "../../classes/Show";
+import Show from "../../interfaces/Show";
 
 class ShowStore {
 

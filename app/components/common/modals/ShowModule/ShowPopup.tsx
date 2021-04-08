@@ -54,7 +54,7 @@ const ShowPopup = observer(() => {
                                         Genres: Action, Adventure, Comedy, Romance
                                     </p>
                                     <p>
-                                        Studio: MAPPA
+                                        Studio: {showPopupStore.show.producer}
                                     </p>
                                 </div>
 

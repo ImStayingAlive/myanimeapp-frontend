@@ -1,16 +1,31 @@
-import { useProgressiveImage } from "../../../../../hooks/useProgressiveImage"
+import {useProgressiveImage} from "../../../../../hooks/useProgressiveImage"
 import {AiOutlinePlayCircle} from "react-icons/ai"
-import Link from "next/link"
+import showPopupStore from "../../../../../stores/shows/ShowPopupStore";
+import playerStore from "../../../../../stores/player/PlayerStore";
+import {useRouter} from "next/router";
 
 const Episode = (props) => {
     const imageLoaded = useProgressiveImage(props.episode.thumbnail)
+
+    const router = useRouter()
+
+    const playEpisode = () => {
+        let seasonIndex = showPopupStore.selectedSeason
+        let episodeIndex = props.index
+
+        playerStore.setShow(showPopupStore.show)
+        playerStore.changeEpisode(seasonIndex, episodeIndex)
+        router.push('/watch').then(r => {})
+        showPopupStore.close()
+    }
 
     return (
         <div className="flex items-center mb-4 rounded">
 
             {imageLoaded ? (
                 <div className="mr-4">
-                    <div className="w-24 h-16 md:h-28 md:w-48 rounded bg-cover episodeSelector relative"
+                    <div onClick={() => playEpisode()}
+                         className="w-24 h-16 md:h-28 md:w-48 rounded bg-cover episodeSelector relative"
                          style={{backgroundImage: `url(${props.episode.thumbnail})`}}>
                         {props.groupWatch ? (
                             <button>
@@ -21,19 +36,18 @@ const Episode = (props) => {
                                 </div>
                             </button>
                         ) : (
-                            <Link href="/watch">
-                                <div className="overlay rounded">
-                            <span>
-                                <AiOutlinePlayCircle color="white" size="3rem"/>
-                            </span>
-                                </div>
-                            </Link>
+                            <div className="overlay rounded">
+                                <span>
+                                    <AiOutlinePlayCircle color="white" size="3rem"/>
+                                </span>
+                            </div>
                         )}
                     </div>
                 </div>
-            ): (
+            ) : (
                 <div className="mr-4">
-                    <div className="w-24 h-16 md:h-28 bg-gray-900 md:w-48 animate-pulse rounded bg-cover episodeSelector relative">
+                    <div onClick={() => playEpisode()}
+                         className="w-24 h-16 md:h-28 bg-gray-900 md:w-48 animate-pulse rounded bg-cover episodeSelector relative">
                         {props.groupWatch ? (
                             <button>
                                 <div className="overlay rounded w-24 h-16 md:h-28 md:w-48">
@@ -43,13 +57,11 @@ const Episode = (props) => {
                                 </div>
                             </button>
                         ) : (
-                            <Link href="/watch">
-                                <div className="overlay rounded">
+                            <div className="overlay rounded">
                             <span>
                                 <AiOutlinePlayCircle color="white" size="3rem"/>
                             </span>
-                                </div>
-                            </Link>
+                            </div>
                         )}
                     </div>
                 </div>

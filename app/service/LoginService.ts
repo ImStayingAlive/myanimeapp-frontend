@@ -1,7 +1,7 @@
 import userStore from "../stores/UserStore";
 import api from "../provider/AxiosProvider";
 import cookieService from "./CookieService";
-import User from "../classes/User";
+import User from "../interfaces/User";
 const cookieTokenKey = "secureToken"
 
 class LoginService {

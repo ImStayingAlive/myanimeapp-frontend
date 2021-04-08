@@ -1,4 +1,4 @@
-class Show {
+interface Show {
 
     name: string
     displayName: string
@@ -28,7 +28,6 @@ class Show {
             ]
         }
     ]
-
 }
 
 export default Show

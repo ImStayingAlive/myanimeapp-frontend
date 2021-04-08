@@ -1,4 +1,4 @@
-class User {
+interface User {
 
     name: string
     avatar: string
@@ -21,7 +21,12 @@ class User {
                 ]
             ]
         }
-    ]
+    ],
+    currentWatchedEpisode: {
+        showName: string
+        seasonIndex: number
+        episodeIndex: number
+    }
 }
 
 export default User

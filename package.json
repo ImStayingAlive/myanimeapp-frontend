@@ -10,9 +10,9 @@
   "dependencies": {
     "@headlessui/react": "^0.3.2",
     "@lottiefiles/react-lottie-player": "^3.1.0",
+    "@splidejs/react-splide": "^0.4.4",
     "axios": "^0.21.1",
     "hamburger-react": "^2.4.0",
-    "keen-slider": "^5.4.0",
     "mobx": "^6.1.8",
     "mobx-react-lite": "^3.2.0",
     "next": "latest",

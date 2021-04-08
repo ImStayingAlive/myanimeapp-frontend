@@ -1,4 +1,4 @@
-import Show from "../../../classes/Show";
+import Show from "../../../interfaces/Show";
 import {useProgressiveImage} from "../../../hooks/useProgressiveImage";
 import {AiOutlinePlayCircle} from 'react-icons/ai'
 import userStore from "../../../stores/UserStore";
@@ -25,7 +25,7 @@ const ShowCard = (props) => {
     if (!loadedLogo || !loadedBackground) {
         return (
             <div
-                className="w-56 h-72 sm:w-96 sm:h-56 shadow bg-gray-800 rounded-md bg-cover bg-center relative shadow showCard">
+                className="mx-5 h-44 sm:w-96 sm:h-56 shadow bg-gray-800 rounded-md bg-cover bg-center relative shadow showCard">
                 <div className="h-full w-full bg-gray-900 animate-pulse rounded-md"/>
             </div>
         )
@@ -49,7 +49,7 @@ const ShowCard = (props) => {
                         </h1>
                         {watchedInfo && watchedProgressALL !== 0 ? (
                             <h2 className="text-gray-200 text-sm font-avenir px-2 pb-2">
-                                S{watchedInfo.seasonIndex + 1}:E{watchedInfo.episodeIndex + 1}
+                                S{show.seasons[watchedInfo.seasonIndex].seasonNumber}:E{watchedInfo.episodeIndex + 1}
                             </h2>
                         ) : (
                             <div className="h-2"/>
@@ -79,7 +79,7 @@ const ShowCard = (props) => {
                     </h1>
                     {watchedInfo && watchedProgressALL !== 0 && show.seasons[0].name !== "Movie" ? (
                         <h2 className="text-gray-200 text-sm font-avenir px-2 pb-2">
-                            S{watchedInfo.seasonIndex + 1}:E{watchedInfo.episodeIndex + 1}
+                            S{show.seasons[watchedInfo.seasonIndex].seasonNumber}:E{watchedInfo.episodeIndex}
                         </h2>
                     ) : (
                         <div className="h-2"/>

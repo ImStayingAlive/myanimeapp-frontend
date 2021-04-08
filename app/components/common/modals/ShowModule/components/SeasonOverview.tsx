@@ -1,5 +1,5 @@
 import showPopupStore from "../../../../../stores/shows/ShowPopupStore";
-import Show from "../../../../../classes/Show";
+import Show from "../../../../../interfaces/Show";
 import {useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import {AiOutlineCaretDown} from "react-icons/ai";
@@ -68,7 +68,7 @@ const SeasonOverview = observer(({}) => {
                     <div className="border-b border-gray-700 pt-4">
 
                         {showPopupStore.show.seasons[showPopupStore.selectedSeason].episodes.slice(0, showPopupStore.showEpisodeCount).map((episode: object, index: number) =>
-                            <Episode key={index} episode={episode} groupWatch="false" />
+                            <Episode key={index} index={index} episode={episode} groupWatch="false" />
                         )}
 
                     </div>
