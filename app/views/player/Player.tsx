@@ -4,7 +4,7 @@ import playerStore from "../../stores/player/PlayerStore";
 import {useEffect} from "react";
 import {formatURL} from "../../stores/shows/ShowStore";
 import PlayerOverlay from "../../components/player/PlayerOverlay";
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 import PlayerEventHandler from "../../components/player/PlayerEventHandler";
 
 const Player = observer(() => {
@@ -48,7 +48,10 @@ const Player = observer(() => {
             }
 
             const closePlayer = () => {
-                router.push("/show/" + formatURL(playerStore.show.name)).then(r => {})
+                Router.push({
+                    pathname: '/',
+                    query: {show: formatURL(playerStore.show.name)},
+                }).then(r => {})
             }
 
             /* Event Listeners */
