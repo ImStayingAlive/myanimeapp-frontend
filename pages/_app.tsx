@@ -10,37 +10,39 @@ import loginService from "../app/service/LoginService";
 import userStore from "../app/stores/UserStore";
 import {Helmet} from "react-helmet";
 import ShowPopup from "../app/components/common/modals/ShowModule/ShowPopup";
+import OpenPopup from "../app/components/common/modals/OpenPopup";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
-  useEffect(() => {
-    showState.retrieveShows(() => {
-      loginService.update(() => {
-          if (userStore.isLoggedIn) {
-              userStore.getWatchLater(() => {
-                  mainStore.setLoaded(true)
-              })
-          } else {
-              mainStore.setLoaded(true)
-          }
-      })
-    })
-  }, [userStore.isLoggedIn])
+    useEffect(() => {
+        showState.retrieveShows(() => {
+            loginService.update(() => {
+                if (userStore.isLoggedIn) {
+                    userStore.getWatchLater(() => {
+                        mainStore.setLoaded(true)
+                    })
+                } else {
+                    mainStore.setLoaded(true)
+                }
+            })
+        })
+    }, [userStore.isLoggedIn])
 
-  if(!mainStore.loaded) {
-    return <Preloader />
-  }
+    if (!mainStore.loaded) {
+        return <Preloader/>
+    }
 
-  return (
-      <div>
-        <Helmet>
-            <body className="antialiased font-sans bg-richBlack scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-600" />
-        </Helmet>
-        <Component {...pageProps} />
-        <Toast />
-        <ShowPopup />
-      </div>
-  )
+    return (
+        <div>
+            <Helmet>
+                <body className="antialiased font-sans bg-richBlack scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-600"/>
+            </Helmet>
+            <Component {...pageProps} />
+            <Toast/>
+            <ShowPopup/>
+            <OpenPopup />
+        </div>
+    )
 })
 
 export default App

@@ -1,6 +1,7 @@
 import ShowCard from "../common/cards/ShowCard";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import {IoIosArrowForward} from "react-icons/io"
+import Link from "next/link"
 
 const ShowRow = (props) => {
 
@@ -21,12 +22,14 @@ const ShowRow = (props) => {
                     {props.title}
                 </h1>
                 {props.link && (
-                    <h2 className="text-gray-400 cursor-pointer pl-4 font-avenir text-xl flex items-center opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-500">
-                        Explore All
-                        <span className="pl-1">
-                        <IoIosArrowForward />
-                    </span>
-                    </h2>
+                    <Link href={props.link}>
+                        <h2 className="text-gray-400 cursor-pointer pl-4 font-avenir text-xl flex items-center opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-500">
+                            Explore All
+                            <span className="pl-1">
+                                <IoIosArrowForward />
+                            </span>
+                        </h2>
+                    </Link>
                 )}
             </div>
 

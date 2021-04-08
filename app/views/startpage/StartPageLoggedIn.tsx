@@ -5,7 +5,7 @@ import userStore from "../../stores/UserStore";
 import {observer} from "mobx-react-lite";
 import TopSlider from "../../components/frontpage/topsplider/TopSplider";
 
-const StartPageLoggedIn = observer(({}) => {
+const StartPageLoggedIn = observer(() => {
 
     const watchedShows = userStore.getWatchedShows()
 
@@ -17,7 +17,7 @@ const StartPageLoggedIn = observer(({}) => {
                     <ShowRow title={"Continue watching for " + userStore.user.name} dataSet={watchedShows}/>
                 )}
                 <ShowRow title="Recommended" dataSet={showState.shows} link="/recommended"/>
-
+                <ShowRow title={userStore.user.name + "'s Watch List"} dataSet={userStore.watchLater} link="/watch-list" />
             </div>
         </div>
     )

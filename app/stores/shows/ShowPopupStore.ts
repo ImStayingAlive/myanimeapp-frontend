@@ -35,7 +35,7 @@ class ShowPopupStore {
 
     close() {
         if (this.isOpen) {
-            Router.push('/', '', {shallow: true}).then(r => {
+            Router.push('', '', {shallow: true}).then(r => {
                 this.isOpen = false
                 document.body.classList.add('scrollbar-thin');
                 document.body.classList.remove('overflow-hidden');
