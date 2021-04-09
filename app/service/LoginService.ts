@@ -25,6 +25,7 @@ class LoginService {
                         userStore.setUser(user)
                         this.setGroup(user)
                         userStore.setIsLoggedIn(true)
+                        userStore.getWatchLater(() => {})
                         //-------------------------------------------------------
                     } else {
                         userStore.setIsLoggedIn(false)

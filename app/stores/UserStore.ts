@@ -11,7 +11,7 @@ class UserStore {
     isLoggedIn: boolean = false
     user: User
     group: object
-    watchLater: Array<object>
+    watchLater: Array<object> = []
 
     constructor() {
         makeAutoObservable(this)

@@ -18,9 +18,7 @@ const App = observer(({Component, pageProps}: AppProps) => {
         showState.retrieveShows(() => {
             loginService.update(() => {
                 if (userStore.isLoggedIn) {
-                    userStore.getWatchLater(() => {
-                        mainStore.setLoaded(true)
-                    })
+                    mainStore.setLoaded(true)
                 } else {
                     mainStore.setLoaded(true)
                 }
