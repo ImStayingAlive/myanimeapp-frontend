@@ -55,11 +55,11 @@ class RoomService {
             if (this.socket !== undefined) {
                 if (this.socket.readyState === WebSocket.OPEN){
                     this.sendMessage("keepAlive")
-                    setTimeout(keepAlive, 5000)
+                    setTimeout(keepAlive, 30000)
                 }
             }
         }
-        setTimeout(keepAlive, 5000)
+        setTimeout(keepAlive, 25000)
     }
 
     disconnect() {

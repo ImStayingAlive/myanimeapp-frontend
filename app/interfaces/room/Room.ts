@@ -1,12 +1,12 @@
-import User from "../User";
 import RoomShow from "./RoomShow";
+import RoomUser from "./RoomUser";
 
 interface Room {
 
     name: string
-    owner: User
+    owner: RoomUser
     isOwnerConnected: boolean
-    users: Array<User>
+    users: Array<RoomUser>
 
     lastPersonTimestamp: number
     roomShow: RoomShow

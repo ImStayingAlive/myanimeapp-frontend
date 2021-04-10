@@ -7,7 +7,7 @@ import {useEffect} from "react";
 const dev = observer(() => {
 
     useEffect(() => {
-    }, [roomStore])
+    }, [roomStore.room])
 
     let createRoom = () => {
         console.log("Creating...")
@@ -53,8 +53,8 @@ const dev = observer(() => {
 
             {roomStore.loaded && (
                 <div className="text-white">
-                    <h1>Owner</h1>
-                    {roomStore.room.users.map((user) => <h1>{user.name}</h1>)}
+                    <h1>{roomStore.room.owner.user.name}</h1>
+                    {roomStore.room.users.map((user) => <h1>{user.user.name}</h1>)}
                 </div>
             )}
         </div>

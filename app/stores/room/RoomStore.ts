@@ -30,6 +30,15 @@ class RoomStore {
        })
     }
 
+    refreshRoom(callback) {
+        roomService.findRoom(this.room.name, (room) => {
+            this.room = room
+            if (callback) {
+                callback(callback)
+            }
+        })
+    }
+
     disconnect() {
         roomService.disconnect()
         this.reset()
