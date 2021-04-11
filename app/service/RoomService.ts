@@ -45,7 +45,7 @@ class RoomService {
             }
         }
 
-        this.socket = new WebSocket(socketUrl + roomName + "/" + user.name + "/" + false)
+        this.socket = new WebSocket(socketUrl + roomName + "/" + user.name)
 
         this.socket.onopen = () => {
             toast.success("You joined the room.")

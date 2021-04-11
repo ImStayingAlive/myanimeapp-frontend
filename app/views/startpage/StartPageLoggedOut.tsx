@@ -2,7 +2,6 @@ import {FaUsers} from "react-icons/fa";
 import {RiRemoteControlLine} from "react-icons/ri";
 import {CgPlayButtonO} from "react-icons/cg";
 import {BiTime} from  "react-icons/bi"
-import Link from 'next/link'
 
 import FeatureList from "../../components/landingpage/FeatureList";
 
@@ -10,35 +9,11 @@ const StartPageLoggedOut = () => {
 
     return (
         <div>
-            <div style={{height: "63vh"}}>
-                <div className="lobby-bg landingGradient" style={{height: "55vh"}}>
+            <div style={{height: "65vh"}}>
+
+                <div className="lobby-bg landingGradient overflow-visible" style={{height: "55vh"}}>
                     <div className="bg-cover backDrop h-full"
-                         style={{backgroundImage: `url('https://cdn.necrocloud.eu/shows/Wise-Mans-Grandchild/media/wiseMansGrandchildBackground.jpg')`}}/>
-                </div>
-
-                <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-center">
-
-                    <h1 className="text-5xl text-white font-avenir">
-                        Welcome to !
-                    </h1>
-                    <h2 className="text-2xl text-gray-300 font-avenir mt-3">
-                        Begin watching now by searching for an anime or using one of our generated selections!<br/>
-                        In order to use all of our features please..
-                    </h2>
-
-                    <div className="mt-10">
-                        <Link href="/login">
-                            <a className="bg-blue-500 hover:bg-blue-600 py-4 px-10 font-avenir text-white text-2xl rounded-xl">
-                                Login
-                            </a>
-                        </Link>
-                        <Link href="/register">
-                            <a className="bg-gray-500 hover:bg-gray-600 py-4 px-10 font-avenir text-white text-2xl rounded-xl ml-4">
-                                Signup
-                            </a>
-                        </Link>
-                    </div>
-
+                         style={{backgroundImage: `url('https://images.hdqwalls.com/download/anime-landscape-d5-1366x768.jpg')`}}/>
                 </div>
             </div>
 

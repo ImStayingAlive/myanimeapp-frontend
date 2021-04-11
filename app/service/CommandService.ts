@@ -9,15 +9,13 @@ commands.push(new Command("RoomJoined: ", (result) => {
     if (userStore.user.name !== result) {
         toast.success(result + " joined the room.")
     }
+    roomStore.refreshRoom(() => {})
 }))
 
 commands.push(new Command("RoomLeave: ", (result) => {
     if (userStore.user.name !== result) {
         toast.error(result + " left the room.")
     }
-}))
-
-commands.push(new Command("renderRoom", () => {
     roomStore.refreshRoom(() => {})
 }))
 

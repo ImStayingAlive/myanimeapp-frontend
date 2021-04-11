@@ -5,8 +5,9 @@ import userStore from "../../stores/UserStore";
 import UserAvatar from "../../components/room/UserAvatar";
 import InviteOthers from "../../components/room/InviteOthers";
 import Link from "next/link"
+import {observer} from "mobx-react-lite";
 
-const RoomLobby = () => {
+const RoomLobby = observer(() => {
 
     return (
         <div>
@@ -86,12 +87,12 @@ const RoomLobby = () => {
                             <div className="flex mt-8 xl:mt-0 items-center">
                                 <div className="sm:-space-x-4">
 
-                                    {roomStore.room.isOwnerConnected && (
-                                        <UserAvatar user={roomStore.getOwner()}/>
+                                    {roomStore.room.ownerConnected && (
+                                        <UserAvatar user={roomStore.getOwner()} owner={true}/>
                                     )}
 
                                     {roomStore.room.users.map((user, index) =>
-                                        <UserAvatar key={index} user={user.user}/>
+                                        <UserAvatar key={index} user={user.user} owner={false}/>
                                     )}
 
                                 </div>
@@ -106,6 +107,6 @@ const RoomLobby = () => {
             <Footer/>
         </div>
     )
-}
+})
 
 export default RoomLobby

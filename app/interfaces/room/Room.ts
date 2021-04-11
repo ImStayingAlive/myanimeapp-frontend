@@ -5,7 +5,7 @@ interface Room {
 
     name: string
     owner: RoomUser
-    isOwnerConnected: boolean
+    ownerConnected: boolean
     users: Array<RoomUser>
 
     lastPersonTimestamp: number
