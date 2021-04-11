@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/anime-frontend-next.iml" filepath="$PROJECT_DIR$/.idea/anime-frontend-next.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/old/.idea/old.iml" filepath="$USER_HOME$/Desktop/old/.idea/old.iml" />
     </modules>
   </component>
 </project>

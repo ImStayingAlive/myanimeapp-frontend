@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Navbar from "../../app/components/common/navbar/Navbar";
-import LoginPage from "../../app/views/authentication/LoginPage";
+import Navbar from "../../app/layout/common/navbar/Navbar";
+import LoginPage from "../../app/layout/views/login/LoginPage";
 
 const Login = () => {
 

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Player from "../../app/views/player/Player";
+import Player from "../../app/layout/views/player/Player";
 import {observer} from "mobx-react-lite";
 
 const Watch = observer(() => {

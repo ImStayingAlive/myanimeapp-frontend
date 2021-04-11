@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Navbar from "../app/components/common/navbar/Navbar";
-import Footer from "../app/components/common/Footer";
+import Navbar from "../app/layout/common/navbar/Navbar";
+import Footer from "../app/layout/common/Footer";
 import {useEffect} from "react";
-import userStore from "../app/stores/UserStore";
+import userStore from "../app/auth/user/store/UserStore";
 import Router from "next/router";
-import Header from "../app/components/common/Header";
-import BrowseShows from "../app/views/browse/BrowseShows";
+import Header from "../app/layout/common/Header";
+import BrowseShows from "../app/layout/views/browse/BrowseShows";
 import {observer} from "mobx-react-lite";
 
 const WatchList = observer(() => {
@@ -17,7 +17,7 @@ const WatchList = observer(() => {
     if (!userStore.isLoggedIn) {
         Router.push({
             pathname: '/login',
-        }).then(r => {})
+        }).then(() => {})
 
         return (
             <div>

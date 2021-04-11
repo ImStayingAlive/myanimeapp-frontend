@@ -1,8 +1,8 @@
 import { useRouter } from "next/router"
 import {useEffect} from "react"
-import roomStore from "../../app/stores/room/RoomStore";
-import RoomLobby from "../../app/views/room/RoomLobby";
-import PreloaderComponent from "../../app/components/common/PreloaderComponent";
+import roomStore from "../../app/player/room/store/RoomStore";
+import RoomLobby from "../../app/layout/views/room/components/roomlobby/RoomLobby";
+import PreloaderComponent from "../../app/layout/common/PreloaderComponent";
 import {observer} from "mobx-react-lite";
 import {toast} from "react-toastify";
 

@@ -1,21 +1,20 @@
-import '../styles/globals.css'
-import Preloader from "../app/components/common/PreloaderComponent";
-import mainStore from "../app/stores/MainStore";
-import {observer} from "mobx-react-lite";
-import {AppProps} from "next/app";
 import {useEffect} from "react";
-import {showState} from "../app/stores/shows/ShowStore";
-import Toast from "../app/components/common/Toast";
-import loginService from "../app/service/LoginService";
-import userStore from "../app/stores/UserStore";
+import {AppProps} from "next/app";
 import {Helmet} from "react-helmet";
-import ShowPopup from "../app/components/common/modals/ShowModule/ShowPopup";
-import OpenPopup from "../app/components/common/modals/OpenPopup";
+import {observer} from "mobx-react-lite";
+import {showStore} from "../app/show/ShowFacade";
+import {loginService, userStore} from "../app/auth/AuthFacade"
+import mainStore from "../app/layout/common/store/MainStore";
+import '../styles/globals.css'
+import Preloader from "../app/layout/common/PreloaderComponent";
+import Toast from "../app/layout/common/Toast";
+import ShowPopup from "../app/layout/common/modals/ShowModule/ShowPopup";
+import OpenPopup from "../app/layout/common/modals/OpenPopup";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
     useEffect(() => {
-        showState.retrieveShows(() => {
+        showStore.retrieveShows(() => {
             loginService.update(() => {
                 if (userStore.isLoggedIn) {
                     mainStore.setLoaded(true)
@@ -33,12 +32,19 @@ const App = observer(({Component, pageProps}: AppProps) => {
     return (
         <div>
             <Helmet>
-                <body className="antialiased font-sans bg-richBlack scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-600"/>
+                <body className="antialiased font-sans bg-richBlack scrollbar-thin
+                                 scrollbar-thumb-gray-900 scrollbar-track-gray-600"/>
             </Helmet>
+
+            {/* Page Component */}
             <Component {...pageProps} />
+
+            {/* Load Toasts and Popups */}
             <Toast/>
             <ShowPopup/>
-            <OpenPopup />
+
+            {/* See if the popup needs to be opened due to the URL */}
+            <OpenPopup/>
         </div>
     )
 })

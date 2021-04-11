@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import Navbar from "../app/components/common/navbar/Navbar";
-import Footer from "../app/components/common/Footer";
+import Navbar from "../app/layout/common/navbar/Navbar";
+import Footer from "../app/layout/common/Footer";
 import {useEffect, useState} from "react";
 import {observer} from "mobx-react-lite";
-import { showState } from '../app/stores/shows/ShowStore';
-import Show from '../app/interfaces/Show';
+import {showStore, ShowModel} from "../app/show/ShowFacade";
 import {Player} from "@lottiefiles/react-lottie-player";
-import ShowCard from "../app/components/common/cards/ShowCard";
+import ShowCard from "../app/layout/common/cards/ShowCard";
 
 const Recommended = observer(() => {
 
@@ -16,7 +15,7 @@ const Recommended = observer(() => {
     useEffect(() => {
         let tempShows = []
 
-        showState.shows.map((show: Show) => {
+        showStore.shows.map((show: ShowModel) => {
             if (show.name.startsWith(typed.toLowerCase())) {
                 tempShows.push(show)
             }

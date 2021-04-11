@@ -4,7 +4,6 @@ This is the frontend for the MyAnime.APP. This version is written in NextJS
 
 ## Usage
 
-
 `next dev`
 `next build`
 `next start`
@@ -23,7 +22,6 @@ This is the frontend for the MyAnime.APP. This version is written in NextJS
 - FACADE [for storing services, repositories] = Facade (example: ShowFacade.ts)
 - PROVIDER [for storing variables] = Provider (example: AxiosProvider.ts)
 - COMPONENT [for react components] = Component (example: NavbarComponent.tsx)
-
 
 **Contributors**
 - TsukiDev
