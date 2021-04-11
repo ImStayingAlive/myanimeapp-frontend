@@ -15,7 +15,9 @@ class RoomService {
         api.post("/room/create", data)
             .then((response) => {
                 if (response.data.success) {
-                    roomStore.openConnection(response.data.room.name)
+                    if (callback) {
+                        callback(response.data.room.name)
+                    }
                 }
             })
             .catch(() => {
@@ -29,6 +31,9 @@ class RoomService {
     findRoom(name, callback) {
         api.get("/room/find/" + name)
             .then((response) => {
+                if (response.data === "") {
+                    callback(false)
+                }
                 callback(response.data)
         })
     }
@@ -43,7 +48,7 @@ class RoomService {
         this.socket = new WebSocket(socketUrl + roomName + "/" + user.name + "/" + false)
 
         this.socket.onopen = () => {
-            console.log("Connected to room: " + roomName)
+            toast.success("You joined the room.")
         }
         this.socket.onmessage = (message) => {
             if (callback) {
@@ -63,7 +68,7 @@ class RoomService {
     }
 
     disconnect() {
-        console.log("Disconnected")
+        toast.error("You left the room.")
         this.socket.close()
         this.socket = undefined
     }

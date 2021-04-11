@@ -17,7 +17,9 @@ const StartPageLoggedIn = observer(() => {
                     <ShowRow title={"Continue watching for " + userStore.user.name} dataSet={watchedShows}/>
                 )}
                 <ShowRow title="Recommended" dataSet={showState.shows} link="/recommended"/>
-                <ShowRow title={userStore.user.name + "'s Watch List"} dataSet={userStore.watchLater} link="/watch-list" />
+                {userStore.watchLater.length > 0 && (
+                    <ShowRow title={userStore.user.name + "'s Watch List"} dataSet={userStore.watchLater} link="/watch-list" />
+                )}
             </div>
         </div>
     )

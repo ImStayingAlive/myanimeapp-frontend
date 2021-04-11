@@ -6,14 +6,23 @@ import showPopupStore from "../../../../../stores/shows/ShowPopupStore";
 import userStore from "../../../../../stores/UserStore";
 import playerStore from "../../../../../stores/player/PlayerStore";
 import Link from "next/link"
+import roomService from "../../../../../service/RoomService";
+import {useRouter} from "next/router";
 
 const ActionBar = observer(() => {
     const [groupWatch, setGroupWatch] = useState("false")
+    const router = useRouter()
 
     // Open a new watchRoom
     const openRoom = () => {
         setGroupWatch("loading")
 
+        roomService.createRoom(userStore.user, showPopupStore.show.name, (response) => {
+            if (response) {
+                showPopupStore.close()
+                router.push("/room/" + response).then(r => {})
+            }
+        })
         setTimeout(() => {
         }, 1000)
     }
@@ -23,10 +32,6 @@ const ActionBar = observer(() => {
         playerStore.setShow(showPopupStore.show)
         playerStore.changeEpisode(seasonIndex, episodeIndex)
         showPopupStore.close()
-    }
-
-    if (groupWatch !== "false" && groupWatch !== "loading") {
-        window.location.href = "/room/" + groupWatch
     }
 
     // If the User is not logged In render this

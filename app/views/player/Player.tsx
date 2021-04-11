@@ -6,6 +6,8 @@ import {formatURL} from "../../stores/shows/ShowStore";
 import PlayerOverlay from "../../components/player/PlayerOverlay";
 import Router, {useRouter} from "next/router";
 import PlayerEventHandler from "../../components/player/PlayerEventHandler";
+import showPopupStore from "../../stores/shows/ShowPopupStore";
+import PreloaderComponent from "../../components/common/PreloaderComponent";
 
 const Player = observer(() => {
     const router = useRouter()
@@ -51,7 +53,9 @@ const Player = observer(() => {
                 Router.push({
                     pathname: '/',
                     query: {show: formatURL(playerStore.show.name)},
-                }).then(r => {})
+                }).then(r => {
+                    showPopupStore.open(playerStore.show)
+                })
             }
 
             /* Event Listeners */
@@ -78,8 +82,11 @@ const Player = observer(() => {
                     </video>
                 </div>
             </div>
+
+
             {!playerStore.loaded && (
                 <div className="absolute top-0 left-0 z-10 bg-gray-800 h-screen w-full">
+                    <PreloaderComponent />
                 </div>
             )}
         </div>
