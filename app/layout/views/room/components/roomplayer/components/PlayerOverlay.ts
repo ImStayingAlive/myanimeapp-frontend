@@ -6,7 +6,7 @@ const PlayerOverlay = (player) => {
 
     /* Generate Show Data */
     let showName: string = roomStore.getShowInfo().displayName
-    let seasonNumber: number = roomStore.getCurrentSeason().seasonNumber
+    let seasonNumber: string = roomStore.getCurrentSeason().seasonNumber
     let episodeNumber: number = roomStore.room.roomShow.episodeIndex + 1
     let episodeTitle: string = roomStore.getCurrentEpisode().name
     let showInfoText: string = '<h1>' + showName + '</h1><h2>S' + seasonNumber + ':E' + episodeNumber + ' "' + episodeTitle + '"</h2>'
