@@ -133,17 +133,11 @@ class RoomStore {
         if (userStore.user.name === this.getOwner().name) {
             roomService.setIsRunning(this.room.name, true)
             roomService.sendMessage("beginPlayback")
-            runInAction(() => {
-                this.playing = true
-            })
-            return;
         }
 
-        if (this.room.running) {
-            runInAction(() => {
-                this.playing = true
-            })
-        }
+        runInAction(() => {
+            this.playing = true
+        })
     }
 
     setBuffering(status: boolean) {
