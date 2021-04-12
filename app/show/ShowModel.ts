@@ -11,7 +11,7 @@ interface ShowModel {
     seasons: [
         {
             name: string
-            seasonNumber: number
+            seasonNumber: string
             releaseDat: string
             enabled: boolean
             episodes: [
