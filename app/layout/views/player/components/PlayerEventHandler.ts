@@ -47,6 +47,12 @@ const PlayerEventHandler = (player) => {
                 }
             }
         })
+    } else {
+        player.on("loadeddata", () => {
+            if (!playerStore.loaded) {
+                playerStore.setLoaded(true)
+            }
+        })
     }
 
     /* Event Listeners */

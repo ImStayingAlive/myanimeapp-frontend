@@ -44,10 +44,12 @@ const ActionBar = observer(() => {
                 </div>
                 {showPopupStore.show.seasons.length > 0 && (
                     <div className="flex">
-                        <a onClick={() => playEpisode(0, 0)}
-                           className="bg-red-500 hover:bg-red-400 py-2 px-8 text-2xl rounded text-white font-oswald uppercase min-h select-none">
-                            Play
-                        </a>
+                        <Link href="/watch">
+                            <a onClick={() => playEpisode(0, 0)}
+                               className="bg-red-500 hover:bg-red-400 py-2 px-8 text-2xl rounded text-white font-oswald uppercase min-h select-none">
+                                Play
+                            </a>
+                        </Link>
                         <button disabled
                                 className="bg-gray-800 cursor-not-allowed px-3 ml-4 text-2xl rounded text-white font-oswald uppercase focus:outline-none">
                             <FaPlus/>
