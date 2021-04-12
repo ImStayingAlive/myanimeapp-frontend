@@ -1,11 +1,13 @@
 import Navbar from "../../../../common/navbar/Navbar";
 import Footer from "../../../../common/Footer";
-import roomStore from "../../../../../player/room/store/RoomStore";
+import roomStore from "../../../../../room/store/RoomStore";
 import userStore from "../../../../../auth/user/store/UserStore";
 import UserAvatar from "../UserAvatar";
 import InviteOthers from "../InviteOthers";
 import Link from "next/link"
 import {observer} from "mobx-react-lite";
+import EpisodeSelector from "../episodeselector/EpisodeSelector";
+import {runInAction} from "mobx";
 
 const RoomLobby = observer(() => {
 
@@ -25,9 +27,9 @@ const RoomLobby = observer(() => {
                         </h1>
                         <div className="text-3xl text-gray-400 mb-5">
 
-                                <h3>
-                                    Waiting for host to start <span className="text-red-400">playback</span>...
-                                </h3>
+                            <h3>
+                                Waiting for host to start <span className="text-red-400">playback</span>...
+                            </h3>
 
                         </div>
 
@@ -50,14 +52,19 @@ const RoomLobby = observer(() => {
                                             {roomStore.getCurrentEpisode().shortDescription}
                                         </h5>
                                         {roomStore.getOwner().name === userStore.user.name && (
-                                            <button className="font-avenir text-md text-blue-400 hover:text-blue-300 cursor-pointer focus:outline-none">
+                                            <button onClick={() => runInAction(() => {
+                                                roomStore.popupOpen = true
+                                            })} className="font-avenir text-md text-blue-400 hover:text-blue-300 cursor-pointer focus:outline-none">
                                                 Change Episode
                                             </button>
                                         )}
                                     </div>
                                 ) : (
-                                    <div className="max-h-40 scrollbar-thin -ml-3 scrollbar-thumb-red-400 overflow-y-scroll overflow-x-hidden" style={{direction: "rtl"}}>
-                                        <h5 className="text-lg text-gray-100 font-avenir pl-4" style={{direction: "ltr"}}>
+                                    <div
+                                        className="max-h-40 scrollbar-thin -ml-3 scrollbar-thumb-red-400 overflow-y-scroll overflow-x-hidden"
+                                        style={{direction: "rtl"}}>
+                                        <h5 className="text-lg text-gray-100 font-avenir pl-4"
+                                            style={{direction: "ltr"}}>
                                             {roomStore.getShowInfo().description}
                                         </h5>
                                     </div>
@@ -65,13 +72,15 @@ const RoomLobby = observer(() => {
 
                                 <div className="mt-10">
                                     {roomStore.getOwner().name === userStore.user.name && !roomStore.playing && (
-                                        <button className="bg-red-700 mr-4 hover:bg-red-600 p-4 text-white rounded font-avenir text-lg focus:outline-none">
+                                        <button onClick={() => roomStore.playing = true}
+                                            className="bg-red-700 mr-4 hover:bg-red-600 p-4 text-white rounded font-avenir text-lg focus:outline-none">
                                             Start Stream
                                         </button>
                                     )}
 
                                     {roomStore.room.running && roomStore.getOwner().name !== userStore.user.name && (
-                                        <button className="bg-red-700 mr-4 hover:bg-red-600 p-4 text-white rounded font-avenir text-lg focus:outline-none">
+                                        <button
+                                            className="bg-red-700 mr-4 hover:bg-red-600 p-4 text-white rounded font-avenir text-lg focus:outline-none">
                                             Join Stream
                                         </button>
                                     )}
@@ -105,6 +114,7 @@ const RoomLobby = observer(() => {
                 </div>
             </div>
             <Footer/>
+            <EpisodeSelector/>
         </div>
     )
 })

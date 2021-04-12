@@ -1,7 +1,5 @@
-import userStore from "./user/store/UserStore";
-import api from "./AxiosProvider";
-import cookieService from "./CookieService";
-import UserModel from "../auth/user/UserModel";
+import {userStore, api, cookieService, UserModel} from "./AuthFacade"
+
 const cookieTokenKey = "secureToken"
 
 class LoginService {

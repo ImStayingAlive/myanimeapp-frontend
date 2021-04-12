@@ -2,12 +2,12 @@ import React, {useState} from "react"
 import {observer} from "mobx-react-lite";
 import {FaCheck, FaPlus, FaUsers} from "react-icons/fa";
 import {BiLoaderAlt} from "react-icons/bi";
-import showPopupStore from "../../../../../show/popup/ShowPopupStore";
-import userStore from "../../../../../auth/user/store/UserStore";
-import playerStore from "../../../../../player/PlayerStore";
 import Link from "next/link"
-import roomService from "../../../../../player/room/RoomService";
 import {useRouter} from "next/router";
+import {showPopupStore} from "../../../../../show/ShowFacade"
+import {userStore} from "../../../../../auth/AuthFacade"
+import {playerStore} from "../../../../../player/PlayerFacade"
+import {roomService} from "../../../../../room/RoomFacade"
 
 const ActionBar = observer(() => {
     const [groupWatch, setGroupWatch] = useState("false")

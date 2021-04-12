@@ -1,5 +1,5 @@
-import { UserModel } from "../../auth/AuthFacade";
-import { ShowModel } from "../../show/ShowFacade";
+import { UserModel } from "../auth/AuthFacade";
+import { ShowModel } from "../show/ShowFacade";
 
 interface RoomModel {
 

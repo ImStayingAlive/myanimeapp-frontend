@@ -2,13 +2,19 @@ import React, {useState} from "react"
 import {MdAdd} from "react-icons/md";
 import {Transition} from "@headlessui/react";
 import {toast} from "react-toastify";
+import { useRef } from "react";
 
 const InviteOthers = (props) => {
     const [openPopup, togglePopup] = useState(false)
 
+    const linkTextArea = useRef(null);
+
     const copyLink = () => {
-        toast.success("The link is in your clipboard!")
-    }
+        linkTextArea.current.select();
+        document.execCommand('copy');
+
+        toast.success("The link is copied!")
+    };
 
     return (
         <div>
@@ -60,7 +66,7 @@ const InviteOthers = (props) => {
                                     </p>
                                     <div className="flex items-center h-full justify-between text-sm font-semibold leading-6 bg-gray-900 rounded h-12 w-full">
                                         <div>
-                                            <input id="copyLink" className="pl-4 h-full bg-gray-900 text-base font-medium leading-tight text-gray-100" value={"https://anime.necrocloud.eu/room/" + props.roomId} />
+                                            <input ref={linkTextArea} readOnly id="copyLink" className="pl-4 h-full bg-gray-900 text-base font-medium leading-tight text-gray-100" value={"https://anime.necrocloud.eu/room/" + props.roomId} />
                                         </div>
                                         <div onClick={() => copyLink()} className="bg-indigo-700 p-3.5 rounded-r cursor-pointer">
                                             <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20}

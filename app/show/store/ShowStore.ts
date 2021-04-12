@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
-import api from "../../auth/AxiosProvider";
-import ShowModel from "../ShowModel";
+import {api} from "../../auth/AuthFacade"
+import {ShowModel} from "../ShowFacade"
 
 class ShowStore {
 

@@ -1,6 +1,6 @@
-import api from "../../auth/AxiosProvider";
+import api from "../auth/AxiosProvider";
 import { toast } from "react-toastify";
-import { UserModel } from "../../auth/AuthFacade";
+import { UserModel } from "../auth/AuthFacade";
 
 
 let socketUrl = "wss://rest.necrocloud.eu/room/lobby/";
@@ -75,6 +75,56 @@ class RoomService {
 
     sendMessage(message) {
         this.socket.send(message)
+    }
+
+    setIsRunning(roomName: string, running: boolean) {
+        let data = {
+            room: roomName,
+            running: running
+        }
+
+        api.post("/room/update/running", data)
+            .then((response) => {
+                if (response.data.success) {
+
+                }
+            })
+            .catch(() => {
+                toast.error("Unexpected error occurred! Please try again.")
+            });
+    }
+
+    updateTime(roomName: string, time: number) {
+        let data = {
+            room: roomName,
+            time: time
+        }
+
+        api.post("/room/update/time", data)
+            .then(() => {})
+            .catch(() => {})
+    }
+
+    updateEpisode(roomName: string, seasonIndex: number, episodeIndex: number, callback: Function) {
+        let data = {
+            room: roomName,
+            seasonIndex: seasonIndex,
+            episodeIndex: episodeIndex
+        }
+
+        api.post("/room/update/episode", data)
+            .then((response) => {
+                if (response.data.success) {
+                    this.updateTime(roomName, 0)
+                    this.sendMessage("renderRoom")
+                    if (callback) {
+                        callback(callback)
+                    }
+                }
+            })
+            .catch(() => {
+                toast.error("Unexpected error occurred! Please try again.")
+            });
     }
 }
 
