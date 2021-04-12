@@ -1,5 +1,6 @@
 import timeStampUtil from "../../../../../../utils/TimeStampUtil";
-import {roomStore} from "../../../../../../room/RoomFacade";
+import {roomService, roomStore} from "../../../../../../room/RoomFacade";
+import {userStore} from "../../../../../../auth/AuthFacade";
 
 const PlayerEventHandler = (player) => {
 
@@ -15,19 +16,47 @@ const PlayerEventHandler = (player) => {
         }
     })
 
-    // Check if Player is at the end
-    // And start the next episode timer
-    player.on("timeupdate", () => {
-        if (player.currentTime() > 2) {
-            let modularTime = Math.round(player.currentTime() % 5);
-            if (modularTime === 0) {
-                if (timeStampUtil.isAvailable("playerTimeUpdate")) {
-                    //console.log("Update")
-                    timeStampUtil.setTimeStamp("playerTimeUpdate", 1000 * 2)
-                }
-            }
+    player.on("seeking", () => {
+        if (timeStampUtil.isAvailable("playerSkip")) {
+            roomService.sendMessage("Skip: " + Math.round(player.currentTime()))
         }
     })
+
+    player.on("play", () => {
+        if (timeStampUtil.isAvailable("playing")) {
+            setTimeout(() => {
+                if (!player.paused()) {
+                    roomService.sendMessage("Playing/User: " + userStore.user.name)
+                    timeStampUtil.setTimeStamp("playing", 500)
+                }
+            }, 300)
+        }
+    })
+
+    player.on("pause", () => {
+        if (timeStampUtil.isAvailable("paused")) {
+            setTimeout(() => {
+                if (player.paused()) {
+                    roomService.sendMessage("Paused/User: " + userStore.user.name)
+                    timeStampUtil.setTimeStamp("paused", 500)
+                }
+            }, 300)
+        }
+    })
+
+    if (userStore.user.name === roomStore.getOwner().name) {
+        player.on("timeupdate", () => {
+            if (player.currentTime() > 2) {
+                let modularTime = Math.round(player.currentTime() % 2);
+                if (modularTime === 0) {
+                    if (timeStampUtil.isAvailable("playerTimeUpdate")) {
+                        roomService.updateTime(roomStore.room.name, Math.round(player.currentTime()))
+                        timeStampUtil.setTimeStamp("playerTimeUpdate", 1000 * 2)
+                    }
+                }
+            }
+        })
+    }
 
 }
 

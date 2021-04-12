@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-import {RoomModel, roomService, CommandRegistry } from "../RoomFacade";
+import {RoomModel, roomService, CommandRegistry, playerController} from "../RoomFacade";
 import {userStore} from "../../auth/AuthFacade";
 import {runInAction} from "mobx"
 
@@ -175,6 +175,9 @@ class RoomStore {
         let ready: boolean = true
         if (this.bufferingUsers !== 0) {
             ready = false
+            playerController.pauseVideo()
+        } else {
+            playerController.playVideo()
         }
 
         runInAction(() => {

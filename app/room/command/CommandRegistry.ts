@@ -1,7 +1,8 @@
 import {toast} from "react-toastify";
 import {userStore} from "../../auth/AuthFacade"
-import {roomStore} from "../RoomFacade"
+import {playerController, roomStore} from "../RoomFacade"
 import Command from "./Command";
+import timeStampUtil from "../../utils/TimeStampUtil";
 
 let commands: Array<Command> = []
 
@@ -36,6 +37,37 @@ commands.push((new Command("beginPlayback", () => {
         roomStore.playVideo()
     }
 })))
+
+commands.push(new Command("Paused/User: ", (result) => {
+    if (roomStore.playing) {
+        if (result !== userStore.user.name) {
+            playerController.pauseVideo()
+        }
+    }
+}))
+
+commands.push(new Command("Playing/User: ", (result) => {
+    if (roomStore.playing) {
+        if (result !== userStore.user.name) {
+            playerController.playVideo()
+        }
+    }
+}))
+
+commands.push(new Command("Skip: ", (result) => {
+    if (roomStore.playing) {
+        if (timeStampUtil.isAvailable("skip")) {
+            let args = result.split("/")
+            let timeDif = Math.round(playerController.player.currentTime()) - args[0];
+            let userName = args[1].replace("User: ", "");
+
+            if ((timeDif > 3 || timeDif < -3) && userName !== userStore.user.name) {
+                playerController.setTime(args[0])
+                timeStampUtil.setTimeStamp("skip", 500)
+            }
+        }
+    }
+}))
 
 const CommandRegistry = (message: String) => {
     console.log(message)

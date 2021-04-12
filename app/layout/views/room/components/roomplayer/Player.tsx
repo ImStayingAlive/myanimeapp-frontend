@@ -3,7 +3,7 @@ import videojs from 'video.js'
 import {useEffect} from "react";
 import PlayerOverlay from "./components/PlayerOverlay";
 import PlayerEventHandler from "./components/PlayerEventHandler";
-import {roomStore} from "../../../../../room/RoomFacade"
+import {playerController, roomStore} from "../../../../../room/RoomFacade"
 import WaitingForOthers from "./components/WaitingForOthers";
 
 const Player = observer(() => {
@@ -34,9 +34,9 @@ const Player = observer(() => {
                         player.src(roomStore.getCurrentEpisode().videoSource)
                         player.currentType = roomStore.getVideoType()
                     }
-
                     PlayerOverlay(player)
                     PlayerEventHandler(player)
+                    playerController.setPlayer(player)
                 }
             }
 
@@ -63,8 +63,8 @@ const Player = observer(() => {
                            className="video-player-theme video-js">
                         <source id="video-player-source"/>
                     </video>
+                    <WaitingForOthers />
                 </div>
-                <WaitingForOthers />
             </div>
         </div>
     )
