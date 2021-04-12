@@ -1,4 +1,5 @@
 import {userStore, api, cookieService, UserModel} from "./AuthFacade"
+import {toast} from "react-toastify";
 
 const cookieTokenKey = "secureToken"
 
@@ -67,6 +68,8 @@ class LoginService {
                     userStore.setIsLoggedIn(true)
                     //-------------------------------------------------------
 
+                    toast.success("Welcome back " + user.name + "!")
+
                 }
                 if (callback != null) {
                     callback(response.data)
@@ -96,6 +99,7 @@ class LoginService {
     logout() {
         userStore.setIsLoggedIn(false)
         cookieService.removeCookie(cookieTokenKey)
+        toast.warning("You logged out.")
     }
 
 }

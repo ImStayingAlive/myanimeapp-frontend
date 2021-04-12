@@ -41,7 +41,9 @@ commands.push((new Command("beginPlayback", () => {
 commands.push(new Command("Paused/User: ", (result) => {
     if (roomStore.playing) {
         if (result !== userStore.user.name) {
-            playerController.pauseVideo()
+            if (timeStampUtil.isAvailable("paused")) {
+                playerController.pauseVideo()
+            }
         }
     }
 }))
@@ -49,7 +51,9 @@ commands.push(new Command("Paused/User: ", (result) => {
 commands.push(new Command("Playing/User: ", (result) => {
     if (roomStore.playing) {
         if (result !== userStore.user.name) {
-            playerController.playVideo()
+            if (timeStampUtil.isAvailable("playing")) {
+                playerController.playVideo()
+            }
         }
     }
 }))
@@ -63,7 +67,7 @@ commands.push(new Command("Skip: ", (result) => {
 
             if ((timeDif > 3 || timeDif < -3) && userName !== userStore.user.name) {
                 playerController.setTime(args[0])
-                timeStampUtil.setTimeStamp("skip", 500)
+                timeStampUtil.setTimeStamp("skip", 800)
             }
         }
     }

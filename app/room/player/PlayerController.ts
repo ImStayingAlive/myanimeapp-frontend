@@ -12,7 +12,6 @@ class PlayerController {
 
     setPlayer(player) {
         this.player = player
-        this.player.currentTime(roomStore.room.roomShow.currentTime)
         this.playVideo()
     }
 
@@ -22,7 +21,6 @@ class PlayerController {
                 this.player.play()
             }
         }catch(exception) {
-            console.log(exception)
         }
     }
 
@@ -32,7 +30,6 @@ class PlayerController {
                 this.player.pause()
             }
         }catch(exception) {
-            console.log(exception)
         }
     }
 

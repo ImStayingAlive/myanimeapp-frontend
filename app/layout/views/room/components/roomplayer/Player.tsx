@@ -40,16 +40,13 @@ const Player = observer(() => {
                 }
             }
 
-            const closePlayer = () => {
-                roomStore.playing = false
-            }
-
             /* Event Listeners */
             document.querySelectorAll('#closeButton').forEach(function (element) {
-                element.addEventListener("click", () => closePlayer())
+                element.addEventListener("click", () => roomStore.stopVideo())
             });
 
             return function cleanup() {
+                roomStore.stopVideo()
                 player.dispose()
             }
         }

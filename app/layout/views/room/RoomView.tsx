@@ -1,12 +1,12 @@
 import {useRouter} from "next/router";
 import {useEffect} from "react";
-import roomStore from "../../../room/store/RoomStore";
 import {toast} from "react-toastify";
 import PreloaderComponent from "../../common/PreloaderComponent";
 import RoomLobby from "./components/roomlobby/RoomLobby";
 import {observer} from "mobx-react-lite";
 import Head from "next/head";
 import Player from "./components/roomplayer/Player";
+import {roomStore} from "../../../room/RoomFacade";
 
 const RoomView = observer(() => {
     const router = useRouter()

@@ -1,11 +1,17 @@
 import timeStampUtil from "../../../../../../utils/TimeStampUtil";
-import {roomService, roomStore} from "../../../../../../room/RoomFacade";
+import {playerController, roomService, roomStore} from "../../../../../../room/RoomFacade";
 import {userStore} from "../../../../../../auth/AuthFacade";
 
 const PlayerEventHandler = (player) => {
 
+    player.on("loadeddata", () => {
+        roomStore.setBuffering(false)
+        roomStore.setPlayerLoaded(true)
+        playerController.setTime(roomStore.room.roomShow.currentTime)
+    })
+
     player.on("progress", () => {
-        if (player.bufferedEnd() - player.currentTime() > 5) {
+        if (player.bufferedEnd() - player.currentTime() > 2) {
             if (roomStore.buffering) {
                 roomStore.setBuffering(false)
             }
@@ -27,7 +33,7 @@ const PlayerEventHandler = (player) => {
             setTimeout(() => {
                 if (!player.paused()) {
                     roomService.sendMessage("Playing/User: " + userStore.user.name)
-                    timeStampUtil.setTimeStamp("playing", 500)
+                    timeStampUtil.setTimeStamp("playing", 800)
                 }
             }, 300)
         }
@@ -38,7 +44,7 @@ const PlayerEventHandler = (player) => {
             setTimeout(() => {
                 if (player.paused()) {
                     roomService.sendMessage("Paused/User: " + userStore.user.name)
-                    timeStampUtil.setTimeStamp("paused", 500)
+                    timeStampUtil.setTimeStamp("paused", 800)
                 }
             }, 300)
         }
@@ -58,6 +64,14 @@ const PlayerEventHandler = (player) => {
         })
     }
 
+    /* Event Listeners */
+    document.querySelectorAll('#skipIntro').forEach(function (element) {
+        element.addEventListener("click", () => player.currentTime(roomStore.getCurrentEpisode().introStart + roomStore.getCurrentEpisode().introLength))
+    });
+
+    document.querySelectorAll('#nextEpisode').forEach(function (element) {
+        element.addEventListener("click", () => roomStore.loadNextEpisode())
+    });
 }
 
 export default PlayerEventHandler

@@ -13,6 +13,7 @@ class RoomStore {
 
     // Local User Driven States
     loaded: boolean = false
+    playerLoaded: boolean = false
     playing: boolean = false
     bufferingUsers: number = 0
 
@@ -134,10 +135,27 @@ class RoomStore {
             roomService.sendMessage("beginPlayback")
             roomService.setIsRunning(this.room.name, true)
         }
-
+        this.setBuffering(true)
         runInAction(() => {
             this.playing = true
         })
+    }
+
+    stopVideo(callback: Function = () => {}) {
+        if (userStore.user.name === this.getOwner().name) {
+            roomService.sendMessage("stopPlayback")
+            roomService.setIsRunning(this.room.name, false)
+        }
+
+        if (this.playing) {
+            runInAction(() => {
+                this.playing = false
+            })
+        }
+
+        if (callback) {
+            callback(callback)
+        }
     }
 
     setBuffering(status: boolean) {
@@ -183,6 +201,41 @@ class RoomStore {
         runInAction(() => {
             this.readyPlay = ready
         })
+    }
+
+    setPlayerLoaded(status: boolean) {
+        runInAction(() => {
+            this.playerLoaded = status
+        })
+    }
+
+    getNextEpisode() {
+        if (this.getShowInfo().seasons[this.room.roomShow.seasonIndex].episodes[this.room.roomShow.episodeIndex + 1] !== undefined) {
+            return (this.getShowInfo().seasons[this.room.roomShow.seasonIndex].episodes[this.room.roomShow.episodeIndex + 1])
+        } else if (this.getShowInfo().seasons[this.room.roomShow.seasonIndex + 1] !== undefined) {
+            if (this.getShowInfo().seasons[this.room.roomShow.seasonIndex + 1].episodes[0] !== undefined) {
+                return this.getShowInfo().seasons[this.room.roomShow.seasonIndex + 1].episodes[0]
+            }
+        } else {
+            return false
+        }
+    }
+
+    loadNextEpisode() {
+        this.stopVideo()
+
+        if (this.getShowInfo().seasons[this.room.roomShow.seasonIndex].episodes[this.room.roomShow.episodeIndex + 1] !== undefined) {
+            roomService.updateEpisode(this.room.name, this.room.roomShow.seasonIndex, this.room.roomShow.episodeIndex + 1, () => {
+            })
+        } else if (this.getShowInfo().seasons[this.room.roomShow.seasonIndex + 1] !== undefined) {
+            if (this.getShowInfo().seasons[this.room.roomShow.seasonIndex + 1].episodes[0] !== undefined) {
+                roomService.updateEpisode(this.room.name, this.room.roomShow.seasonIndex + 1, 0, () => {
+                })
+            }
+        } else {
+            roomService.updateEpisode(this.room.name, 0, 0, () => {
+            })
+        }
     }
 }
 
