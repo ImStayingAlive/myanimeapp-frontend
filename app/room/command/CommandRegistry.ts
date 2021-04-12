@@ -38,6 +38,12 @@ commands.push((new Command("beginPlayback", () => {
     }
 })))
 
+commands.push((new Command("stopPlayback", () => {
+    if (roomStore.playing) {
+        roomStore.stopVideo()
+    }
+})))
+
 commands.push(new Command("Paused/User: ", (result) => {
     if (roomStore.playing) {
         if (result !== userStore.user.name) {
