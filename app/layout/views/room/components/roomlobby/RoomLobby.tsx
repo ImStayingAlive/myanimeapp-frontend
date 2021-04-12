@@ -72,14 +72,14 @@ const RoomLobby = observer(() => {
 
                                 <div className="mt-10">
                                     {roomStore.getOwner().name === userStore.user.name && !roomStore.playing && (
-                                        <button onClick={() => roomStore.playing = true}
+                                        <button onClick={() => roomStore.playVideo()}
                                             className="bg-red-700 mr-4 hover:bg-red-600 p-4 text-white rounded font-avenir text-lg focus:outline-none">
                                             Start Stream
                                         </button>
                                     )}
 
                                     {roomStore.room.running && roomStore.getOwner().name !== userStore.user.name && (
-                                        <button
+                                        <button onClick={() => roomStore.playVideo()}
                                             className="bg-red-700 mr-4 hover:bg-red-600 p-4 text-white rounded font-avenir text-lg focus:outline-none">
                                             Join Stream
                                         </button>

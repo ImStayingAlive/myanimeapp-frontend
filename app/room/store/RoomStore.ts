@@ -131,8 +131,8 @@ class RoomStore {
 
     playVideo() {
         if (userStore.user.name === this.getOwner().name) {
-            roomService.setIsRunning(this.room.name, true)
             roomService.sendMessage("beginPlayback")
+            roomService.setIsRunning(this.room.name, true)
         }
 
         runInAction(() => {
