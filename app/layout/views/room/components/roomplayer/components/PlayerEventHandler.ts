@@ -18,7 +18,7 @@ const PlayerEventHandler = (player) => {
 
     player.on("seeking", () => {
         if (timeStampUtil.isAvailable("playerSkip")) {
-            roomService.sendMessage("Skip: " + Math.round(player.currentTime()))
+            roomService.sendMessage("Skip: " + Math.round(player.currentTime()) + "/" + userStore.user.name)
         }
     })
 
