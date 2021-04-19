@@ -1,7 +1,6 @@
 import {useRouter} from "next/router";
 import {useEffect} from "react";
 import {showPopupStore, showStore, unFormatURL} from "../../../app/show/ShowFacade";
-import Head from "next/head";
 import { NextSeo } from 'next-seo';
 
 const OpenPopup = () => {

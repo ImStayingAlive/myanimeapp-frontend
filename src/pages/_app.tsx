@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {AppProps} from "next/app";
 import {Helmet} from "react-helmet";
 import {observer} from "mobx-react-lite";
-import {showPopupStore, showStore} from "../app/show/ShowFacade";
+import {showStore} from "../app/show/ShowFacade";
 import {loginService, userStore} from "../app/auth/AuthFacade"
 import mainStore from "../layout/common/store/MainStore";
 import '../../styles/globals.css'
