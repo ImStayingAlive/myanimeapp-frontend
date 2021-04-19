@@ -28,6 +28,7 @@ const OpenPopup = () => {
                 description={showPopupStore.show.description}
                 canonical="https://anime.necrocloud.eu"
                 openGraph={{
+                    type: 'website',
                     url: 'https://anime.necrocloud.eu',
                     title: showPopupStore.show.displayName,
                     description: showPopupStore.show.description,

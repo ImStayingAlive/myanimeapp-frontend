@@ -12,6 +12,7 @@ const Home = () => {
             description="Watch Anime for free!"
             canonical="https://anime.necrocloud.eu"
             openGraph={{
+                type: 'website',
                 url: 'https://anime.necrocloud.eu',
                 title: "MyAnimeApp",
                 description: "Watch Anime for free!",
