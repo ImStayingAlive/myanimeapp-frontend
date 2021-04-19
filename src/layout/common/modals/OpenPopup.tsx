@@ -1,7 +1,8 @@
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import {ShowModel, showPopupStore, showStore, unFormatURL} from "../../../app/show/ShowFacade";
+import {useEffect} from "react";
+import {showPopupStore, showStore, unFormatURL} from "../../../app/show/ShowFacade";
 import Head from "next/head";
+import { NextSeo } from 'next-seo';
 
 const OpenPopup = () => {
     const router = useRouter()
@@ -22,13 +23,30 @@ const OpenPopup = () => {
     }
 
     return (
-        <Head>
-            <title>{showPopupStore.show.displayName}</title>
-            <meta property="og:title" content="MyAnimeApp: Watch Anime online!" />
-            <meta property="og:description" content={showPopupStore.show.description} />
-            <meta property="og:image" content={showPopupStore.show.background} />
-            <meta property="og:url" content="https://anime.necrocloud.eu" />
-        </Head>
+        <div>
+            <NextSeo
+                title={showPopupStore.show.displayName}
+                description={showPopupStore.show.description}
+                canonical="https://anime.necrocloud.eu"
+                openGraph={{
+                    url: 'https://anime.necrocloud.eu',
+                    title: showPopupStore.show.displayName,
+                    description: showPopupStore.show.description,
+                    images: [
+                        {
+                            url: showPopupStore.show.background,
+                            alt: 'Show background image',
+                        }
+                    ],
+                    site_name: 'MyAnimeAbb',
+                }}
+                twitter={{
+                    handle: '@' + showPopupStore.show.displayName,
+                    site: '@MyAnimeApp',
+                    cardType: 'summary_large_image',
+                }}
+            />
+        </div>
     )
 }
 
