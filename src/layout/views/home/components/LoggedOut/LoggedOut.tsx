@@ -2,17 +2,18 @@ import {FaUsers} from "react-icons/fa";
 import {RiRemoteControlLine} from "react-icons/ri";
 import {CgPlayButtonO} from "react-icons/cg";
 import {BiTime} from  "react-icons/bi"
+import styles from "../../../../../../styles/module/Landingpage.module.css"
 
 import FeatureList from "./FeatureList";
 
 const StartPageLoggedOut = () => {
 
     return (
-        <div>
+        <div className={styles.landingPage}>
             <div style={{height: "65vh"}}>
 
-                <div className="lobby-bg landingGradient overflow-visible" style={{height: "55vh"}}>
-                    <div className="bg-cover backDrop h-full"
+                <div className={"overflow-visible " + styles.topSection} style={{height: "55vh"}}>
+                    <div className={"bg-cover h-full " + styles.backDrop}
                          style={{backgroundImage: `url('https://images.hdqwalls.com/download/anime-landscape-d5-1366x768.jpg')`}}/>
                 </div>
             </div>

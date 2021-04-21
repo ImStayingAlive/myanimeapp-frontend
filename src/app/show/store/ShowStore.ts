@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import {api} from "../../auth/AuthFacade"
 import {ShowModel} from "../ShowFacade"
 
@@ -13,7 +13,9 @@ class ShowStore {
     retrieveShows(callback) {
         api.get("/show/all").then((response) => {
             if (response.data.length > 0) {
-                this.shows = (response.data)
+                runInAction(() => {
+                    this.shows = (response.data)
+                })
 
                 if (callback) {
                     callback(callback)

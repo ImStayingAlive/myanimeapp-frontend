@@ -34,10 +34,6 @@ const App = observer(({Component, pageProps}: AppProps) => {
         <div>
             <Head>
                 <title>MyAnimeApp</title>
-                <meta property="og:title" content="MyAnimeApp: Watch Anime online!" />
-                <meta property="og:description" content="Boo" />
-                <meta property="og:image" content="https://i.imgur.com/qpA9l44.jpg" />
-                <meta property="og:url" content="https://anime.necrocloud.eu" />
             </Head>
             <Helmet>
                 <body className="antialiased font-sans bg-richBlack scrollbar-thin

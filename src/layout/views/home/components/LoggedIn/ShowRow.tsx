@@ -14,6 +14,7 @@ const ShowRow = (props) => {
         pagination: false,
         cover: true,
         lazyLoad: 'sequential',
+        keyboard: false,
     }
 
     return (

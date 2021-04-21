@@ -1,6 +1,5 @@
 import navbarStore from "../store/NavbarStore";
 import NavbarList from "./NavbarList";
-import styles from "../../../../styles/module/Navbar.module.css"
 import {GoSearch} from "react-icons/go"
 import Link from "next/link"
 import UserDropdownNotLoggedIn from "./userdropdown/UserDropdownNotLoggedIn";
@@ -9,11 +8,12 @@ import {observer} from "mobx-react-lite";
 import UserDropdownLoggedIn from "./userdropdown/UserDropdownLoggedIn";
 import MobileNavbar from "./mobilenav/MobileNavbar";
 import { userStore } from "../../../app/auth/AuthFacade";
+import styles from "../../../../styles/module/Navbar.module.css"
 
 const Navbar = observer(() => {
     return (
-        <div className="fixed top-0 z-10 w-screen">
-            <div className={`relative z-20 ${styles.gradient}`}>
+        <div className={"fixed top-0 z-10 w-screen " + styles.navbar}>
+            <div className={"relative z-20 " + styles.gradient}>
                 <div className="w-11/12 relative mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center py-3 md:justify-start md:space-x-10">
 

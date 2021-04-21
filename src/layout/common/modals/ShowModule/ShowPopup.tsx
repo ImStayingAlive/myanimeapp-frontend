@@ -3,6 +3,7 @@ import {Transition} from "@headlessui/react";
 import TopBar from "./components/TopBar";
 import SeasonOverview from "./components/SeasonOverview";
 import { showPopupStore } from "../../../../app/show/ShowFacade";
+import styles from "../../../../../styles/module/ShowPopup.module.css"
 
 const ShowPopup = observer(() => {
 
@@ -36,7 +37,7 @@ const ShowPopup = observer(() => {
                             leaveTo="scale-0">
 
                             <div
-                                className="bg-gray-700 min-h-0 sm:min-h-screen xl:min-h-0 inline-block align-bottom rounded-lg md:rounded-none xl:rounded-lg text-left overflow-hidden shadow-xl transform transition-all xl:my-8 sm:align-middle sm:max-w-7xl sm:w-full"
+                                className={"bg-gray-700 min-h-0 sm:min-h-screen xl:min-h-0 inline-block align-bottom rounded-lg md:rounded-none xl:rounded-lg text-left overflow-hidden shadow-xl transform transition-all xl:my-8 sm:align-middle sm:max-w-7xl sm:w-full " + styles.showPopup}
                                 role="dialog" aria-modal="true" aria-labelledby="modal-headline">
 
                                 {/* Display Top Banner */}

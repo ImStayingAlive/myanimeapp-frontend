@@ -31,7 +31,6 @@ const LoginPage = observer(() => {
         <div>
             <Header title="Welcome Back!"
                     subtitle="Dont have an account? No issue! Create your own FREE account in minutes."/>
-
             <div className="items-center p-4 -mt-5 md:-mt-20 relative max-w-full md:max-w-4xl mx-auto">
                 <div
                     className="flex flex-1 flex-col overflow-hidden rounded-md shadow-lg max md:flex-row md:flex-1 ">

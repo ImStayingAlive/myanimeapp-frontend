@@ -1,5 +1,5 @@
 import {ShowModel, formatURL} from "../ShowFacade"
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import Router from 'next/router'
 
 class ShowPopupStore {
@@ -16,15 +16,19 @@ class ShowPopupStore {
     }
 
     open(show: ShowModel) {
-        this.isLoaded = true
-        this.show = (show == null || undefined) ? null : show;
+        runInAction(() => {
+            this.isLoaded = true
+            this.show = (show == null || undefined) ? null : show;
+        })
 
         if (!this.isOpen) {
             Router.push({
                 pathname: '',
                 query: {show: formatURL(this.show.name)},
             }, '', {shallow: true}).then(() => {
-                this.isOpen = true
+                runInAction(() => {
+                    this.isOpen = true
+                })
                 document.body.classList.remove('scrollbar-thin');
                 document.body.classList.add('overflow-hidden');
             })
@@ -34,7 +38,9 @@ class ShowPopupStore {
     close() {
         if (this.isOpen) {
             Router.push('', '', {shallow: true}).then(() => {
-                this.isOpen = false
+                runInAction(() => {
+                    this.isOpen = false
+                })
                 document.body.classList.add('scrollbar-thin');
                 document.body.classList.remove('overflow-hidden');
                 this.reset()
@@ -43,26 +49,36 @@ class ShowPopupStore {
     }
 
     reset() {
-        this.muted = true
-        this.showEpisodeCount = 6
-        this.selectedSeason = 0
-        this.seasonDropdown = false
+        runInAction(() => {
+            this.muted = true
+            this.showEpisodeCount = 6
+            this.selectedSeason = 0
+            this.seasonDropdown = false
+        })
     }
 
     setMuted(status: boolean) {
-        this.muted = status
+        runInAction(() => {
+            this.muted = status
+        })
     }
 
     setShowEpisodeCount(number: number) {
-        this.showEpisodeCount = number
+        runInAction(() => {
+            this.showEpisodeCount = number
+        })
     }
 
     toggleSeasonDropdown(status: boolean) {
-        this.seasonDropdown = status
+        runInAction(() => {
+            this.seasonDropdown = status
+        })
     }
 
     setSelectedSeason(index: number) {
-        this.selectedSeason = index
+        runInAction(() => {
+            this.selectedSeason = index
+        })
     }
 }
 

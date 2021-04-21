@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import { toast } from "react-toastify";
 import {ShowModel, showStore} from "../../../show/ShowFacade";
 import {UserModel, loginService, api} from "../../AuthFacade";
@@ -15,16 +15,22 @@ class UserStore {
     }
 
     setIsLoggedIn(value: boolean) {
-        this.isLoggedIn = value
+        runInAction(() => {
+            this.isLoggedIn = value
+        })
     }
 
     setUser(user: UserModel) {
-        this.user = user
-        api.defaults.headers.common["Auth"] = user.token
+        runInAction(() => {
+            this.user = user
+            api.defaults.headers.common["Auth"] = user.token
+        })
     }
 
     setGroup(group: object) {
-        this.group = group
+        runInAction(() => {
+            this.group = group
+        })
     }
 
     getWatchedShowProgress(show: ShowModel, all: boolean) {
@@ -36,39 +42,27 @@ class UserStore {
         let currentTime = 0;
         let percent = 0;
         if (all) {
-
-            let lastWatchedEpisode = this.getLastWatchedEpisode(show)
-            if (lastWatchedEpisode.seasonIndex != 0 || lastWatchedEpisode.episodeIndex != 0) {
-                percent = 5
-            }
-
-            /*
-            for (let i = 0; i < show.seasons.length; i++) {
-                let season = show.seasons[i];
-
-                for (let j = 0; j < season.episodes.length; j++) {
-                    let episode = season.episodes[j];
-                    maxTime += episode.length;
-                }
-            }
-
             let watchedShow = this.user.watchedShows[show.name];
+
             if (watchedShow) {
-                let seasons = Object.keys(watchedShow.seasons);
+                for (let i = 0; i < show.seasons.length; i++) {
+                    let tempSeason = show.seasons[i]
 
-                for (let i = 0; i < seasons.length; i++) {
-                    let season = watchedShow.seasons[seasons[i]];
-
-                    if (season) {
-                        let episodes = Object.keys(season.episodes);
-                        for (let j = 0; j < episodes.length; j++) {
-                            let episode = season.episodes[episodes[j]];
-                            currentTime += episode.timestamp;
+                    if (tempSeason.episodes.length > 0) {
+                        for (let j = 0; j < tempSeason.episodes.length; j++) {
+                            let tempEpisode = tempSeason.episodes[j]
+                            if (watchedShow.seasons[i]) {
+                                let tempUserEpisode = watchedShow.seasons[i].episodes[j]
+                                if (tempUserEpisode) {
+                                    currentTime += tempUserEpisode.timestamp
+                                }
+                            }
+                            maxTime += tempEpisode.length
                             percent = (100 * currentTime) / maxTime;
                         }
                     }
                 }
-            }*/
+            }
         } else {
             let watchedShow = this.user.watchedShows[show.name];
             if (watchedShow) {
@@ -237,7 +231,9 @@ class UserStore {
     getWatchLater(callback: Function) {
         api.get("/user/watchLater/list/" + this.user.name).then((response) => {
             if (response.data.success) {
-                this.watchLater = response.data.shows
+                runInAction(() => {
+                    this.watchLater = response.data.shows
+                })
 
                 if (callback) {
                     callback(callback)

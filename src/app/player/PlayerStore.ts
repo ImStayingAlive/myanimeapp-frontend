@@ -58,7 +58,7 @@ class PlayerStore {
                         this.changeEpisode(this.currentSeasonIndex, this.currentEpisodeIndex + 1)
                     } else if (this.show.seasons[this.currentSeasonIndex + 1] !== undefined) {
                         if (this.show.seasons[this.currentSeasonIndex + 1].episodes[0] !== undefined) {
-                            this.changeEpisode(this.currentSeasonIndex + 1, this.currentEpisodeIndex + 1)
+                            this.changeEpisode(this.currentSeasonIndex + 1, 0)
                         }
                     }
                 }
@@ -68,7 +68,8 @@ class PlayerStore {
                 this.changeEpisode(this.currentSeasonIndex, this.currentEpisodeIndex + 1)
             } else if (this.show.seasons[this.currentSeasonIndex + 1] !== undefined) {
                 if (this.show.seasons[this.currentSeasonIndex + 1].episodes[0] !== undefined) {
-                    this.changeEpisode(this.currentSeasonIndex + 1, this.currentEpisodeIndex + 1)
+                    console.log(1)
+                    this.changeEpisode(this.currentSeasonIndex + 1, 0)
                 }
             }
         }

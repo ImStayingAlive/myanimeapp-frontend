@@ -1,16 +1,16 @@
 import {SplideSlide} from '@splidejs/react-splide';
 import { ShowModel, showPopupStore } from '../../../../../../app/show/ShowFacade';
-
+import styles from "../../../../../../../styles/module/StartPage.module.css"
 
 const TopSpliderPage = (props) => {
 
     const show: ShowModel = props.show;
 
     return (
-        <SplideSlide className="h-full">
+        <SplideSlide className={styles.startPageSlider}>
             <div className="relative" style={{height: "40rem"}}>
-                <div className="overlay-top absolute" style={{height: "40rem"}}>
-                    <div className="bg-cover backDrop h-full" style={{backgroundImage: `url(${show.background})`}}/>
+                <div className={styles.topSection}>
+                    <div className={styles.backDrop} style={{backgroundImage: `url(${show.background})`}}/>
                 </div>
 
                 <div className="absolute w-full bottom-1/2 transform translate-y-1/2">

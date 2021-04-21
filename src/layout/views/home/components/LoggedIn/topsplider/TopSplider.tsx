@@ -14,6 +14,7 @@ const TopSlider = () => {
         speed: '1000',
         interval: '7000',
         rewind: true,
+        keyboard: false,
     }
 
     return (

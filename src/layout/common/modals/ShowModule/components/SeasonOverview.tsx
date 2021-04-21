@@ -3,6 +3,7 @@ import {observer} from "mobx-react-lite";
 import {AiOutlineCaretDown} from "react-icons/ai";
 import Episode from "./Episode";
 import { ShowModel, showPopupStore } from "../../../../../app/show/ShowFacade";
+import styles from "../../../../../../styles/module/ShowPopup.module.css"
 
 const SeasonOverview = observer(({}) => {
 
@@ -75,7 +76,7 @@ const SeasonOverview = observer(({}) => {
             </div>
 
             {showPopupStore.showEpisodeCount < showPopupStore.show.seasons[showPopupStore.selectedSeason].episodes.length && (
-            <div className="separator">
+            <div className={styles.separator}>
                 <button className="text-gray-400 hover:text-white font-avenir border-2 border-gray-400 hover:border-white h-12 w-12 rounded-full text-2xl focus:outline-none"
                         onClick={() => showAllEpisodes()}>
                     <AiOutlineCaretDown className="mx-auto transform translate-y-0.5" />

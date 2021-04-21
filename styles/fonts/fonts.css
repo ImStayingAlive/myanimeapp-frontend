@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "Avenir Heavy";
+    src: url('Avenir-Heavy/Avenir-Heavy.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url('Oswald/Oswald-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url('Oswald/Oswald-Bold.ttf') format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url('Oswald/Oswald-SemiBold.ttf') format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url('Oswald/Oswald-Light.ttf') format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url('Oswald/Oswald-ExtraLight.ttf') format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src: url('Bebas_Neue/BebasNeue-Regular.ttf') format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url('Poppins/Poppins-Regular.ttf') format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+.font-avenir {
+    font-family: 'Avenir Heavy', sans-serif;
+}
+
+.font-oswald {
+    font-family: 'Oswald', sans-serif;
+}
+
+.font-bebas {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}

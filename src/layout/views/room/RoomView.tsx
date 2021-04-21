@@ -7,10 +7,15 @@ import {observer} from "mobx-react-lite";
 import Head from "next/head";
 import Player from "./components/roomplayer/Player";
 import { roomStore } from "../../../app/room/RoomFacade";
+import {userStore} from "../../../app/auth/AuthFacade";
 
 const RoomView = observer(() => {
     const router = useRouter()
     const {roomName} = router.query
+
+    if (!userStore.isLoggedIn) {
+        router.push("/login").then(() => toast("Please login to use GroupWatch!"))
+    }
 
     useEffect(() => {
         roomStore.openConnection(roomName, (status) => {
@@ -28,6 +33,7 @@ const RoomView = observer(() => {
 
     useEffect(() => {
     }, [roomStore])
+
 
     if (!roomStore.loaded) {
         return (
