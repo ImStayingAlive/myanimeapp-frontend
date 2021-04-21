@@ -1,6 +1,7 @@
 import { userStore } from "../../../../../../app/auth/AuthFacade";
 import {playerController, roomService, roomStore} from "../../../../../../app/room/RoomFacade";
 import timeStampUtil from "../../../../../../app/utils/TimeStampUtil";
+import {playerStore} from "../../../../../../app/player/PlayerFacade";
 
 const PlayerEventHandler = (player) => {
 
@@ -8,6 +9,11 @@ const PlayerEventHandler = (player) => {
         roomStore.setBuffering(false)
         roomStore.setPlayerLoaded(true)
         playerController.setTime(roomStore.room.roomShow.currentTime)
+        player.volume(playerStore.getVolume())
+    })
+
+    player.on("volumechange", () => {
+        playerStore.setVolume(player.volume())
     })
 
     player.on("progress", () => {

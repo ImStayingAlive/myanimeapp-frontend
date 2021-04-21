@@ -13,6 +13,8 @@ const PlayerEventHandler = (player) => {
                 playerStore.setLoaded(true)
             }
 
+            player.volume(playerStore.getVolume())
+
             if (playerStore.playingNextEpisode) {
                 playerStore.playingNextEpisode = false
             }
@@ -51,9 +53,14 @@ const PlayerEventHandler = (player) => {
         player.on("loadeddata", () => {
             if (!playerStore.loaded) {
                 playerStore.setLoaded(true)
+                player.volume(playerStore.getVolume())
             }
         })
     }
+
+    player.on("volumechange", () => {
+        playerStore.setVolume(player.volume())
+    })
 
     /* Event Listeners */
     document.querySelectorAll('#skipIntro').forEach(function (element) {

@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import userStore from "../auth/user/store/UserStore";
 import ShowModel from "../show/ShowModel";
+import {cookieService} from "../auth/AuthFacade";
 
 class PlayerStore {
 
@@ -85,6 +86,19 @@ class PlayerStore {
         }
 
         return 'video/mp4'
+    }
+
+    setVolume(volume) {
+        cookieService.setCookie("volume", volume)
+        return volume
+    }
+
+    getVolume() {
+        if (cookieService.existsCookie("volume")) {
+            return cookieService.getCookie("volume")
+        } else {
+            return 1
+        }
     }
 }
 
