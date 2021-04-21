@@ -8,17 +8,17 @@ import EpisodeSelector from "../episodeselector/EpisodeSelector";
 import {runInAction} from "mobx";
 import { roomStore } from "../../../../../app/room/RoomFacade";
 import { userStore } from "../../../../../app/auth/AuthFacade";
+import styles from "../../../../../../styles/module/RoomLobby.module.css"
 
 const RoomLobby = observer(() => {
 
     return (
-        <div>
+        <div className={styles.roomLobby}>
             <div style={{minHeight: "90.8vh"}}>
                 <Navbar/>
                 <div className="relative">
-                    <div className="lobby-bg absolute">
-                        <div className="bg-cover backDrop h-full"
-                             style={{backgroundImage: `url(${roomStore.getShowInfo().background})`}}/>
+                    <div className={"absolute " + styles.topSection}>
+                        <div className={styles.backDrop} style={{backgroundImage: `url(${roomStore.getShowInfo().background})`}}/>
                     </div>
                     <div className="w-9/12 mx-auto pt-44 relative">
                         <h1 className="text-6xl text-white font-avenir">
