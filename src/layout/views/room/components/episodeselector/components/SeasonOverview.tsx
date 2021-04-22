@@ -4,7 +4,6 @@ import { roomStore } from "../../../../../../app/room/RoomFacade";
 import { ShowModel } from "../../../../../../app/show/ShowFacade";
 import Episode from "./Episode";
 
-
 const SeasonOverview = observer(({}) => {
 
     const show: ShowModel = roomStore.room.roomShow.show

@@ -1,5 +1,6 @@
 import {AiOutlinePlayCircle} from "react-icons/ai"
 import {roomStore} from "../../../../../../app/room/RoomFacade"
+import styles from "../../../../../../../styles/module/ShowPopup.module.css"
 
 const Episode = (props) => {
     const playEpisode = () => {
@@ -11,23 +12,15 @@ const Episode = (props) => {
         <div className="flex items-center mb-4 rounded">
             <div className="mr-4">
                 <div onClick={() => playEpisode()}
-                     className="w-24 h-16 md:h-28 md:w-48 rounded bg-gray-900 bg-cover episodeSelector relative"
+                     className={"w-24 h-16 md:h-28 md:w-48 bg-gray-900 rounded bg-cover relative " + styles.episodeSelector}
                      style={{backgroundImage: `url(${props.episode.thumbnail})`}}>
-                    {props.groupWatch ? (
-                        <button>
-                            <div className="overlay rounded w-24 h-16 md:h-28 md:w-48">
+                    <button>
+                        <div className={"rounded w-24 h-16 md:h-28 md:w-48 " + styles.overlay}>
                                     <span>
                                          <AiOutlinePlayCircle color="white" size="3rem"/>
                                     </span>
-                            </div>
-                        </button>
-                    ) : (
-                        <div className="overlay rounded">
-                                <span>
-                                    <AiOutlinePlayCircle color="white" size="3rem"/>
-                                </span>
                         </div>
-                    )}
+                    </button>
                 </div>
             </div>
 
