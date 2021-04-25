@@ -1,6 +1,5 @@
 import {observer} from "mobx-react-lite";
 import Reaction from "./Reaction";
-import {PropsWithChildren} from "react";
 import { useEffect } from "react";
 import reactionStore from "../../../../../../app/room/reactions/ReactionStore";
 

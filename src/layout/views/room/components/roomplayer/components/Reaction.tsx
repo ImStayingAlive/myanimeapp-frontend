@@ -1,11 +1,11 @@
 import React from "react"
 import {Player} from "@lottiefiles/react-lottie-player";
 
-import crying from "../../../../../../../public/lottieFiles/emojis/Crying.json"
-import angry from "../../../../../../../public/lottieFiles/emojis/Angry.json"
-import heartEyes from "../../../../../../../public/lottieFiles/emojis/Heart Eyes.json"
-import laughingTears from "../../../../../../../public/lottieFiles/emojis/Laughing Tears.json"
-import shocked from "../../../../../../../public/lottieFiles/emojis/Shocked.json"
+import crying from "./emojis/Crying.json"
+import angry from "./emojis/Angry.json"
+import heartEyes from "./emojis/Heart Eyes.json"
+import laughingTears from "./emojis/Laughing Tears.json"
+import shocked from "./emojis/Shocked.json"
 
 const Reaction = (data) => {
 
