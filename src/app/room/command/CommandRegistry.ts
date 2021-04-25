@@ -3,6 +3,7 @@ import {userStore} from "../../auth/AuthFacade"
 import {playerController, roomStore} from "../RoomFacade"
 import Command from "./Command";
 import timeStampUtil from "../../utils/TimeStampUtil";
+import reactionService from "../reactions/ReactionService";
 
 let commands: Array<Command> = []
 
@@ -76,6 +77,16 @@ commands.push(new Command("Skip: ", (result) => {
                 timeStampUtil.setTimeStamp("skip", 800)
             }
         }
+    }
+}))
+
+commands.push(new Command("Emoji: ", (result) => {
+    if (roomStore.playing) {
+        let args = result.split("/")
+        let emoji = args[0];
+        let userName = args[1].replace("User: ", "");
+
+        reactionService.playAnimation(userName, emoji)
     }
 }))
 

@@ -2,6 +2,7 @@ import { userStore } from "../../../../../../app/auth/AuthFacade";
 import {playerController, roomService, roomStore} from "../../../../../../app/room/RoomFacade";
 import timeStampUtil from "../../../../../../app/utils/TimeStampUtil";
 import {playerStore} from "../../../../../../app/player/PlayerFacade";
+import reactions from "../../../../../../app/player/reactions/Reaction";
 
 const PlayerEventHandler = (player) => {
 
@@ -70,6 +71,36 @@ const PlayerEventHandler = (player) => {
         })
     }
 
+    /*-------------*
+     * Add Emoji Button
+     *-------------*/
+
+    let toolbarButton = player.controlBar.addChild("button");
+    let reactionIcon = toolbarButton.el();
+
+    reactionIcon.classList.add("reaction-toolbar")
+
+    let reactionDiv = document.createElement('div');
+    reactionDiv.classList.add("reaction-div")
+
+    reactionIcon.appendChild(reactionDiv)
+
+    for (let i = 0; i < reactions.length; i++) {
+        let currentEmoji = reactions[i]
+        let emoji = document.createElement('img');
+        emoji.id = currentEmoji.id
+        emoji.classList.add("emojiIcon")
+        emoji.src = currentEmoji.source
+        reactionDiv.appendChild(emoji)
+    }
+
+    function sendEmoji(type) {
+        if (timeStampUtil.isAvailable("sendEmoji")) {
+            roomService.sendMessage("Emoji: " + type + "/User: " + userStore.user.name)
+            timeStampUtil.setTimeStamp("sendEmoji", 2450)
+        }
+    }
+
     /* Event Listeners */
     document.querySelectorAll('#skipIntro').forEach(function (element) {
         element.addEventListener("click", () => player.currentTime(roomStore.getCurrentEpisode().introStart + roomStore.getCurrentEpisode().introLength))
@@ -78,6 +109,12 @@ const PlayerEventHandler = (player) => {
     document.querySelectorAll('#nextEpisode').forEach(function (element) {
         element.addEventListener("click", () => roomStore.loadNextEpisode())
     });
+
+    document.querySelectorAll('.emojiIcon').forEach(item => {
+        item.addEventListener('click', () => {
+            sendEmoji(item.id)
+        })
+    })
 }
 
 export default PlayerEventHandler

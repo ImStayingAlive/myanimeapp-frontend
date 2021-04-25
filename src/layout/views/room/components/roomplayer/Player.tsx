@@ -5,6 +5,8 @@ import PlayerOverlay from "./components/PlayerOverlay";
 import PlayerEventHandler from "./components/PlayerEventHandler";
 import WaitingForOthers from "./components/WaitingForOthers";
 import {playerController, roomStore } from "../../../../../app/room/RoomFacade";
+import Reactions from "./components/Reactions";
+import reactionStore from "../../../../../app/room/reactions/ReactionStore";
 
 const Player = observer(() => {
     let player: any = null
@@ -61,6 +63,7 @@ const Player = observer(() => {
                         <source id="video-player-source"/>
                     </video>
                     <WaitingForOthers />
+                    <Reactions />
                 </div>
             </div>
         </div>

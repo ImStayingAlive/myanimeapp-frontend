@@ -50,6 +50,7 @@ Custom Video Player
     border: none;
     color: white;
     background: none;
+    flex-flow: row-reverse;
 }
 
 .video-player-theme:hover .vjs-big-play-button,
@@ -86,6 +87,7 @@ Custom Video Player
 .video-player-theme .vjs-progress-control .vjs-progress-holder,
 .video-player-theme .vjs-progress-control:hover .vjs-progress-holder {
     font-size: 2.5em;
+    border-radius: 10px;
 }
 .video-player-theme .vjs-play-control .vjs-icon-placeholder:before {
     height: 1.3em;
@@ -103,6 +105,7 @@ Custom Video Player
 .video-player-theme .vjs-play-progress,
 .video-player-theme .vjs-play-progress:before {
     background-color: var(--video-player-theme--primary);
+    border-radius: 10px;
 }
 .video-player-theme .vjs-play-progress:before {
     height: 0.8em;
@@ -119,7 +122,9 @@ Custom Video Player
     order: 6;
 }
 .video-player-theme .vjs-remaining-time {
-    display: none;
+    font-size: 1rem !important;
+    padding-left: 0 !important;
+    font-family: "Avenir Heavy", sans-serif;
 }
 .video-player-theme.nyan .vjs-play-progress {
     background: linear-gradient(180deg, #fe0000 0, #fe9a01 16.666666667%, #fe9a01 0, #ff0 33.332666667%, #ff0 0, #32ff00 49.999326667%, #32ff00 0, #0099fe 66.6659926%, #0099fe 0, #63f 83.33266%, #63f 0);
@@ -144,3 +149,74 @@ Custom Video Player
 .vjs-volume-level:before {
     font-size: 1.2em !important;
 }
+
+/* Emoji Bar */
+
+.reaction-toolbar {
+    font-size: 2.7rem !important;
+    width: 1em !important;
+    margin-top: -4px !important
+}
+
+.reaction-div {
+    display: flex;
+    opacity: 0;
+    width: 0;
+    border-radius: 15px;
+    margin-right: 15px;
+    pointer-events: none;
+    position: absolute;
+    top: -3.5rem;
+    left: -19.6rem;
+
+    transition: opacity 300ms ease-in-out;
+}
+
+.reaction-toolbar:hover .reaction-div {
+    opacity: 1;
+    width: auto;
+    pointer-events: all;
+}
+
+.reaction-toolbar:before {
+    content: "☺";
+}
+
+.reaction-div img {
+    height: 65px;
+    width: 65px;
+    margin-right: 10px;
+    transform: scale(1);
+    transition: ease-in-out 200ms;
+}
+
+.reaction-div img:hover {
+    transform: scale(1.2);
+}
+
+.reactionDiv h1{
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+.reactionDiv #lottie {
+    height: 75px;
+    width: 75px;
+    padding: 0;
+}
+
+.reactionDiv {
+    animation: 1s ease-out 0s 1 fadeInSlowly;
+}
+
+@keyframes fadeInSlowly {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
