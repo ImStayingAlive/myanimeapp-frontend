@@ -1,5 +1,11 @@
+.register {
+    min-height: 90vh;
+}
+
 .register .topSection {
     position: absolute;
+    height: 80vh;
+    overflow: hidden;
     background: -moz-linear-gradient(bottom,rgba(0, 8, 20, 0.1) 0%, rgba(0, 8, 20, 0.8) 50%, rgba(0, 8, 20, 1) 100%);
     background: -webkit-gradient(linear, left bottom, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(100%,rgba(0, 8, 20,0)));
     background: -webkit-linear-gradient(top,rgba(0, 8, 20, 0.1) 0%, rgba(0, 8, 20, 0.8) 50%,rgba(0, 8, 20, 1) 100%);
