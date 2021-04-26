@@ -17,8 +17,7 @@ const App = observer(({Component, pageProps}: AppProps) => {
 
     useEffect(() => {
         showStore.retrieveShows(() => {
-            // @ts-ignore
-            mainStore.seo.title = "Test"
+            mainStore.setTitle("Test")
             loginService.update(() => {
                 if (userStore.isLoggedIn) {
                     mainStore.setLoaded(true)

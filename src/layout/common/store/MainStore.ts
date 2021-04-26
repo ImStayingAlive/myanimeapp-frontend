@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 
 class MainStore {
 
@@ -13,6 +13,12 @@ class MainStore {
 
     setLoaded (status: boolean) {
         this.loaded = status
+    }
+
+    setTitle(title) {
+        runInAction(() => {
+            this.seo.title = title
+        })
     }
 }
 
