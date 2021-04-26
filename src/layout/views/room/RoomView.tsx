@@ -8,13 +8,20 @@ import Head from "next/head";
 import Player from "./components/roomplayer/Player";
 import { roomStore } from "../../../app/room/RoomFacade";
 import {userStore} from "../../../app/auth/AuthFacade";
+import Navbar from "../../common/navbar/Navbar";
+import LoginPage from "../login/LoginPage";
 
 const RoomView = observer(() => {
     const router = useRouter()
     const {roomName} = router.query
 
     if (!userStore.isLoggedIn) {
-        router.push("/login").then(() => toast("Please login to use GroupWatch!"))
+        return (
+            <main>
+                <Navbar/>
+                <LoginPage/>
+            </main>
+        )
     }
 
     useEffect(() => {

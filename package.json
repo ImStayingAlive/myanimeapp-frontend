@@ -24,6 +24,7 @@
     "react-toastify": "^7.0.3",
     "universal-cookie": "^4.0.4",
     "video.js": "^7.11.4",
+    "videojs-hotkeys": "^0.2.27",
     "videojs-overlay": "^2.1.4"
   },
   "devDependencies": {

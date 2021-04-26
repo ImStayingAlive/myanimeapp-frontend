@@ -10,7 +10,6 @@ import Preloader from "../layout/common/PreloaderComponent";
 import Toast from "../layout/common/Toast";
 import ShowPopup from "../layout/common/modals/ShowModule/ShowPopup";
 import OpenPopup from "../layout/common/modals/OpenPopup";
-import Head from "next/head";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
@@ -32,9 +31,6 @@ const App = observer(({Component, pageProps}: AppProps) => {
 
     return (
         <div>
-            <Head>
-                <title>MyAnimeApp</title>
-            </Head>
             <Helmet>
                 <body className="antialiased font-sans bg-richBlack scrollbar-thin
                                  scrollbar-thumb-gray-900 scrollbar-track-gray-600"/>
