@@ -1,22 +1,31 @@
-import Head from "next/head";
 import {observer} from "mobx-react-lite";
 import Player from "../../layout/views/player/Player";
+import mainStore from "../../layout/common/store/MainStore";
+import Preloader from "../../layout/common/PreloaderComponent";
+import SEOModel from "../../app/utils/models/SEOModel";
+import SEO from "../../layout/common/SEO";
 
 const Watch = observer(() => {
 
-
-    console.log()
+    const SEOData = new SEOModel(
+        "MyAnimeApp - Watch",
+        "#DC143C",
+        "Watch Anime for Free!",
+        "https://i.imgur.com/EZRvRiG.jpeg",
+        "https://anime.necrocloud.eu"
+    )
 
     return (
         <div className="min-h-screen w-full">
-            <Head>
-                <title>MyAnimeAPP</title>
-                <link rel="icon" href={"/favicon.ico"}/>
-            </Head>
+            <SEO data={SEOData} />
 
-            <main>
-                <Player />
-            </main>
+            {mainStore.loaded ? (
+                <main>
+                    <Player />
+                </main>
+            ) : (
+                <Preloader />
+            )}
         </div>
     );
 })

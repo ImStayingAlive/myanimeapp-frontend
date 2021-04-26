@@ -3,9 +3,7 @@ import {makeAutoObservable, runInAction} from "mobx";
 class MainStore {
 
     loaded: boolean = false
-    seo: {
-        title: "MyAnimeApp"
-    }
+    title: string = "MYAnimeApp"
 
     constructor() {
         makeAutoObservable(this)
@@ -17,7 +15,7 @@ class MainStore {
 
     setTitle(title) {
         runInAction(() => {
-            this.seo.title = title
+            this.title = title
         })
     }
 }

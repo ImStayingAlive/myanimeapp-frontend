@@ -1,32 +1,61 @@
 import RoomView from "../../layout/views/room/RoomView";
-import Head from "next/head"
+import {observer} from "mobx-react-lite";
+import mainStore from "../../layout/common/store/MainStore";
+import Preloader from "../../layout/common/PreloaderComponent";
+import SEOModel from "../../app/utils/models/SEOModel";
+import SEO from "../../layout/common/SEO";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
+import {roomStore} from "../../app/room/RoomFacade";
+import {toast} from "react-toastify";
+import {userStore} from "../../app/auth/AuthFacade";
+import LoginPage from "../../layout/views/login/LoginPage";
 
-const Room = () => {
+const Room = observer(() => {
+
+    const router = useRouter()
+    const {roomName} = router.query
+
+    useEffect(() => {
+        roomStore.openConnection(roomName, (status) => {
+            if (!status) {
+                router.push("/").then(() => {
+                    toast.error("The room was not found.")
+                })
+            }
+        })
+
+        return function cleanup() {
+            roomStore.disconnect()
+        }
+    }, [])
+
+    const SEOData = new SEOModel(
+        "MyAnimeApp - GroupWatch",
+        "#1E90FF",
+        "You were invited to join a GroupWatch! Click on the invite link, sign in and begin watching with your friends.",
+        "https://i.imgur.com/EZRvRiG.jpeg",
+        "https://anime.necrocloud.eu"
+    )
 
     return (
-        <div>
-            <Head>
-                <title>
-                    GroupWatch invite.
-                </title>
-                <meta property="og:url" content="https://anime.necrocloud.eu" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="You have been invited to a GroupWatch session! Join now." />
-                <meta name="twitter:card" content="summary" />
-                <meta
-                    property="og:description"
-                    content=""
-                />
-                <meta property="og:site_name" content="MyAnimeApp" />
-                <meta property="og:image" content="https://i.imgur.com/O4iLnbg.jpeg" />
-            </Head>
-            <div className="min-h-screen w-full">
+        <div className="min-h-screen w-full">
+            <SEO data={SEOData} />
+
+            {mainStore.loaded ? (
                 <main>
-                    <RoomView />
+                    {userStore.isLoggedIn ? (
+                        <RoomView />
+                    ): (
+                        <LoginPage />
+                    )}
                 </main>
-            </div>
+            ) : (
+                <Preloader />
+            )}
+
         </div>
     )
-}
+})
 
 export default Room

@@ -17,8 +17,7 @@ const RegisterView = () => {
     }
 
     return (
-        <main className="min-h-screen w-full">
-            <Navbar />
+        <main>
             <div className={styles.register}>
                 <AnimatedBackground />
 
@@ -28,7 +27,6 @@ const RegisterView = () => {
                     <RegisterPremium />
                 </div>
             </div>
-            <Footer />
         </main>
     )
 }
