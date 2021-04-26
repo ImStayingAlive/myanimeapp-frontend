@@ -3,6 +3,9 @@ import {makeAutoObservable} from "mobx";
 class MainStore {
 
     loaded: boolean = false
+    seo: {
+        title: "MyAnimeApp"
+    }
 
     constructor() {
         makeAutoObservable(this)

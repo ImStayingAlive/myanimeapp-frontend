@@ -5,7 +5,7 @@ const SEO = (props) => {
     return (
         <Head>
             <title>
-                GroupWatch invite.
+                {props.data.title}
             </title>
             <meta property="og:url" content="https://anime.necrocloud.eu" />
             <meta property="og:type" content="website" />

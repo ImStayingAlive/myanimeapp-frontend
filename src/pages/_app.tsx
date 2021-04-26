@@ -17,6 +17,8 @@ const App = observer(({Component, pageProps}: AppProps) => {
 
     useEffect(() => {
         showStore.retrieveShows(() => {
+            // @ts-ignore
+            mainStore.seo.title = "Test"
             loginService.update(() => {
                 if (userStore.isLoggedIn) {
                     mainStore.setLoaded(true)
@@ -34,7 +36,7 @@ const App = observer(({Component, pageProps}: AppProps) => {
                                  scrollbar-thumb-gray-900 scrollbar-track-gray-600"/>
             </Helmet>
 
-            <SEO />
+            <SEO data={mainStore.seo} />
 
             {/* Page Component */}
             {!mainStore.loaded ? (
