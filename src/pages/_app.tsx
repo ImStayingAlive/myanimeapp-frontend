@@ -11,6 +11,7 @@ import Toast from "../layout/common/Toast";
 import ShowPopup from "../layout/common/modals/ShowModule/ShowPopup";
 import OpenPopup from "../layout/common/modals/OpenPopup";
 import Head from "next/head";
+import SEO from "../layout/common/SEO";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
@@ -26,27 +27,6 @@ const App = observer(({Component, pageProps}: AppProps) => {
         })
     }, [userStore.isLoggedIn])
 
-    if (!mainStore.loaded) {
-        return <>
-                    <Head>
-                        <title>
-                            GroupWatch invite.
-                        </title>
-                        <meta property="og:url" content="https://anime.necrocloud.eu" />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:title" content="You have been invited to a GroupWatch session! Join now." />
-                        <meta name="twitter:card" content="summary" />
-                        <meta
-                            property="og:description"
-                            content=""
-                        />
-                        <meta property="og:site_name" content="MyAnimeApp" />
-                        <meta property="og:image" content="https://i.imgur.com/O4iLnbg.jpeg" />
-                    </Head>
-                    <Preloader/>
-               </>
-    }
-
     return (
         <div>
             <Helmet>
@@ -54,8 +34,14 @@ const App = observer(({Component, pageProps}: AppProps) => {
                                  scrollbar-thumb-gray-900 scrollbar-track-gray-600"/>
             </Helmet>
 
+            <SEO />
+
             {/* Page Component */}
-            <Component {...pageProps} />
+            {!mainStore.loaded ? (
+                <Preloader/>
+            ): (
+                <Component {...pageProps} />
+            )}
 
             {/* Load Toasts and Popups */}
             <Toast/>
