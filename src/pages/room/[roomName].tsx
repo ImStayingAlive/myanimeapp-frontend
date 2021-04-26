@@ -17,6 +17,7 @@ const Room = () => {
                     property="og:description"
                     content=""
                 />
+                <meta property="og:site_name" content="MyAnimeApp" />
                 <meta property="og:image" content="https://i.imgur.com/O4iLnbg.jpeg" />
             </Head>
             <div className="min-h-screen w-full">
