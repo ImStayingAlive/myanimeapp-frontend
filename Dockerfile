@@ -3,8 +3,8 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get install python3.6
-RUN apt-get install nodejs
-RUN npm install yarn -y
+RUN apt-get install -y nodejs
+RUN npm install yarn
 
 WORKDIR /app
 
