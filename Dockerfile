@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 #FROM node:alpine
 
-RUN apt-get install python3.8
+RUN apt-get install python
 
 WORKDIR /app
 
