@@ -246,14 +246,6 @@ class UserStore {
             }
         })
     }
-
-    getWatchedShows() {
-        let tempShows = []
-        for (const [name] of Object.entries(this.user.watchedShows)) {
-            tempShows.push(showStore.getShow(name.toLowerCase()))
-        }
-        return tempShows
-    }
 }
 
 const userStore = new UserStore()

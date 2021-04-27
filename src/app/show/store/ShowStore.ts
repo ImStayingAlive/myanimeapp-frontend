@@ -1,10 +1,14 @@
 import {makeAutoObservable, runInAction} from "mobx";
-import {api} from "../../auth/AuthFacade"
+import {api, userStore} from "../../auth/AuthFacade"
 import {ShowModel} from "../ShowFacade"
 
 class ShowStore {
 
     shows: Array<ShowModel> = []
+    recentlyAdded: Array<ShowModel> = []
+    recommended: Array<ShowModel> = []
+    newSeasons: Array<ShowModel> = []
+    continueWatching: Array<ShowModel> = []
 
     constructor() {
         makeAutoObservable(this)
@@ -16,13 +20,34 @@ class ShowStore {
                 runInAction(() => {
                     this.shows = (response.data)
                 })
-
-                if (callback) {
-                    callback(callback)
+                if (userStore.isLoggedIn) {
+                    this.retrieveHomeShows(() => {
+                        if (callback) {
+                            callback()
+                        }
+                    })
+                } else {
+                    if (callback) {
+                        callback()
+                    }
                 }
             } else {
             }
         })
+    }
+
+    retrieveHomeShows(callback) {
+        api.get("/show/home")
+            .then((response) => {
+                runInAction(() => {
+                    this.recommended = response.data.recommended
+                    this.recentlyAdded = response.data.recentlyAdded
+                    this.newSeasons = response.data.newSeasons
+                    this.continueWatching = response.data.continueWatching
+                })
+
+                callback()
+            })
     }
 
     getShow(name) {

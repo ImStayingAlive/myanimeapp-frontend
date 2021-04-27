@@ -28,7 +28,7 @@ const Recommended = observer(() => {
                     <Navbar />
                     <Header title="Recommended for you" subtitle="Based on what you have previously watched." />
 
-                    <BrowseShows dataSet={showStore.shows} />
+                    <BrowseShows dataSet={showStore.recommended} />
 
                     <Footer />
                 </main>
