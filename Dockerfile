@@ -1,11 +1,4 @@
-FROM ubuntu:latest
-#FROM node:alpine
-
-RUN apt-get update
-RUN apt-get install python3.6
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
-RUN npm install --global yarn
+FROM node:alpine
 
 WORKDIR /app
 

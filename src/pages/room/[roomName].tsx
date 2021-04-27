@@ -10,7 +10,6 @@ import {RoomModel, roomStore} from "../../app/room/RoomFacade";
 import {toast} from "react-toastify";
 import {api, userStore} from "../../app/auth/AuthFacade";
 import LoginPage from "../../layout/views/login/LoginPage";
-import { createCanvas, loadImage } from "canvas"
 
 // @ts-ignore
 const Room = observer(({data}) => {
@@ -36,10 +35,10 @@ const Room = observer(({data}) => {
     }, [mainStore.loaded])
 
     const SEOData = new SEOModel(
-        "MyAnime - Watch " + data.showName,
+        data.owner.user.name + " invited you to watch " + data.roomShow.show.displayName + " together!",
         "#1E90FF",
-        data.userName + " invited you to join their GroupWatch! Join them now and begin watching " + data.showName + "!",
-        data.showImage,
+        data.owner.user.name + " invited you to join their room and watch " + data.roomShow.show.displayName + "!",
+        data.roomShow.show.background,
         "https://anime.necrocloud.eu"
     )
 
@@ -65,50 +64,15 @@ const Room = observer(({data}) => {
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-    let data = {
-        ownerName: "",
-        showName: "",
-        showImage: ""
-    }
+    let data: RoomModel = null
     const {roomName} = context.query
 
     await api.get("/room/find/" + roomName)
         .then((response) => {
-            data.ownerName = response.data.owner.user.name
-            data.showName = response.data.roomShow.show.displayName
-            data.showImage = generateImage(response.data.owner.user.name, response.data.roomShow.show.displayName)
+            data = response.data
         })
 
     return {props: {data}}
-}
-
-const generateImage = (userName, showName) => {
-    const width = 1200
-    const height = 500
-
-    const canvas = createCanvas(width, height)
-    const context = canvas.getContext('2d')
-
-    context.fillStyle = '#031d54'
-    context.fillRect(0, 0, width, height)
-
-    context.font = 'bold 70pt Avenir Heavy'
-    context.textAlign = 'center'
-    context.textBaseline = 'top'
-    context.fillStyle = '#fff'
-
-    context.fillText(userName + ' invited you', 600, 150)
-
-    context.font = 'bold 30pt Avenir Heavy'
-    context.fillText('to watch ' + showName + '!', 600, 275)
-
-    context.font = 'bold 30pt Bebas Neue'
-    context.fillStyle = '#ef4444'
-    context.fillText('My', 510, 400)
-    context.fillStyle = '#fff'
-    context.fillText('AnimeApp', 640, 400)
-
-    return canvas.toDataURL('image/png')
 }
 
 export default Room
