@@ -4,6 +4,7 @@ FROM ubuntu:latest
 RUN apt-get update
 RUN apt-get install python3.6
 RUN apt-get install -y nodejs
+RUN sudo apt install -y npm
 RUN npm install yarn
 
 WORKDIR /app
