@@ -1,6 +1,6 @@
 FROM node:alpine
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add install -y \
     python-qt4 \
     python-pyside \
     python-pip \
