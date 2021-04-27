@@ -1,11 +1,6 @@
 FROM node:alpine
 
-RUN apk update && apk add install -y \
-    python-qt4 \
-    python-pyside \
-    python-pip \
-    python3-pip \
-    python3-pyqt5
+RUN apk add install python3.6
 
 WORKDIR /app
 
