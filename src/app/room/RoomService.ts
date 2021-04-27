@@ -2,7 +2,6 @@ import api from "../auth/AxiosProvider";
 import { toast } from "react-toastify";
 import { UserModel } from "../auth/AuthFacade";
 
-
 let socketUrl = "wss://rest.necrocloud.eu/room/lobby/";
 
 class RoomService {

@@ -77,6 +77,7 @@ const Player = observer(() => {
         [playerStore.currentEpisodeIndex]
     )
 
+
     return (
         <div>
             <div className="h-screen bg-black" key='uniqueKey'>

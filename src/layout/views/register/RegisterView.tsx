@@ -2,9 +2,7 @@ import AnimatedBackground from "./components/AnimatedBackground";
 import styles from "../../../../styles/module/Register.module.css"
 import RegisterWelcome from "./components/RegisterWelcome";
 import RegisterFree from "./components/RegisterFree";
-import Navbar from "../../common/navbar/Navbar";
 import RegisterPremium from "./components/RegisterPremium";
-import Footer from "../../common/Footer";
 import userStore from "../../../app/auth/user/store/UserStore";
 import Router from "next/router";
 

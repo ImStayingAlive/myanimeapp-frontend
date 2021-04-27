@@ -10,7 +10,6 @@ class PlayerStore {
     show: ShowModel
     currentSeasonIndex: number = 0
     currentEpisodeIndex: number = 0
-    groupWatch: boolean = false
     watchSession: number = 0
     playingNextEpisode: boolean = false
 
