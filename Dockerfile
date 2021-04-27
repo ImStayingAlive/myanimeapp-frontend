@@ -1,5 +1,7 @@
 FROM node:alpine
 
+RUN apt-get install python3.6
+
 WORKDIR /app
 
 COPY package.json /app
