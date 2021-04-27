@@ -1,6 +1,8 @@
 FROM node:alpine
 
-RUN apk add python3.6
+RUN apk add software-properties-common
+RUN apk add-apt-repository ppa:deadsnakes/ppa
+RUN apk add python3.8
 
 WORKDIR /app
 
