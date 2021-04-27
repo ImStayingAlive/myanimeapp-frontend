@@ -1,7 +1,8 @@
 FROM ubuntu:latest
 #FROM node:alpine
 
-RUN apt-get install python
+RUN apt-get update
+RUN apt-get install python3.6
 
 WORKDIR /app
 
