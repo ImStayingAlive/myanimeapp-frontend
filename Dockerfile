@@ -1,6 +1,6 @@
 FROM node:alpine
 
-RUN apk add install python3.6
+RUN apk add install python
 
 WORKDIR /app
 
