@@ -19,6 +19,9 @@ module.exports = {
                 darkGray: '#1c1d1f',
                 richGray: '#191a1c',
                 royalBlue: '#0d2f6d',
+                dropDownDark: '#242426',
+                dropDownLight: '#3b3a3d',
+                dropDownHoverLight: '#4d4f51'
             },
             keyframes: {
                 coverFade: {

@@ -2,12 +2,13 @@ import {makeAutoObservable, runInAction} from "mobx";
 import { toast } from "react-toastify";
 import {ShowModel, showStore} from "../../../show/ShowFacade";
 import {UserModel, loginService, api} from "../../AuthFacade";
+import GroupModel from "../../group/GroupModel";
 
 class UserStore {
 
     isLoggedIn: boolean = false
     user: UserModel
-    group: object
+    group: GroupModel
     watchLater: Array<object> = []
 
     constructor() {
@@ -27,7 +28,7 @@ class UserStore {
         })
     }
 
-    setGroup(group: object) {
+    setGroup(group: GroupModel) {
         runInAction(() => {
             this.group = group
         })
