@@ -1,36 +1,38 @@
-import dynamic from 'next/dynamic';
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {Transition} from "@headlessui/react";
-import {toast} from "react-toastify";
 import {userStore} from "../../../../app/auth/AuthFacade";
+import getCroppedImg from "../../../../app/utils/cropper/GetCroppedImage";
+import Cropper from "react-easy-crop";
 
-const AvatarNoSSR = dynamic(
-    () => import("react-avatar-edit"),
-    {ssr: false}
-)
+const dogImg =
+    'https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000'
 
 const AvatarPopup = (props) => {
+    const [crop, setCrop] = useState({ x: 0, y: 0 })
+    const [rotation, setRotation] = useState(0)
+    const [zoom, setZoom] = useState(1)
+    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+        setCroppedAreaPixels(croppedAreaPixels)
+    }, [])
+
     const [preview, setPreview] = useState(null);
 
-    function onClose() {
-        setPreview(null);
-    }
-
-    function onCrop(pv) {
-        setPreview(pv);
-    }
-
-    function onBeforeFileLoad(elem) {
-        if (elem.target.files[0].size > 20000000) {
-            toast.error("Your file is too big!")
-            elem.target.value = "";
+    const showCroppedImage = useCallback(async () => {
+        try {
+            const croppedImage = await getCroppedImg(
+                dogImg,
+                croppedAreaPixels
+            )
+            setPreview(croppedImage)
+        } catch (e) {
+            console.error(e)
         }
-    }
+    }, [croppedAreaPixels, rotation])
 
-    function close() {
-        props.close()
-        setPreview(null);
-    }
+    const onClose = useCallback(() => {
+        setPreview(null)
+    }, [])
 
     function changeAvatar() {
         userStore.changeAvatar(preview, () => {
@@ -66,30 +68,17 @@ const AvatarPopup = (props) => {
                         leaveTo="scale-0">
 
                         <div className="bg-gray-700 text-right mt-10 p-6 inline-block align-bottom rounded-lg shadow-xl transform transition-all">
-                            <div style={{minHeight: "200px"}}>
-                                <AvatarNoSSR
-                                    width={600}
-                                    height={200}
-                                    imageHeight={456}
-                                    imageWidth={456}
-                                    exportAsSquare={true}
-                                    label="Choose an Avatar."
-                                    labelStyle={{
-                                        fontSize: "1.25em",
-                                        fontWeight: 700,
-                                        color: "white",
-                                        display: "inline-block",
-                                        fontFamily: "Avenir Heavy, sans-serif",
-                                        cursor: "pointer",
-                                        lineHeight: "300px",
-                                    }}
-                                    exportSize={256}
-                                    onCrop={onCrop}
-                                    onClose={onClose}
-                                    exportQuality={1}
-                                    exportMimeType="image/jpeg"
-                                    onBeforeFileLoad={onBeforeFileLoad}
-                                    src={null}
+                            <div className="h-96 w-96 relative">
+                                <Cropper
+                                    image={dogImg}
+                                    crop={crop}
+                                    rotation={rotation}
+                                    zoom={zoom}
+                                    aspect={4 / 4}
+                                    onCropChange={setCrop}
+                                    onRotationChange={setRotation}
+                                    onCropComplete={onCropComplete}
+                                    onZoomChange={setZoom}
                                 />
                             </div>
                             <button
@@ -97,13 +86,14 @@ const AvatarPopup = (props) => {
                                 className="bg-red-500 px-6 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
                                 Cancel
                             </button>
-                            {preview && (
                                 <button
-                                    onClick={() => changeAvatar()}
+                                    onClick={() => showCroppedImage()}
                                     className="bg-blue-500 ml-2 px-6 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
                                     Set as Avatar
                                 </button>
-                            )}
+
+
+                            <img src={preview} />
                         </div>
                     </Transition.Child>
 
