@@ -176,9 +176,7 @@ class RoomStore {
                 roomService.sendMessage("buffering")
             }
         } else {
-            if (this.buffering) {
-                roomService.sendMessage("finishedBuffering")
-            }
+            roomService.sendMessage("finishedBuffering")
         }
         runInAction(() => {
             this.buffering = status
