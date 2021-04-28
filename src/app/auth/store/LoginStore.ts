@@ -6,7 +6,6 @@ class LoginStore {
     password: string;
     rememberMe: boolean;
     loading: boolean = false;
-    errorMessage: string;
 
     constructor() {
         makeAutoObservable(this)

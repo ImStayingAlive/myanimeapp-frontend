@@ -18,7 +18,7 @@ const test = () => {
     }
 
     function onBeforeFileLoad(elem) {
-        if (elem.target.files[0].size > 2000000) {
+        if (elem.target.files[0].size > 200000) {
             alert("File is too big!");
             elem.target.value = "";
         }
@@ -43,6 +43,8 @@ const test = () => {
                 exportSize={256}
                 onCrop={onCrop}
                 onClose={onClose}
+                exportQuality={1}
+                exportMimeType="image/jpeg"
                 onBeforeFileLoad={onBeforeFileLoad}
                 src={null}
             />

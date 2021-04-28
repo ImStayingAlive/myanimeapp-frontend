@@ -8,6 +8,7 @@ import MobileNavbar from "./mobilenav/MobileNavbar";
 import { userStore } from "../../../app/auth/AuthFacade";
 import styles from "../../../styles/module/Navbar.module.css"
 import UserBar from "./userbar/UserBar";
+import UserBarNotLoggedIn from "./userbar/UserBarNotLoggedIn";
 
 const Navbar = observer(() => {
     return (
@@ -33,24 +34,26 @@ const Navbar = observer(() => {
                         </div>
                         <div className="hidden xl:flex items-center justify-end md:flex-1 lg:w-0">
 
-                            <div className="mx-4">
-                                <Link href="/search">
-                                    <a className="cursor-pointer">
-                                        <GoSearch className="text-gray-400 hover:text-white" size="1.5rem" />
-                                    </a>
-                                </Link>
-                            </div>
-
-                            <div className="ml-4 mr-6">
-                                <Link href="/invite-codes">
-                                    <a className="cursor-pointer">
-                                        <GoInbox className="text-gray-400 hover:text-white" size="1.5rem" />
-                                    </a>
-                                </Link>
-                            </div>
-
-                            {userStore.isLoggedIn && (
-                                <UserBar />
+                            {userStore.isLoggedIn ? (
+                                <>
+                                    <div className="mx-4">
+                                        <Link href="/search">
+                                            <a className="cursor-pointer">
+                                                <GoSearch className="text-gray-400 hover:text-white" size="1.5rem" />
+                                            </a>
+                                        </Link>
+                                    </div>
+                                    <div className="ml-4 mr-6">
+                                        <Link href="/invite-codes">
+                                            <a className="cursor-pointer">
+                                                <GoInbox className="text-gray-400 hover:text-white" size="1.5rem" />
+                                            </a>
+                                        </Link>
+                                    </div>
+                                    <UserBar />
+                                </>
+                            ): (
+                                <UserBarNotLoggedIn />
                             )}
 
                         </div>

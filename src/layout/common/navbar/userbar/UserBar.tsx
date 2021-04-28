@@ -68,12 +68,12 @@ const UserBar = observer(() => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0">
 
-                <nav className="absolute w-80 p-3 mt-2 bg-dropDownDark rounded-lg origin-top-right -right-1 focus:outline-none overflow-hidden">
+                <nav className="absolute w-80 p-3 mt-2  bg-gray-800 rounded-lg origin-top-right -right-1 focus:outline-none overflow-hidden">
 
                     <div style={{minHeight: "18.5rem"}}>
-                        <StartPage page={page} setPage={changePage} />
-                        <SettingsPage page={page} setPage={changePage} />
-                        <HelpPage page={page} setPage={changePage} />
+                        <StartPage page={page} setPage={changePage} close={toggleDropDown}/>
+                        <SettingsPage page={page} setPage={changePage} close={toggleDropDown}/>
+                        <HelpPage page={page} setPage={changePage} close={toggleDropDown}/>
                     </div>
 
                 </nav>

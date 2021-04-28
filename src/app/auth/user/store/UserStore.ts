@@ -191,6 +191,34 @@ class UserStore {
             })
     }
 
+    changeAvatar(avatar, callback) {
+        let data = {
+            userName: this.user.name,
+            fileContent: avatar.replace(/^[^,]+, */, '')
+        }
+
+        api.post("/cloud/process/user/avatar/upload", data)
+            .then((response) =>  {
+                if (response.data) {
+                    toast.success("You changed your avatar!")
+                } else {
+                    toast.error("An error occurred. Please try again.")
+                }
+                runInAction(() => {
+                    this.user.avatar = avatar
+                })
+                if (callback) {
+                    callback()
+                }
+            })
+            .catch(() => {
+                toast.error("An error occurred. Please try again.")
+                if (callback) {
+                    callback()
+                }
+            })
+    }
+
     // Add or remove a Show from the Watch later list
     toggleWatchLater(show: ShowModel, callback: Function) {
         if (!this.existsUser()) {

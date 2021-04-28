@@ -1,6 +1,6 @@
 import {Menu, Transition} from "@headlessui/react";
 import React from "react";
-import {FiInfo, FiLogOut, FiTool} from "react-icons/fi";
+import {FiInfo, FiLogOut, FiTool, FiUser} from "react-icons/fi";
 import {BsChevronRight} from "react-icons/bs";
 import Link from "next/link";
 import {loginService, userStore} from "../../../../../app/auth/AuthFacade";
@@ -17,9 +17,9 @@ const StartPage = (props) => {
             leaveFrom="translate-x-0 opacity-100"
             leaveTo="-translate-x-20 opacity-0">
 
-            <div className="flex items-center group hover:bg-dropDownLight p-2.5 rounded-lg cursor-pointer">
+            <div className="flex items-center group hover:bg-gray-700 p-2.5 rounded-lg cursor-pointer">
                 <img src={userStore.user.avatar} alt=""
-                     className="h-16 w-16 bg-dropDownLight rounded-full group-hover:bg-dropDownHoverLight">
+                     className="h-16 w-16 bg-gray-900 rounded-full group-hover:bg-dropDownHoverLight">
                 </img>
                 <span className="ml-3 font-avenir">
                             <h1 className="text-xl text-gray-100">
@@ -33,10 +33,10 @@ const StartPage = (props) => {
             <hr className="border-dropDownHoverLight my-2"/>
 
             <div onClick={() => props.setPage("settings")}>
-                <div
-                    className="flex items-center group hover:bg-dropDownLight p-2.5 rounded-lg cursor-pointer text-gray-300 my-1">
+                <div className="flex items-center group hover:bg-gray-700 p-2.5 rounded-lg cursor-pointer text-gray-300 my-1">
                     <div className="flex items-center w-full">
-                        <FiTool className="h-10 w-10 bg-dropDownLight rounded-full group-hover:bg-dropDownHoverLight p-2.5"/>
+                        <FiTool
+                            className="h-10 w-10 bg-gray-700 rounded-full group-hover:bg-gray-800 p-2.5"/>
                         <span className="ml-3 font-avenir pt-1">
                                 <h1 className="text-lg">
                                     Settings
@@ -51,10 +51,10 @@ const StartPage = (props) => {
             </div>
 
             <div onClick={() => props.setPage("help")}>
-                <div className="flex items-center group hover:bg-dropDownLight p-2.5 rounded-lg cursor-pointer text-gray-300 my-1">
+                <div className="flex items-center group hover:bg-gray-700 p-2.5 rounded-lg cursor-pointer text-gray-300 my-1">
                     <div className="flex items-center w-full">
                         <FiInfo
-                            className="h-10 w-10 bg-dropDownLight rounded-full group-hover:bg-dropDownHoverLight p-2.5"/>
+                            className="h-10 w-10 bg-gray-700 rounded-full group-hover:bg-gray-800 p-2.5"/>
                         <span className="ml-3 font-avenir pt-1">
                                 <h1 className="text-lg">
                                     Help
@@ -68,9 +68,10 @@ const StartPage = (props) => {
                 </div>
             </div>
 
-            <div onClick={() => loginService.logout()} className="flex items-center group hover:bg-dropDownLight p-2.5 rounded-lg cursor-pointer text-gray-300 my-1">
-                <div className="flex items-center w-full">
-                    <FiLogOut className="h-10 w-10 bg-dropDownLight rounded-full group-hover:bg-dropDownHoverLight p-2.5"/>
+            <div onClick={() => loginService.logout()} className="flex items-center group hover:bg-gray-700 p-2.5 rounded-lg cursor-pointer text-gray-300 my-1">
+                <div onClick={() => props.close()} className="flex items-center w-full">
+                    <FiLogOut
+                        className="h-10 w-10 bg-gray-700 rounded-full group-hover:bg-gray-800 p-2.5"/>
                     <span className="ml-3 font-avenir pt-1">
                             <h1 className="text-lg">
                                 Logout

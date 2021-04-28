@@ -24,3 +24,7 @@
     object-fit: cover;
     background-position: center 20%;
 }
+
+.register input:checked + svg {
+    display: block;
+}
