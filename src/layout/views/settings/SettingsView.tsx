@@ -1,8 +1,13 @@
 import SettingsSidebar from "./components/SettingsSidebar";
 import React from "react";
 import SettingsInput from "./components/SettingsInput";
-import AvatarInput from "./components/AvatarInput";
 import {userStore} from "../../../app/auth/AuthFacade";
+import dynamic from "next/dynamic";
+
+const AvatarInput = dynamic(
+    () => import("./components/AvatarInput"),
+    {ssr: false}
+)
 
 const SettingsView = () => {
 
