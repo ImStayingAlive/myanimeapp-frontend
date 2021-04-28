@@ -27,7 +27,7 @@ const UserBar = observer(() => {
         setPage("loading")
         timeout = setTimeout(() => {
             setPage(page)
-        }, 330)
+        }, 400)
     }
 
     useClickAway(userDropdown, () => {
@@ -70,9 +70,11 @@ const UserBar = observer(() => {
 
                 <nav className="absolute w-80 p-3 mt-2 bg-dropDownDark rounded-lg origin-top-right -right-1 focus:outline-none overflow-hidden">
 
-                    <StartPage page={page} setPage={changePage} />
-                    <SettingsPage page={page} setPage={changePage} />
-                    <HelpPage page={page} setPage={changePage} />
+                    <div style={{minHeight: "18.5rem"}}>
+                        <StartPage page={page} setPage={changePage} />
+                        <SettingsPage page={page} setPage={changePage} />
+                        <HelpPage page={page} setPage={changePage} />
+                    </div>
 
                 </nav>
             </Transition>
