@@ -200,17 +200,18 @@ class RoomStore {
     }
 
     checkBufferingUsers() {
-        let ready: boolean = true
-        if (this.bufferingUsers !== 0) {
-            ready = false
+        if (this.bufferingUsers > 0) {
+            runInAction(() => {
+                this.readyPlay = false
+            })
             playerController.pauseVideo()
         } else {
+            runInAction(() => {
+                this.readyPlay = true
+            })
+            this.resetBuffering()
             playerController.playVideo()
         }
-
-        runInAction(() => {
-            this.readyPlay = ready
-        })
     }
 
     resetBuffering() {
