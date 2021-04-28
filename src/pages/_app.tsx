@@ -9,21 +9,30 @@ import {useEffect} from "react";
 import {showStore} from "../app/show/store/ShowStore";
 import {loginService, userStore} from "../app/auth/AuthFacade";
 import mainStore from "../layout/common/store/MainStore";
+import OfflineView from "../layout/views/error/OfflineView";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
     /* Initial Load Information */
     useEffect(() => {
-        showStore.retrieveShows(() => {
-            loginService.update(() => {
-                if (userStore.isLoggedIn) {
-                    mainStore.setLoaded(true)
-                } else {
-                    mainStore.setLoaded(true)
-                }
-            })
+        showStore.retrieveShows((success) => {
+            if (success) {
+                loginService.update(() => {
+                    if (userStore.isLoggedIn) {
+                        mainStore.setLoaded(true)
+                    } else {
+                        mainStore.setLoaded(true)
+                    }
+                })
+            } else {
+                mainStore.setOffline(true)
+            }
         })
     }, [userStore.isLoggedIn])
+
+    if (mainStore.offline) {
+        return <OfflineView />
+    }
 
     return (
         <div>

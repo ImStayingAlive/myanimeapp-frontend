@@ -15,25 +15,31 @@ class ShowStore {
     }
 
     retrieveShows(callback) {
-        api.get("/show/all").then((response) => {
-            if (response.data.length > 0) {
-                runInAction(() => {
-                    this.shows = (response.data)
-                })
-                if (userStore.isLoggedIn) {
-                    this.retrieveHomeShows(() => {
-                        if (callback) {
-                            callback()
-                        }
+        api.get("/show/all")
+            .then((response) => {
+                if (response.data.length > 0) {
+                    runInAction(() => {
+                        this.shows = (response.data)
                     })
-                } else {
-                    if (callback) {
-                        callback()
+                    if (userStore.isLoggedIn) {
+                        this.retrieveHomeShows(() => {
+                            if (callback) {
+                                callback(true)
+                            }
+                        })
+                    } else {
+                        if (callback) {
+                            callback(true)
+                        }
                     }
+                } else {
                 }
-            } else {
-            }
-        })
+            })
+            .catch(() => {
+                if (callback) {
+                    callback(false)
+                }
+            })
     }
 
     retrieveHomeShows(callback) {

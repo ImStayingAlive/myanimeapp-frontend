@@ -4,6 +4,8 @@ import mainStore from "../layout/common/store/MainStore";
 import Preloader from "../layout/common/PreloaderComponent";
 import SEOModel from "../app/utils/models/SEOModel";
 import SEO from "../layout/common/SEO";
+import NotFoundView from "../layout/views/error/NotFoundView";
+import Footer from "../layout/common/Footer";
 
 const notFound = observer(() => {
 
@@ -22,6 +24,8 @@ const notFound = observer(() => {
             {mainStore.loaded ? (
                 <main>
                     <Navbar/>
+                    <NotFoundView />
+                    <Footer />
                 </main>
             ) : (
                 <Preloader />

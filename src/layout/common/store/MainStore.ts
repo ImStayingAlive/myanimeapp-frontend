@@ -4,6 +4,7 @@ class MainStore {
 
     loaded: boolean = false
     title: string = "MYAnimeApp"
+    offline: boolean = false
 
     constructor() {
         makeAutoObservable(this)
@@ -16,6 +17,12 @@ class MainStore {
     setTitle(title) {
         runInAction(() => {
             this.title = title
+        })
+    }
+
+    setOffline(status) {
+        runInAction(() => {
+            this.offline = status
         })
     }
 }
