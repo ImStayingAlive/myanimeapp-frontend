@@ -70,8 +70,8 @@ const AvatarPopup = (props) => {
                                 <AvatarNoSSR
                                     width={600}
                                     height={200}
-                                    imageHeight={256}
-                                    imageWidth={256}
+                                    imageHeight={456}
+                                    imageWidth={456}
                                     exportAsSquare={true}
                                     label="Choose an Avatar."
                                     labelStyle={{
