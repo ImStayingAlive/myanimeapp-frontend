@@ -75,6 +75,10 @@ const AvatarPopup = (props) => {
                                     rotation={rotation}
                                     zoom={zoom}
                                     aspect={4 / 4}
+                                    cropSize={{
+                                        width: 256,
+                                        height: 256
+                                    }}
                                     onCropChange={setCrop}
                                     onRotationChange={setRotation}
                                     onCropComplete={onCropComplete}
@@ -93,7 +97,7 @@ const AvatarPopup = (props) => {
                                 </button>
 
 
-                            <img src={preview} />
+                            <img alt="" src={preview} />
                         </div>
                     </Transition.Child>
 
