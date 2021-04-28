@@ -1,6 +1,6 @@
 import {AiOutlinePlayCircle} from "react-icons/ai"
 import {roomStore} from "../../../../../../app/room/RoomFacade"
-import styles from "../../../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../../../styles/module/ShowPopup.module.css"
 
 const Episode = (props) => {
     const playEpisode = () => {

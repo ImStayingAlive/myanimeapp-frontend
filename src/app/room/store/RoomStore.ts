@@ -39,6 +39,10 @@ class RoomStore {
                roomService.connect(userStore.user, this.room.name, (message) => {
                    CommandRegistry(message.data)
                })
+
+               if (!this.room.ownerConnected) {
+                   roomService.setIsRunning(this.room.name, false)
+               }
                callback(true)
            }
        })
@@ -57,6 +61,10 @@ class RoomStore {
 
     disconnect() {
         if (this.loaded) {
+            if (userStore.user.name === this.getOwner().name) {
+                roomService.sendMessage("stopPlayback")
+                roomService.setIsRunning(this.room.name, false)
+            }
             roomService.disconnect()
         }
         this.reset()
@@ -136,8 +144,10 @@ class RoomStore {
             roomService.setIsRunning(this.room.name, true)
         }
         this.setBuffering(true)
-        runInAction(() => {
-            this.playing = true
+        this.refreshRoom(() => {
+            runInAction(() => {
+                this.playing = true
+            })
         })
     }
 
@@ -153,22 +163,26 @@ class RoomStore {
             })
         }
 
-        if (callback) {
-            callback(callback)
-        }
+        this.refreshRoom(() => {
+            if (callback) {
+                callback(callback)
+            }
+        })
     }
 
     setBuffering(status: boolean) {
+        if (status) {
+            if (!this.buffering) {
+                roomService.sendMessage("buffering")
+            }
+        } else {
+            if (this.buffering) {
+                roomService.sendMessage("finishedBuffering")
+            }
+        }
         runInAction(() => {
             this.buffering = status
         })
-
-        if (status) {
-            console.log("SET")
-            roomService.sendMessage("buffering")
-        } else {
-            roomService.sendMessage("finishedBuffering")
-        }
     }
 
     addBufferingUser() {
@@ -176,7 +190,6 @@ class RoomStore {
             this.bufferingUsers++
         })
         this.checkBufferingUsers()
-        console.log("Add"  + this.bufferingUsers)
     }
 
     removeBufferingUser() {
@@ -186,7 +199,6 @@ class RoomStore {
             })
         }
         this.checkBufferingUsers()
-        console.log("Remove" + this.bufferingUsers)
     }
 
     checkBufferingUsers() {
@@ -200,6 +212,13 @@ class RoomStore {
 
         runInAction(() => {
             this.readyPlay = ready
+        })
+    }
+
+    resetBuffering() {
+        runInAction(() => {
+            this.buffering = false
+            this.bufferingUsers = 0
         })
     }
 

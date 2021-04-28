@@ -3,7 +3,7 @@ import {Transition} from "@headlessui/react";
 import TopBar from "./components/TopBar";
 import SeasonOverview from "./components/SeasonOverview";
 import { showPopupStore } from "../../../../app/show/ShowFacade";
-import styles from "../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../styles/module/ShowPopup.module.css"
 
 const ShowPopup = observer(() => {
 

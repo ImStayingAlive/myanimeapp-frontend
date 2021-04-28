@@ -2,7 +2,7 @@ import {FaUsers} from "react-icons/fa";
 import {RiRemoteControlLine} from "react-icons/ri";
 import {CgPlayButtonO} from "react-icons/cg";
 import {BiTime} from  "react-icons/bi"
-import styles from "../../../../../../styles/module/Landingpage.module.css"
+import styles from "../../../../../styles/module/Landingpage.module.css"
 
 import FeatureList from "./FeatureList";
 

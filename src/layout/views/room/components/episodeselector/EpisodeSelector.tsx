@@ -2,7 +2,7 @@ import {observer} from "mobx-react-lite"
 import {Transition} from "@headlessui/react";
 import SeasonOverview from "./components/SeasonOverview";
 import { roomStore } from "../../../../../app/room/RoomFacade";
-import styles from "../../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../../styles/module/ShowPopup.module.css"
 
 const EpisodeSelector = observer(() => {
         return (

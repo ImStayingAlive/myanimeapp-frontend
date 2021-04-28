@@ -6,6 +6,7 @@ import { roomStore } from "../../../app/room/RoomFacade";
 import Preloader from "../../common/PreloaderComponent";
 
 const RoomView = observer(() => {
+
     useEffect(() => {
     }, [roomStore])
 

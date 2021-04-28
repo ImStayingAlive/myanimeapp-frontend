@@ -17,7 +17,6 @@ const Room = observer(({data}) => {
     const router = useRouter()
     const {roomName} = router.query
 
-
     useEffect(() => {
         if (mainStore.loaded) {
             roomStore.openConnection(roomName, (status) => {

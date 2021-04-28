@@ -4,7 +4,7 @@ import userStore from "../../../app/auth/user/store/UserStore";
 import showPopupStore from "../../../app/show/popup/ShowPopupStore";
 import { ShowModel } from '../../../app/show/ShowFacade';
 import useProgressiveImage from '../../../app/utils/hooks/useProgressiveImage';
-import styles from "../../../../styles/module/ShowCard.module.css"
+import styles from "../../../styles/module/ShowCard.module.css"
 import Image from "next/image"
 
 const ShowCard = (props) => {

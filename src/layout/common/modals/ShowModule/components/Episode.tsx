@@ -2,7 +2,7 @@ import {AiOutlinePlayCircle} from "react-icons/ai"
 import {useRouter} from "next/router";
 import {showPopupStore} from "../../../../../app/show/ShowFacade";
 import {playerStore} from "../../../../../app/player/PlayerFacade";
-import styles from "../../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../../styles/module/ShowPopup.module.css"
 
 const Episode = (props) => {
     const router = useRouter()

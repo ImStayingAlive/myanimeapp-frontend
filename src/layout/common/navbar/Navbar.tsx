@@ -1,14 +1,13 @@
 import navbarStore from "../store/NavbarStore";
 import NavbarList from "./NavbarList";
-import {GoSearch} from "react-icons/go"
+import {GoSearch, GoInbox} from "react-icons/go"
 import Link from "next/link"
-import UserDropdownNotLoggedIn from "./userdropdown/UserDropdownNotLoggedIn";
 import {Divide as Hamburger} from 'hamburger-react'
 import {observer} from "mobx-react-lite";
-import UserDropdownLoggedIn from "./userdropdown/UserDropdownLoggedIn";
 import MobileNavbar from "./mobilenav/MobileNavbar";
 import { userStore } from "../../../app/auth/AuthFacade";
-import styles from "../../../../styles/module/Navbar.module.css"
+import styles from "../../../styles/module/Navbar.module.css"
+import UserBar from "./userbar/UserBar";
 
 const Navbar = observer(() => {
     return (
@@ -34,18 +33,24 @@ const Navbar = observer(() => {
                         </div>
                         <div className="hidden xl:flex items-center justify-end md:flex-1 lg:w-0">
 
-                            <div className="mr-5 pr-5 border-r border-gray-300">
+                            <div className="mx-4">
                                 <Link href="/search">
                                     <a className="cursor-pointer">
-                                        <GoSearch className="text-gray-400 hover:text-white" size="1.2rem" />
+                                        <GoSearch className="text-gray-400 hover:text-white" size="1.5rem" />
                                     </a>
                                 </Link>
                             </div>
 
-                            {userStore.isLoggedIn ? (
-                                <UserDropdownLoggedIn />
-                            ): (
-                                <UserDropdownNotLoggedIn />
+                            <div className="ml-4 mr-6">
+                                <Link href="/invite-codes">
+                                    <a className="cursor-pointer">
+                                        <GoInbox className="text-gray-400 hover:text-white" size="1.5rem" />
+                                    </a>
+                                </Link>
+                            </div>
+
+                            {userStore.isLoggedIn && (
+                                <UserBar />
                             )}
 
                         </div>

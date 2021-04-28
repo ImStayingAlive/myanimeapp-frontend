@@ -8,7 +8,8 @@ import EpisodeSelector from "../episodeselector/EpisodeSelector";
 import {runInAction} from "mobx";
 import { roomStore } from "../../../../../app/room/RoomFacade";
 import { userStore } from "../../../../../app/auth/AuthFacade";
-import styles from "../../../../../../styles/module/RoomLobby.module.css"
+import styles from "../../../../../styles/module/RoomLobby.module.css"
+import React from "react";
 
 const RoomLobby = observer(() => {
 
@@ -21,15 +22,20 @@ const RoomLobby = observer(() => {
                         <div className={styles.backDrop} style={{backgroundImage: `url(${roomStore.getShowInfo().background})`}}/>
                     </div>
                     <div className="w-9/12 mx-auto pt-44 relative">
-                        <h1 className="text-6xl text-white font-avenir">
-                            {roomStore.getOwner().name}'s room <sup
-                            className="text-2xl bg-red-400 px-3 py-1 rounded-2xl">BETA</sup>
+                        <h1 className="text-6xl text-white font-avenir flex items-center">
+                            {roomStore.getOwner().name}'s room
                         </h1>
                         <div className="text-3xl text-gray-400 mb-5">
 
-                            <h3>
-                                Waiting for host to start <span className="text-red-400">playback</span>...
-                            </h3>
+                            {roomStore.room.running ? (
+                                <h3>
+                                    Playback has started! <span className="text-red-400">Join now</span>
+                                </h3>
+                            ): (
+                                <h3>
+                                    Waiting for host to start <span className="text-red-400">playback</span>...
+                                </h3>
+                            )}
 
                         </div>
 
@@ -86,7 +92,7 @@ const RoomLobby = observer(() => {
                                     )}
 
                                     <Link href="/">
-                                        <a className="bg-gray-900 hover:bg-gray-700 p-4 rounded text-white font-avenir text-lg focus:outline-none">
+                                        <a className="bg-gray-700 hover:bg-gray-700 p-4 rounded text-white font-avenir text-lg focus:outline-none">
                                             Leave room
                                         </a>
                                     </Link>

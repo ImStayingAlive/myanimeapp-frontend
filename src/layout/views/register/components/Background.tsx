@@ -1,4 +1,4 @@
-import styles from "../../../../../styles/module/Register.module.css";
+import styles from "../../../../styles/module/Register.module.css";
 import {SplideSlide} from '@splidejs/react-splide';
 
 const Background = (props) => {

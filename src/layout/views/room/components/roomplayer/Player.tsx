@@ -6,7 +6,6 @@ import PlayerEventHandler from "./components/PlayerEventHandler";
 import WaitingForOthers from "./components/WaitingForOthers";
 import {playerController, roomStore } from "../../../../../app/room/RoomFacade";
 import Reactions from "./components/Reactions";
-import reactionStore from "../../../../../app/room/reactions/ReactionStore";
 
 const Player = observer(() => {
     let player: any = null

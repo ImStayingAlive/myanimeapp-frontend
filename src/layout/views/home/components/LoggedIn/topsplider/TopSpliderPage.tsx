@@ -1,6 +1,6 @@
 import {SplideSlide} from '@splidejs/react-splide';
 import { ShowModel, showPopupStore } from '../../../../../../app/show/ShowFacade';
-import styles from "../../../../../../../styles/module/StartPage.module.css"
+import styles from "../../../../../../styles/module/StartPage.module.css"
 
 const TopSpliderPage = (props) => {
 

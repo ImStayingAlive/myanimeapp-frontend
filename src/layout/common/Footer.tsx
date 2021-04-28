@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="lg:flex items-center justify-between">
                     <div className="lg:w-1/4">
                         <h4 className="font-avenir text-lg text-gray-400">
-                            Version 1.0
+                            Version 1.1
                         </h4>
                         {/*}
                         <h1 className="font-bebas tracking-wider text-5xl pt-1 pl-1 uppercase">

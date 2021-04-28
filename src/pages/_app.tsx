@@ -1,7 +1,7 @@
 import {AppProps} from "next/app";
 import {Helmet} from "react-helmet";
 import {observer} from "mobx-react-lite";
-import '../../styles/globals.css'
+import '../styles/globals.css'
 import Toast from "../layout/common/Toast";
 import ShowPopup from "../layout/common/modals/ShowModule/ShowPopup";
 import OpenPopup from "../layout/common/modals/OpenPopup";

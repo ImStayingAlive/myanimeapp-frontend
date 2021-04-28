@@ -1,6 +1,6 @@
 import {toast} from "react-toastify";
 import {userStore} from "../../auth/AuthFacade"
-import {playerController, roomStore} from "../RoomFacade"
+import {playerController, roomService, roomStore} from "../RoomFacade"
 import Command from "./Command";
 import timeStampUtil from "../../utils/TimeStampUtil";
 import reactionService from "../reactions/ReactionService";
@@ -17,6 +17,15 @@ commands.push(new Command("RoomJoined: ", (result) => {
 commands.push(new Command("RoomLeave: ", (result) => {
     if (userStore.user.name !== result) {
         toast.error(result + " left the room.")
+    }
+    if (result === roomStore.getOwner().name) {
+        if (roomStore.playing) {
+            roomStore.stopVideo()
+            roomService.setIsRunning(roomStore.room.name, false)
+        }
+    }
+    if (roomStore.playing) {
+        roomStore.removeBufferingUser()
     }
     roomStore.refreshRoom(() => {})
 }))
@@ -35,6 +44,7 @@ commands.push(new Command("finishedBuffering", () => {
 
 commands.push((new Command("beginPlayback", () => {
     if (!roomStore.playing) {
+        roomStore.resetBuffering()
         roomStore.playVideo()
     }
 })))
@@ -42,6 +52,7 @@ commands.push((new Command("beginPlayback", () => {
 commands.push((new Command("stopPlayback", () => {
     if (roomStore.playing) {
         roomStore.stopVideo()
+        roomStore.resetBuffering()
     }
 })))
 
@@ -91,7 +102,7 @@ commands.push(new Command("Emoji: ", (result) => {
 }))
 
 const CommandRegistry = (message: String) => {
-    console.log(message)
+    //console.log(message)
 
     commands.map((command) => {
         if (message.startsWith(command.name)) {

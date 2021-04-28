@@ -2,7 +2,7 @@ import {observer} from "mobx-react-lite";
 import {FaTimes, FaVolumeMute, FaVolumeUp} from "react-icons/fa"
 import { showPopupStore } from "../../../../../app/show/ShowFacade";
 import ActionBar from "./ActionBar";
-import styles from "../../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../../styles/module/ShowPopup.module.css"
 
 const TopBar = observer(() => {
 

@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite";
 import {AiOutlineCaretDown} from "react-icons/ai";
 import Episode from "./Episode";
 import { ShowModel, showPopupStore } from "../../../../../app/show/ShowFacade";
-import styles from "../../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../../styles/module/ShowPopup.module.css"
 
 const SeasonOverview = observer(({}) => {
 

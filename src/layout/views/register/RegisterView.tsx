@@ -1,5 +1,5 @@
 import AnimatedBackground from "./components/AnimatedBackground";
-import styles from "../../../../styles/module/Register.module.css"
+import styles from "../../../styles/module/Register.module.css"
 import RegisterWelcome from "./components/RegisterWelcome";
 import RegisterFree from "./components/RegisterFree";
 import RegisterPremium from "./components/RegisterPremium";

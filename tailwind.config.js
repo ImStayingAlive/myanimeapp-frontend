@@ -36,6 +36,9 @@ module.exports = {
             animation: {
                 wiggle: 'coverFade 5s linear ',
             },
+            transitionProperty: {
+                'height': 'height'
+            },
         },
         screens: {
             'sm': '640px',

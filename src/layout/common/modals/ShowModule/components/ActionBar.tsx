@@ -8,7 +8,7 @@ import {roomService} from "../../../../../app/room/RoomFacade";
 import {userStore} from "../../../../../app/auth/AuthFacade";
 import {showPopupStore} from "../../../../../app/show/ShowFacade";
 import {playerStore} from "../../../../../app/player/PlayerFacade";
-import styles from "../../../../../../styles/module/ShowPopup.module.css"
+import styles from "../../../../../styles/module/ShowPopup.module.css"
 
 const ActionBar = observer(() => {
     const [groupWatch, setGroupWatch] = useState("false")
@@ -25,8 +25,6 @@ const ActionBar = observer(() => {
                 })
             }
         })
-        setTimeout(() => {
-        }, 1000)
     }
 
     // Play the selected Episode

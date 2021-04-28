@@ -17,7 +17,6 @@ const PlayerOverlay = (player) => {
 
     const nextEpisode = roomStore.getNextEpisode()
 
-    console.log(nextEpisode)
     if (nextEpisode) {
         let nextEpisodePreview: string = '<div style="height: 16.6rem" class="relative w-full"> <img class="rounded-lg shadow" src="' + nextEpisode.thumbnail + '" alt=""/> <div class="font-poppins absolute bottom-0 h-full w-full"> <div class="bg-gradient-to-b from-transparent to-black opacity-100 rounded-lg h-full w-full bottom-0"/> <div class="absolute bottom-4 left-4"> <h2 class="text-3xl text-white font-semibold">' + showName + '</h2> <h3 class="text-xl text-gray-300">' + nextEpisode.name + '</h3> </div></div></div>'
         nextEpisodeOverlay = '<div class="flex text-left items-end flex-col max-w-lg relative pr-10 mb-28 z-10"> ' + nextEpisodePreview + ' <div class="flex-row mt-7 text-right"><a class="cursor-pointer text-2xl bg-gray-500 hover:bg-gray-400 py-3 px-7 shadow-2xl rounded-lg font-poppins">Watch Credits</a><a id="nextEpisode" class="cursor-pointer text-2xl py-3 px-7 shadow-2xl rounded-lg font-poppins ml-3 bg-red-500">Next Episode</a></div></div>'

@@ -3,7 +3,7 @@
 @import "libs/Tooltip.module.css";
 
 /* Import Player Styles */
-@import "~video.js/dist/video-js.css";
+@import "../../node_modules/video.js/dist/video-js.css";
 @import "libs/Player.module.css";
 @import "libs/VideoOverlay.module.css";
 @import "libs/Splider.module.css";
