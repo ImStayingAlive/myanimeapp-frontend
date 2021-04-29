@@ -76,7 +76,7 @@ const LoginForm = observer(() => {
                                 className="bg-gray-800 border-2 rounded border-gray-800 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2">
                                 <input
                                     type="checkbox"
-                                    checked={true}
+                                    defaultChecked={true}
                                     className="opacity-0 absolute"
                                     id="remember"
                                     onChange={(event) => {

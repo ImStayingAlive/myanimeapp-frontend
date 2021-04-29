@@ -4,7 +4,7 @@ class LoginStore {
 
     userName: string;
     password: string;
-    rememberMe: boolean;
+    rememberMe: boolean = true;
     loading: boolean = false;
 
     constructor() {
