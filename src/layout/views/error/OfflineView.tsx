@@ -15,7 +15,7 @@ const OfflineView = () => {
                         <Player className="hidden xl:block mr-5" autoplay style={{width: "300px", height: "300px"}} loop src={LottieOffline} />
 
                         <div className="ml-5">
-                            <h1 className="font-bebas tracking-wider navLink text-7xl pt-1 pl-1 uppercase">
+                            <h1 className="font-bebas tracking-wider navLink text-7xl pt-1 uppercase">
                                 <span className="text-red-500">My</span>
                                 <span className="text-gray-100">anime</span>
                             </h1>
@@ -31,9 +31,9 @@ const OfflineView = () => {
                             </div>
 
                             <div className="mt-7 text-lg font-avenir flex space-x-2 text-white">
-                                <button className="bg-gray-700 hover:bg-gray-800 uppercase py-3 px-5 rounded focus:outline-none">
+                                <a rel="noopener noreferrer" href="https://stats.uptimerobot.com/yk9JVTNQ5z" target="_blank" className="bg-gray-700 hover:bg-gray-800 uppercase py-3 px-5 rounded focus:outline-none">
                                     View our status page
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

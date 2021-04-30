@@ -33,6 +33,9 @@ class ShowStore {
                         }
                     }
                 } else {
+                    if (callback) {
+                        callback(false)
+                    }
                 }
             })
             .catch(() => {
