@@ -2,11 +2,15 @@ import styles from "../../../styles/module/Register.module.css";
 import AnimatedBackground from "../register/components/AnimatedBackground";
 import {Player} from "@lottiefiles/react-lottie-player";
 import LottieOffline from "../../../../public/lottiefiles/offline.json";
+import Head from "next/head";
 
 const OfflineView = () => {
 
     return (
         <main>
+            <Head>
+                <title>MyAnimeApp - Offline</title>
+            </Head>
             <div className={styles.register}>
                 <AnimatedBackground />
 
