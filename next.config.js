@@ -3,6 +3,6 @@ module.exports = {
         webpack5: true,
     },
     images: {
-        domains: ['i.imgur.com', 'cdn.necrocloud.eu'],
+        domains: ['cdn.myanime.app'],
     },
 }
