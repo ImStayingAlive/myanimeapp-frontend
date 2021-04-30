@@ -16,6 +16,7 @@ class RoomStore {
     playerLoaded: boolean = false
     playing: boolean = false
     bufferingUsers: number = 0
+    bufferingSelf: boolean = false
 
     // Episode Popup Settings
     popupOpen: boolean = false
@@ -172,10 +173,18 @@ class RoomStore {
 
     setBuffering(status: boolean) {
         if (status) {
-            if (!this.buffering) {
-                roomService.sendMessage("buffering")
+            if (!this.bufferingSelf) {
+                runInAction(() => {
+                    this.bufferingSelf = true
+                })
+                if (!this.buffering) {
+                    roomService.sendMessage("buffering")
+                }
             }
         } else {
+            runInAction(() => {
+                this.bufferingSelf = false
+            })
             roomService.sendMessage("finishedBuffering")
         }
         runInAction(() => {
@@ -215,6 +224,7 @@ class RoomStore {
     }
 
     resetBuffering() {
+        console.log("RESETING")
         runInAction(() => {
             this.buffering = false
             this.bufferingUsers = 0
