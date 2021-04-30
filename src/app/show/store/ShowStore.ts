@@ -65,6 +65,8 @@ class ShowStore {
                 return this.shows[i]
             }
         }
+
+        return false
     }
 }
 
