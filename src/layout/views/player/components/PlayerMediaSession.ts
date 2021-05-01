@@ -1,6 +1,13 @@
 import {playerStore} from "../../../../app/player/PlayerFacade";
+import 'videojs-hotkeys/videojs.hotkeys'
 
 const PlayerMediaSession = (player) => {
+
+    player.hotkeys({
+        volumeStep: 0.1,
+        seekStep: 5,
+        enableModifiersForNumbers: false
+    })
 
     /* Media Session Config */
     if ("mediaSession" in navigator) {

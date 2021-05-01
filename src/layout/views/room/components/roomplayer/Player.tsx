@@ -6,6 +6,7 @@ import PlayerEventHandler from "./components/PlayerEventHandler";
 import WaitingForOthers from "./components/WaitingForOthers";
 import {playerController, roomStore } from "../../../../../app/room/RoomFacade";
 import Reactions from "./components/Reactions";
+import PlayerMediaSession from "../../../player/components/PlayerMediaSession";
 
 const Player = observer(() => {
     let player: any = null
@@ -37,6 +38,7 @@ const Player = observer(() => {
                     }
                     PlayerOverlay(player)
                     PlayerEventHandler(player)
+                    PlayerMediaSession(player)
                     playerController.setPlayer(player)
                 }
             }
