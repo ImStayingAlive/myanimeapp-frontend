@@ -46,7 +46,7 @@ const TopSpliderPage = (props) => {
                                         Coming soon
                                     </button>
                                 )}
-                                <button onClick={() => showPopupStore.open(show)} className="bg-gray-500 hover:bg-gray-400 focus:outline-none text-2xl rounded text-white px-10 py-3 mx-4 font-avenir">
+                                <button onClick={() => showPopupStore.open(show.name)} className="bg-gray-500 hover:bg-gray-400 focus:outline-none text-2xl rounded text-white px-10 py-3 mx-4 font-avenir">
                                     Information
                                 </button>
                             </div>
