@@ -1,11 +1,25 @@
 import {SplideSlide} from '@splidejs/react-splide';
 import { ShowModel, showPopupStore } from '../../../../../../app/show/ShowFacade';
 import styles from "../../../../../../styles/module/StartPage.module.css"
+import {playerStore} from "../../../../../../app/player/PlayerFacade";
+import {userStore} from "../../../../../../app/auth/AuthFacade";
+import React from "react";
+import Link from "next/link";
 
 const TopSpliderPage = (props) => {
 
     if (props.show) {
         const show: ShowModel = props.show;
+
+        // Play the selected Episode
+        const playEpisode = (seasonIndex: number, episodeIndex: number) => {
+            playerStore.setShow(show)
+            playerStore.changeEpisode(seasonIndex, episodeIndex)
+        }
+
+        // Get the player progress of the User
+        let watchedProgressTotal = userStore.getWatchedShowProgress(show, true)
+
         return (
             <SplideSlide className={styles.startPageSlider}>
                 <div className="relative" style={{height: "40rem"}}>
@@ -19,16 +33,24 @@ const TopSpliderPage = (props) => {
 
                                 <img className="transform transition ease-in-out select-none scale-100 hover:scale-110 cursor-pointer" onClick={() => showPopupStore.open(show)} style={{height: "12rem"}}
                                      src={show.logo} alt=""/>
-                                {/*}
+
                             <div className="mt-8 w-max mx-auto">
-                                <button className="bg-red-500 hover:bg-red-400 focus:outline-none text-2xl rounded text-white px-10 py-3 mx-4 font-avenir">
-                                    Play
-                                </button>
+                                {show.seasons.length > 0 ? (
+                                    <Link href="/watch">
+                                        <button onClick={() => playEpisode(userStore.getLastWatchedEpisode(show).seasonIndex, userStore.getLastWatchedEpisode(show).episodeIndex)} className="bg-red-500 hover:bg-red-400 focus:outline-none text-2xl rounded text-white px-10 py-3 mx-4 font-avenir">
+                                            {watchedProgressTotal <= 0 ? "Play" : "Resume"}
+                                        </button>
+                                    </Link>
+                                ) : (
+                                    <button className="bg-red-500 hover:bg-red-400 focus:outline-none text-2xl rounded text-white px-10 py-3 mx-4 font-avenir">
+                                        Coming soon
+                                    </button>
+                                )}
                                 <button onClick={() => showPopupStore.open(show)} className="bg-gray-500 hover:bg-gray-400 focus:outline-none text-2xl rounded text-white px-10 py-3 mx-4 font-avenir">
                                     Information
                                 </button>
                             </div>
-                            {*/}
+
                             </div>
                         </div>
                     </div>

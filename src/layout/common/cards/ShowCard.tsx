@@ -5,7 +5,6 @@ import showPopupStore from "../../../app/show/popup/ShowPopupStore";
 import { ShowModel } from '../../../app/show/ShowFacade';
 import useProgressiveImage from '../../../app/utils/hooks/useProgressiveImage';
 import styles from "../../../styles/module/ShowCard.module.css"
-import Image from "next/image"
 
 const ShowCard = (props) => {
 
@@ -39,12 +38,7 @@ const ShowCard = (props) => {
                  className={"mx-5 h-44 sm:w-96 sm:h-56 shadow hover:shadow-2xl bg-gray-800 rounded-md bg-cover bg-center relative cursor-pointer " + styles.showCard}
                  style={{backgroundImage: `url(${show.background})`}}>
 
-                <Image
-                    src={show.logo}
-                    alt="Show Logo"
-                    width=""
-                    height=""
-                />
+                <img src={show.logo} alt="Show Logo" />
 
                 <div className={"rounded-md " + styles.overlay}>
                     <div className={styles.playDiv}>
@@ -74,12 +68,7 @@ const ShowCard = (props) => {
              className={"mx-5 h-72 w-56 sm:w-96 sm:h-56 shadow hover:shadow-2xl bg-gray-600 rounded-md bg-cover bg-center relative cursor-pointer " + styles.showCard}
              style={{backgroundImage: `url(${show.background})`}}>
 
-            <Image
-                src={show.logo}
-                alt="Show Logo"
-                width=""
-                height=""
-            />
+            <img src={show.logo} alt="Show Logo" />
 
             <div className={"rounded-md " + styles.overlay}>
                 <div className={styles.playDiv}>
