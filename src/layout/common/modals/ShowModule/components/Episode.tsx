@@ -18,8 +18,13 @@ const Episode = (props) => {
         showPopupStore.close()
     }
 
+    let classes = ""
+    if (props.index == showPopupStore.lastWatched.episodeIndex && showPopupStore.selectedSeason == showPopupStore.lastWatched.seasonIndex) {
+        classes = " bg-gray-600 "
+    }
+
     return (
-        <div className="flex items-center mb-4 rounded">
+        <div className={"flex items-center mb-1 p-3 rounded" + classes}>
             <div className="mr-4">
                 <div onClick={() => playEpisode()}
                      className={"w-24 h-16 md:h-28 md:w-48 bg-gray-900 rounded bg-cover relative " + styles.episodeSelector}
@@ -40,7 +45,7 @@ const Episode = (props) => {
                     {props.episode.shortDescription}
                 </h5>
             </div>
-            <div className="mr-5 hidden lg:block">
+            <div className="mr-5 hidden lg:block" style={{minWidth: "150px"}}>
                 <p className="lg:text-right text-md text-gray-400">
                     {Math.round(props.episode.length / 60)}m
                 </p>

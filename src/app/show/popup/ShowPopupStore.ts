@@ -1,6 +1,7 @@
-import {ShowModel, formatURL} from "../ShowFacade"
+import {ShowModel, formatURL, showStore} from "../ShowFacade"
 import {makeAutoObservable, runInAction} from "mobx";
 import Router from 'next/router'
+import {userStore} from "../../auth/AuthFacade";
 
 class ShowPopupStore {
     isOpen: boolean = false
@@ -10,28 +11,45 @@ class ShowPopupStore {
     showEpisodeCount: number = 6
     selectedSeason: number = 0
     seasonDropdown: boolean = false
+    lastWatched = {
+        seasonIndex: 0,
+        episodeIndex: 0,
+    }
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    open(show: ShowModel) {
-        runInAction(() => {
-            this.isLoaded = true
-            this.show = (show == null || undefined) ? null : show;
-        })
+    open(showName) {
 
-        if (!this.isOpen) {
-            Router.push({
-                pathname: '',
-                query: {show: formatURL(this.show.name)},
-            }, '', {shallow: true}).then(() => {
-                runInAction(() => {
-                    this.isOpen = true
-                })
-                document.body.classList.remove('scrollbar-thin');
-                document.body.classList.add('overflow-hidden');
+        // @ts-ignore
+        let show: ShowModel = showStore.getShow(showName)
+
+        if (show) {
+            if (userStore.isLoggedIn) {
+                let tempLastedWatched = userStore.getLastWatchedEpisode(show)
+                this.lastWatched.seasonIndex = tempLastedWatched.seasonIndex
+                this.lastWatched.episodeIndex = tempLastedWatched.episodeIndex
+                this.selectedSeason = tempLastedWatched.seasonIndex
+            }
+
+            runInAction(() => {
+                this.isLoaded = true
+                this.show = (show == null || undefined) ? null : show;
             })
+
+            if (!this.isOpen) {
+                Router.push({
+                    pathname: '',
+                    query: {show: formatURL(this.show.name)},
+                }, '', {shallow: true}).then(() => {
+                    runInAction(() => {
+                        this.isOpen = true
+                    })
+                    document.body.classList.remove('scrollbar-thin');
+                    document.body.classList.add('overflow-hidden');
+                })
+            }
         }
     }
 
