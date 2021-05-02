@@ -11,16 +11,6 @@
 }
 
 .showCard img {
-    max-height: 10rem !important;
-    min-height: 1rem !important;
-    max-width: 18rem !important;
-    min-width: 1rem !important;
-
-    width: auto !important;
-    height: auto !important;
-}
-
-.showCardOLD img {
     width: 18rem;
     margin: 0;
     position: absolute;

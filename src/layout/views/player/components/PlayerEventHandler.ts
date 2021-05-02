@@ -1,7 +1,6 @@
 import { userStore } from "../../../../app/auth/AuthFacade"
 import { playerStore } from "../../../../app/player/PlayerFacade"
 import timeStampUtil from "../../../../app/utils/TimeStampUtil"
-import 'videojs-hotkeys/videojs.hotkeys'
 
 const PlayerEventHandler = (player) => {
 
@@ -61,12 +60,6 @@ const PlayerEventHandler = (player) => {
 
     player.on("volumechange", () => {
         playerStore.setVolume(player.volume())
-    })
-
-    player.hotkeys({
-        volumeStep: 0.1,
-        seekStep: 5,
-        enableModifiersForNumbers: false
     })
 
     /* Event Listeners */
