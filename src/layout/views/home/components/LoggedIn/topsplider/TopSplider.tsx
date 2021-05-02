@@ -20,9 +20,10 @@ const TopSlider = () => {
     return (
         <div style={{height: "35rem"}}>
             <Splide options={options} className="h-full">
-                <TopSpliderPage show={showStore.getShow("tokyo ghoul")}/>
-                <TopSpliderPage show={showStore.getShow("attack on titan")}/>
-                <TopSpliderPage show={showStore.getShow("no game no life")}/>
+                <TopSpliderPage show={showStore.getShow("jujutsu kaisen")} background="center 20%"/>
+                <TopSpliderPage show={showStore.getShow("rezero")} background="center top"/>
+                <TopSpliderPage show={showStore.getShow("your name")} background="center"/>
+                <TopSpliderPage show={showStore.getShow("tokyo ghoul")} background="center 20%"/>
             </Splide>
         </div>
     )
