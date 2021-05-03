@@ -8,7 +8,7 @@ import {useEffect} from "react";
 import {showStore} from "../app/show/store/ShowStore";
 import {loginService, userStore} from "../app/auth/AuthFacade";
 import mainStore from "../layout/common/store/MainStore";
-import OfflineView from "../layout/views/error/OfflineView";
+import DownView from "../layout/views/error/DownView";
 
 const App = observer(({Component, pageProps}: AppProps) => {
 
@@ -30,7 +30,7 @@ const App = observer(({Component, pageProps}: AppProps) => {
     }, [userStore.isLoggedIn])
 
     if (mainStore.offline) {
-        return <OfflineView />
+        return <DownView />
     }
 
     return (

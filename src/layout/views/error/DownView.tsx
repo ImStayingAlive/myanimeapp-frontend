@@ -24,14 +24,20 @@ const OfflineView = () => {
                                 <span className="text-gray-100">anime</span>
                             </h1>
                             <h2 className="text-3xl text-red-400 font-avenir mt-3">
-                                You are currently offline.
+                                Oh no! We are currently under maintenance!
                             </h2>
 
                             <div className="text-md text-gray-300 font-avenir mt-1">
                                 <p>
-                                    No secure connection could be established to our servers. <br />
-                                    Please try to reconnect to your internet and then reload this page.
+                                    Our servers are under maintenance. We will be online again as soon as possible.<br />
+                                    For more information concerning this outage please visit our server status page.
                                 </p>
+                            </div>
+
+                            <div className="mt-7 text-lg font-avenir flex space-x-2 text-white">
+                                <a rel="noopener noreferrer" href="https://stats.uptimerobot.com/yk9JVTNQ5z" target="_blank" className="bg-gray-700 hover:bg-gray-800 uppercase py-3 px-5 rounded focus:outline-none">
+                                    View our status page
+                                </a>
                             </div>
                         </div>
                     </div>

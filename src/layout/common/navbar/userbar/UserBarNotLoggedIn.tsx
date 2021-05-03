@@ -11,7 +11,7 @@ const UserBarNotLoggedIn = () => {
             </Link>
             <Link href="/register">
                 <a className="font-avenir ml-4 whitespace-nowrap text-md inline-flex items-center justify-center px-3 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                    Sign up
+                    Register
                 </a>
             </Link>
         </div>
