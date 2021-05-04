@@ -27,6 +27,7 @@ interface UserModel {
         seasonIndex: number
         episodeIndex: number
     }
+    settings : Map<string, object>
 }
 
 export default UserModel

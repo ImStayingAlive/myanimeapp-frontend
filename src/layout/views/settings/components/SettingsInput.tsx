@@ -38,6 +38,7 @@ const SettingsInput = (props) => {
                 )}
 
                 <input
+                    disabled={props.disabled}
                     type={type}
                     id={props.label}
                     defaultValue={props.default}
