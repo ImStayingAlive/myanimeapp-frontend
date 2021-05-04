@@ -1,14 +1,39 @@
 import SettingsSidebar from "./components/SettingsSidebar";
 import React from "react";
-import SettingsInput from "./components/SettingsInput";
-import AvatarInput from "./components/AvatarInput";
-import {userStore} from "../../../app/auth/AuthFacade";
 import SettingsSwitch from "./components/SettingsSwitch";
+import {api, userEditStore, userStore} from "../../../app/auth/AuthFacade";
+import {toast} from "react-toastify";
 
 const PreferencesView = () => {
 
-    const handle = (input) => {
-        alert(input)
+    const submit = () => {
+        let data = {
+            userName: userStore.user.name,
+            settings: {}
+        }
+
+        if (userEditStore.autoPlay != null) {
+            data.settings["autoPlayNextEpisode"] = userEditStore.autoPlay
+        }
+
+        if (userEditStore.skipIntro != null) {
+            data.settings["autoSkipIntro"] = userEditStore.skipIntro
+        }
+
+        if (userEditStore.saveWatchHistory != null) {
+            data.settings["saveWatchHistory"] = userEditStore.saveWatchHistory
+        }
+
+        api.post("/user/update", data)
+            .then((response) => {
+                if (response.data.success) {
+                    userStore.setUser(response.data.user)
+                    toast.success("Your changes were updated!")
+                } else {
+                    toast.error("An unknown error occurred!")
+                    console.log(response.data)
+                }
+            })
     }
 
     return (
@@ -23,24 +48,24 @@ const PreferencesView = () => {
 
                             <SettingsSwitch
                                 label="Automatically skip openings"
-                                function={handle}
-                                default={true}
+                                function={(value) => userEditStore.skipIntro = value}
+                                default={userStore.getSetting("autoSkipIntro")}
                             />
 
                             <SettingsSwitch
                                 label="Automatically play next episodes"
-                                function={handle}
-                                default={true}
+                                function={(value) => userEditStore.autoPlay = value}
+                                default={userStore.getSetting("autoPlayNextEpisode")}
                             />
 
                             <SettingsSwitch
                                 label="Save watch history"
-                                function={handle}
-                                default={false}
+                                function={(value) => userEditStore.saveWatchHistory = value}
+                                default={userStore.getSetting("saveWatchHistory")}
                             />
 
                             <div className="my-4 flex items-center">
-                                <button className="bg-blue-500 px-6 mr-3 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
+                                <button onClick={() => submit()} className="bg-blue-500 px-6 mr-3 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
                                     Save Changes
                                 </button>
                             </div>

@@ -1,6 +1,6 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import { toast } from "react-toastify";
-import {ShowModel, showStore} from "../../../show/ShowFacade";
+import {ShowModel} from "../../../show/ShowFacade";
 import {UserModel, loginService, api} from "../../AuthFacade";
 import GroupModel from "../../group/GroupModel";
 
@@ -273,6 +273,17 @@ class UserStore {
                 }
             }
         })
+    }
+
+    getSetting(key) {
+        if (this.user.settings) {
+            let setting = this.user.settings[key]
+            if (setting) {
+                return setting
+            }
+        }
+
+        return false
     }
 }
 

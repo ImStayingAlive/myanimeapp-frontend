@@ -1,11 +1,37 @@
 import SettingsSidebar from "./components/SettingsSidebar";
 import React from "react";
 import Link from "next/link"
+import {api, userStore} from "../../../app/auth/AuthFacade";
+import {toast} from "react-toastify";
 
 const DataView = () => {
 
-    const handle = (input) => {
-        alert(input)
+    const clearWatchList = () => {
+        let data = {
+            userName: userStore.user.name
+        }
+        api.post("/user/clear/watch/later", data)
+            .then((response) => {
+                if (response.data.success) {
+                    toast.success("Your Watch list is now cleared! It may take a while to update.")
+                } else {
+                    toast.error("Error deleting your watch list. Please contact support.")
+                }
+            })
+    }
+
+    const clearWatchHistory = () => {
+        let data = {
+            userName: userStore.user.name
+        }
+        api.post("/user/clear/watch/history", data)
+            .then((response) => {
+                if (response.data.success) {
+                    toast.success("Your Watch History is now cleared! It may take a while to update.")
+                } else {
+                    toast.error("Error deleting your Watch History. Please contact support.")
+                }
+            })
     }
 
     return (
@@ -35,10 +61,10 @@ const DataView = () => {
                             <hr className="my-6 border-gray-400" />
 
                             <div className="my-4 flex items-center">
-                                <button className="bg-blue-500 px-6 mr-3 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
+                                <button onClick={() => clearWatchList()} className="bg-blue-500 px-6 mr-3 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
                                     Clear Watch Later list
                                 </button>
-                                <button className="bg-green-500 px-6 mr-3 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
+                                <button onClick={() => clearWatchHistory()} className="bg-green-500 px-6 mr-3 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
                                     Clear Watch history
                                 </button>
                                 <button className="bg-red-500 px-6 mt-4 py-3 rounded-md font-avenir text-white focus:outline-none">
