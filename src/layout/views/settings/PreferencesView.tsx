@@ -20,8 +20,8 @@ const PreferencesView = () => {
             data.settings["autoSkipIntro"] = userEditStore.skipIntro
         }
 
-        if (userEditStore.saveWatchHistory != null) {
-            data.settings["saveWatchHistory"] = userEditStore.saveWatchHistory
+        if (userEditStore.dontSaveWatchHistory != null) {
+            data.settings["dontSaveWatchHistory"] = userEditStore.dontSaveWatchHistory
         }
 
         api.post("/user/update", data)
@@ -59,9 +59,9 @@ const PreferencesView = () => {
                             />
 
                             <SettingsSwitch
-                                label="Save watch history"
-                                function={(value) => userEditStore.saveWatchHistory = value}
-                                default={userStore.getSetting("saveWatchHistory")}
+                                label="Dont save watch history"
+                                function={(value) => userEditStore.dontSaveWatchHistory = value}
+                                default={userStore.getSetting("dontSaveWatchHistory")}
                             />
 
                             <div className="my-4 flex items-center">
