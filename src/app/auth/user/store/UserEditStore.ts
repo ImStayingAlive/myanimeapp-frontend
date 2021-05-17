@@ -8,7 +8,7 @@ class UserEditStore {
     // Settings
     skipIntro: boolean
     autoPlay: boolean
-    saveWatchHistory: boolean
+    dontSaveWatchHistory: boolean
 
     constructor() {
         makeAutoObservable(this)

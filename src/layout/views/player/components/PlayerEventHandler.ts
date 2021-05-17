@@ -1,12 +1,17 @@
 import { userStore } from "../../../../app/auth/AuthFacade"
 import { playerStore } from "../../../../app/player/PlayerFacade"
 import timeStampUtil from "../../../../app/utils/TimeStampUtil"
+import {toast} from "react-toastify";
 
 const PlayerEventHandler = (player) => {
 
     const show = playerStore.show
 
-    if (userStore.isLoggedIn) {
+    if (userStore.getSetting("dontSaveWatchHistory")) {
+        toast.warn("You have deactivated view tracking. We will not save where you left of!")
+    }
+
+    if (userStore.isLoggedIn && !userStore.getSetting("dontSaveWatchHistory")) {
         /* Check if Player loaded */
         player.on("loadeddata", () => {
             if (!playerStore.loaded) {
@@ -54,6 +59,14 @@ const PlayerEventHandler = (player) => {
             if (!playerStore.loaded) {
                 playerStore.setLoaded(true)
                 player.volume(playerStore.getVolume())
+            }
+        })
+    }
+
+    if (userStore.isLoggedIn && userStore.getSetting("autoSkipIntro")) {
+        player.on("timeupdate", () => {
+            if (player.currentTime() >= playerStore.getCurrentEpisode().introStart && player.currentTime() <= (playerStore.getCurrentEpisode().introStart + playerStore.getCurrentEpisode().introLength)) {
+                player.currentTime(playerStore.getCurrentEpisode().introStart + playerStore.getCurrentEpisode().introLength)
             }
         })
     }
