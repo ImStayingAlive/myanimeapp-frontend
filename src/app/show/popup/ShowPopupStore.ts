@@ -1,4 +1,4 @@
-import {ShowModel, formatURL, showStore} from "../ShowFacade"
+import {ShowModel, showStore} from "../ShowFacade"
 import {makeAutoObservable, runInAction} from "mobx";
 import Router from 'next/router'
 import {userStore} from "../../auth/AuthFacade";
@@ -41,7 +41,7 @@ class ShowPopupStore {
             if (!this.isOpen) {
                 Router.push({
                     pathname: '',
-                    query: {show: formatURL(this.show.name)},
+                    //query: {show: formatURL(this.show.name)},
                 }, '', {shallow: true}).then(() => {
                     runInAction(() => {
                         this.isOpen = true

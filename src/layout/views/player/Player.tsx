@@ -6,7 +6,7 @@ import Router, {useRouter} from "next/router";
 import PlayerEventHandler from "./components/PlayerEventHandler";
 import PreloaderComponent from "../../common/PreloaderComponent";
 import {playerStore} from "../../../app/player/PlayerFacade";
-import {formatURL, showPopupStore} from "../../../app/show/ShowFacade";
+import {showPopupStore} from "../../../app/show/ShowFacade";
 import PlayerMediaSession from "./components/PlayerMediaSession";
 
 const Player = observer(() => {
@@ -54,9 +54,9 @@ const Player = observer(() => {
                 const closePlayer = () => {
                     Router.push({
                         pathname: '/',
-                        query: {show: formatURL(playerStore.show.name)},
+                        //query: {show: formatURL(playerStore.show.name)},
                     }).then(() => {
-                        showPopupStore.open(playerStore.show)
+                        showPopupStore.open(playerStore.show.name)
                     })
                 }
 
