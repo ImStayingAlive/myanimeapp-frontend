@@ -1,6 +1,7 @@
 # Anime-frontend
 
 This is the frontend for the MyAnime.APP. This version is written in NextJS
+Want to see a preview of the project? https://imgur.com/a/1yy39n6
 
 ## Usage
 
